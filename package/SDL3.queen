@@ -1,0 +1,23 @@
+queen 1.0;
+
+// SDL3 for Larva: the binding (made by ../SDLBindingProfile.ant: larva bind --profile ../SDLBindingProfile.ant) and SDL3.dll.
+
+chunk PROJ:
+   name: SDL3,
+   type: library,
+   version: v3.5.0,
+   author: "Antril Organization",
+   description: "SDL 3.5 for Larva: windows, rendering, input, audio and more (SDL3.dll included)."
+
+chunk SOURCES:
+   scan: false
+
+chunk DEPS:
+   assembly: ../SDL.Bindings.dll,
+   lib: ../build/SDL3.dll
+
+chunk HIVE:
+   package: Antril-Organization/SDL3,
+   license: Zlib,
+   sign: hive.key,
+   provider: file:../registry

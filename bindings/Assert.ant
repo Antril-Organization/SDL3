@@ -1,0 +1,56 @@
+// SDL.Assert.AssertState — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Assert
+{
+	/// Values of SDL3.dll.
+	public enum AssertState { Retry, Break, Abort, Ignore, AlwaysIgnore }
+}
+
+// SDL.Assert.AssertData — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Assert
+{
+	/// C struct AssertData of SDL3.dll: its fields in C's layout.
+	public value AssertData
+	{
+		public:
+			bool AlwaysIgnore;
+			u32 TriggerCount;
+			i8* Condition;
+			i8* Filename;
+			i32 Linenum;
+			i8* Function;
+			AssertData* Next;
+	}
+}
+
+// SDL.Assert.Assert — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Assert
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Assert
+	{
+		public:
+			readonly i32 AssertLevel = 1;
+			readonly i32 NullWhileLoopCondition = 0;
+
+			[Import("SDL3.dll", "SDL_ReportAssertion")]
+			ReportAssertion(AssertData* data, str? func, str? file, i32 line) : AssertState;
+
+			[Import("SDL3.dll", "SDL_SetAssertionHandler")]
+			SetAssertionHandler(func*<AssertData*, void*> : i32 handler, void* userdata);
+
+			[Import("SDL3.dll", "SDL_GetDefaultAssertionHandler")]
+			GetDefaultAssertionHandler() : func*<AssertData*, void*> : i32;
+
+			[Import("SDL3.dll", "SDL_GetAssertionHandler")]
+			GetAssertionHandler(void** puserdata) : func*<AssertData*, void*> : i32;
+
+			[Import("SDL3.dll", "SDL_GetAssertionReport")]
+			GetAssertionReport() : AssertData*;
+
+			[Import("SDL3.dll", "SDL_ResetAssertionReport")]
+			ResetAssertionReport();
+	}
+}

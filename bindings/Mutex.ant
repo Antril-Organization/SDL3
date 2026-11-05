@@ -1,0 +1,118 @@
+import SDL.Atomic;
+
+// SDL.Mutex.InitStatus — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Mutex
+{
+	/// Values of SDL3.dll.
+	public enum InitStatus { Uninitialized, Initializing, Initialized, Uninitializing }
+}
+
+// SDL.Mutex.InitState — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Mutex
+{
+	/// C struct InitState of SDL3.dll: its fields in C's layout.
+	public value InitState
+	{
+		public:
+			AtomicInt Status;
+			u64 Thread;
+			void* Reserved;
+	}
+}
+
+// SDL.Mutex.Mutex — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Mutex
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Mutex
+	{
+		public:
+			[Import("SDL3.dll", "SDL_CreateMutex")]
+			CreateMutex() : void*;
+
+			[Import("SDL3.dll", "SDL_LockMutex")]
+			LockMutex(void* mutex);
+
+			[Import("SDL3.dll", "SDL_TryLockMutex")]
+			TryLockMutex(void* mutex) : bool;
+
+			[Import("SDL3.dll", "SDL_UnlockMutex")]
+			UnlockMutex(void* mutex);
+
+			[Import("SDL3.dll", "SDL_DestroyMutex")]
+			DestroyMutex(void* mutex);
+
+			[Import("SDL3.dll", "SDL_CreateRWLock")]
+			CreateRWLock() : void*;
+
+			[Import("SDL3.dll", "SDL_LockRWLockForReading")]
+			LockRWLockForReading(void* rwlock);
+
+			[Import("SDL3.dll", "SDL_LockRWLockForWriting")]
+			LockRWLockForWriting(void* rwlock);
+
+			[Import("SDL3.dll", "SDL_TryLockRWLockForReading")]
+			TryLockRWLockForReading(void* rwlock) : bool;
+
+			[Import("SDL3.dll", "SDL_TryLockRWLockForWriting")]
+			TryLockRWLockForWriting(void* rwlock) : bool;
+
+			[Import("SDL3.dll", "SDL_UnlockRWLock")]
+			UnlockRWLock(void* rwlock);
+
+			[Import("SDL3.dll", "SDL_DestroyRWLock")]
+			DestroyRWLock(void* rwlock);
+
+			[Import("SDL3.dll", "SDL_CreateSemaphore")]
+			CreateSemaphore(u32 initialValue) : void*;
+
+			[Import("SDL3.dll", "SDL_DestroySemaphore")]
+			DestroySemaphore(void* sem);
+
+			[Import("SDL3.dll", "SDL_WaitSemaphore")]
+			WaitSemaphore(void* sem);
+
+			[Import("SDL3.dll", "SDL_TryWaitSemaphore")]
+			TryWaitSemaphore(void* sem) : bool;
+
+			[Import("SDL3.dll", "SDL_WaitSemaphoreTimeout")]
+			WaitSemaphoreTimeout(void* sem, i32 timeoutMS) : bool;
+
+			[Import("SDL3.dll", "SDL_SignalSemaphore")]
+			SignalSemaphore(void* sem);
+
+			[Import("SDL3.dll", "SDL_GetSemaphoreValue")]
+			GetSemaphoreValue(void* sem) : u32;
+
+			[Import("SDL3.dll", "SDL_CreateCondition")]
+			CreateCondition() : void*;
+
+			[Import("SDL3.dll", "SDL_DestroyCondition")]
+			DestroyCondition(void* cond);
+
+			[Import("SDL3.dll", "SDL_SignalCondition")]
+			SignalCondition(void* cond);
+
+			[Import("SDL3.dll", "SDL_BroadcastCondition")]
+			BroadcastCondition(void* cond);
+
+			[Import("SDL3.dll", "SDL_WaitCondition")]
+			WaitCondition(void* cond, void* mutex);
+
+			[Import("SDL3.dll", "SDL_WaitConditionTimeout")]
+			WaitConditionTimeout(void* cond, void* mutex, i32 timeoutMS) : bool;
+
+			[Import("SDL3.dll", "SDL_ShouldInit")]
+			ShouldInit(InitState* state) : bool;
+
+			[Import("SDL3.dll", "SDL_ShouldQuit")]
+			ShouldQuit(InitState* state) : bool;
+
+			[Import("SDL3.dll", "SDL_SetInitialized")]
+			SetInitialized(InitState* state, bool initialized);
+	}
+}

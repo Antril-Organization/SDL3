@@ -1,0 +1,44 @@
+// SDL.Touch.TouchDeviceType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Touch
+{
+	/// Values of SDL3.dll.
+	public enum TouchDeviceType { Invalid = -1, Direct = 0, IndirectAbsolute = 1, IndirectRelative = 2 }
+}
+
+// SDL.Touch.Finger — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Touch
+{
+	/// C struct Finger of SDL3.dll: its fields in C's layout.
+	public value Finger
+	{
+		public:
+			u64 Id;
+			f32 X;
+			f32 Y;
+			f32 Pressure;
+	}
+}
+
+// SDL.Touch.Touch — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Touch
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Touch
+	{
+		public:
+			[Import("SDL3.dll", "SDL_GetTouchDevices")]
+			GetTouchDevices(i32* count) : u64*;
+
+			[Import("SDL3.dll", "SDL_GetTouchDeviceName")]
+			GetTouchDeviceName(u64 touchID) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetTouchDeviceType")]
+			GetTouchDeviceType(u64 touchID) : TouchDeviceType;
+
+			[Import("SDL3.dll", "SDL_GetTouchFingers")]
+			GetTouchFingers(u64 touchID, i32* count) : Finger**;
+	}
+}

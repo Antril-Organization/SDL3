@@ -1,0 +1,81 @@
+// SDL.Atomic.AtomicInt — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Atomic
+{
+	/// C struct AtomicInt of SDL3.dll: its fields in C's layout.
+	public value AtomicInt
+	{
+		public:
+			i32 Value;
+	}
+}
+
+// SDL.Atomic.AtomicU32 — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Atomic
+{
+	/// C struct AtomicU32 of SDL3.dll: its fields in C's layout.
+	public value AtomicU32
+	{
+		public:
+			u32 Value;
+	}
+}
+
+// SDL.Atomic.Atomic — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Atomic
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Atomic
+	{
+		public:
+			[Import("SDL3.dll", "SDL_TryLockSpinlock")]
+			TryLockSpinlock(i32* lock) : bool;
+
+			[Import("SDL3.dll", "SDL_LockSpinlock")]
+			LockSpinlock(i32* lock);
+
+			[Import("SDL3.dll", "SDL_UnlockSpinlock")]
+			UnlockSpinlock(i32* lock);
+
+			[Import("SDL3.dll", "SDL_MemoryBarrierReleaseFunction")]
+			MemoryBarrierReleaseFunction();
+
+			[Import("SDL3.dll", "SDL_MemoryBarrierAcquireFunction")]
+			MemoryBarrierAcquireFunction();
+
+			[Import("SDL3.dll", "SDL_CompareAndSwapAtomicInt")]
+			CompareAndSwapAtomicInt(AtomicInt* a, i32 oldval, i32 newval) : bool;
+
+			[Import("SDL3.dll", "SDL_SetAtomicInt")]
+			SetAtomicInt(AtomicInt* a, i32 v) : i32;
+
+			[Import("SDL3.dll", "SDL_GetAtomicInt")]
+			GetAtomicInt(AtomicInt* a) : i32;
+
+			[Import("SDL3.dll", "SDL_AddAtomicInt")]
+			AddAtomicInt(AtomicInt* a, i32 v) : i32;
+
+			[Import("SDL3.dll", "SDL_CompareAndSwapAtomicU32")]
+			CompareAndSwapAtomicU32(AtomicU32* a, u32 oldval, u32 newval) : bool;
+
+			[Import("SDL3.dll", "SDL_SetAtomicU32")]
+			SetAtomicU32(AtomicU32* a, u32 v) : u32;
+
+			[Import("SDL3.dll", "SDL_GetAtomicU32")]
+			GetAtomicU32(AtomicU32* a) : u32;
+
+			[Import("SDL3.dll", "SDL_AddAtomicU32")]
+			AddAtomicU32(AtomicU32* a, i32 v) : u32;
+
+			[Import("SDL3.dll", "SDL_CompareAndSwapAtomicPointer")]
+			CompareAndSwapAtomicPointer(void** a, void* oldval, void* newval) : bool;
+
+			[Import("SDL3.dll", "SDL_SetAtomicPointer")]
+			SetAtomicPointer(void** a, void* v) : void*;
+
+			[Import("SDL3.dll", "SDL_GetAtomicPointer")]
+			GetAtomicPointer(void** a) : void*;
+	}
+}

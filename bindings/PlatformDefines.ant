@@ -1,0 +1,13 @@
+// SDL.PlatformDefines.PlatformDefines — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.PlatformDefines
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class PlatformDefines
+	{
+		public:
+			readonly i32 PlatformWindows = 1;
+			readonly i32 HaveWinapifamilyH = 1;
+			readonly i32 PlatformWin32 = 1;
+	}
+}

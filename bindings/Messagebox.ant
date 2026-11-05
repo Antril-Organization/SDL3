@@ -1,0 +1,89 @@
+// SDL.Messagebox.MessageBoxColorType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Messagebox
+{
+	/// Values of SDL3.dll.
+	public enum MessageBoxColorType { Background, Text, ButtonBorder, ButtonBackground, ButtonSelected, Count }
+}
+
+// SDL.Messagebox.MessageBoxButtonData — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Messagebox
+{
+	/// C struct MessageBoxButtonData of SDL3.dll: its fields in C's layout.
+	public value MessageBoxButtonData
+	{
+		public:
+			u32 Flags;
+			i32 ButtonID;
+			i8* Text;
+	}
+}
+
+// SDL.Messagebox.MessageBoxColor — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Messagebox
+{
+	/// C struct MessageBoxColor of SDL3.dll: its fields in C's layout.
+	public value MessageBoxColor
+	{
+		public:
+			u8 R;
+			u8 G;
+			u8 B;
+	}
+}
+
+// SDL.Messagebox.MessageBoxColorScheme — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Messagebox
+{
+	/// C struct MessageBoxColorScheme of SDL3.dll: its fields in C's layout.
+	public value MessageBoxColorScheme
+	{
+		public:
+			fixed MessageBoxColor[5] Colors;
+	}
+}
+
+// SDL.Messagebox.MessageBoxData — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Messagebox
+{
+	/// C struct MessageBoxData of SDL3.dll: its fields in C's layout.
+	public value MessageBoxData
+	{
+		public:
+			u32 Flags;
+			void* Window;
+			i8* Title;
+			i8* Message;
+			i32 Numbuttons;
+			MessageBoxButtonData* Buttons;
+			MessageBoxColorScheme* ColorScheme;
+	}
+}
+
+// SDL.Messagebox.Messagebox — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Messagebox
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Messagebox
+	{
+		public:
+			readonly i32 MessageboxError = 16;
+			readonly i32 MessageboxWarning = 32;
+			readonly i32 MessageboxInformation = 64;
+			readonly i32 MessageboxButtonsLeftToRight = 128;
+			readonly i32 MessageboxButtonsRightToLeft = 256;
+			readonly i32 MessageboxButtonReturnkeyDefault = 1;
+			readonly i32 MessageboxButtonEscapekeyDefault = 2;
+
+			[Import("SDL3.dll", "SDL_ShowMessageBox")]
+			ShowMessageBox(MessageBoxData* messageboxdata, i32* buttonid) : bool;
+
+			[Import("SDL3.dll", "SDL_ShowSimpleMessageBox")]
+			ShowSimpleMessageBox(u32 flags, str? title, str? message, void* window) : bool;
+	}
+}

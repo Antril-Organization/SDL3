@@ -1,0 +1,64 @@
+import SDL.Atomic;
+
+// SDL.Thread.ThreadPriority — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Thread
+{
+	/// Values of SDL3.dll.
+	public enum ThreadPriority { Low, Normal, High, TimeCritical }
+}
+
+// SDL.Thread.ThreadState — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Thread
+{
+	/// Values of SDL3.dll.
+	public enum ThreadState { Unknown, Alive, Detached, Complete }
+}
+
+// SDL.Thread.Thread — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Thread
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Thread
+	{
+		public:
+			[Import("SDL3.dll", "SDL_CreateThreadRuntime")]
+			CreateThreadRuntime(func*<void*> : i32 fn, str? name, void* data, func* pfnBeginThread, func* pfnEndThread) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateThreadWithPropertiesRuntime")]
+			CreateThreadWithPropertiesRuntime(u32 props, func* pfnBeginThread, func* pfnEndThread) : void*;
+
+			[Import("SDL3.dll", "SDL_GetThreadName")]
+			GetThreadName(void* thread) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetCurrentThreadID")]
+			GetCurrentThreadID() : u64;
+
+			[Import("SDL3.dll", "SDL_GetThreadID")]
+			GetThreadID(void* thread) : u64;
+
+			[Import("SDL3.dll", "SDL_SetCurrentThreadPriority")]
+			SetCurrentThreadPriority(ThreadPriority priority) : bool;
+
+			[Import("SDL3.dll", "SDL_WaitThread")]
+			WaitThread(void* thread, i32* status);
+
+			[Import("SDL3.dll", "SDL_GetThreadState")]
+			GetThreadState(void* thread) : ThreadState;
+
+			[Import("SDL3.dll", "SDL_DetachThread")]
+			DetachThread(void* thread);
+
+			[Import("SDL3.dll", "SDL_GetTLS")]
+			GetTLS(AtomicInt* id) : void*;
+
+			[Import("SDL3.dll", "SDL_SetTLS")]
+			SetTLS(AtomicInt* id, void* value, func*<void*> destructor) : bool;
+
+			[Import("SDL3.dll", "SDL_CleanupTLS")]
+			CleanupTLS();
+	}
+}

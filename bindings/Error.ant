@@ -1,0 +1,21 @@
+// SDL.Error.Error — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Error
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Error
+	{
+		public:
+			[Import("SDL3.dll", "SDL_SetErrorV")]
+			SetErrorV(str? fmt, str? ap) : bool;
+
+			[Import("SDL3.dll", "SDL_OutOfMemory")]
+			OutOfMemory() : bool;
+
+			[Import("SDL3.dll", "SDL_GetError")]
+			GetError() : i8*;
+
+			[Import("SDL3.dll", "SDL_ClearError")]
+			ClearError() : bool;
+	}
+}

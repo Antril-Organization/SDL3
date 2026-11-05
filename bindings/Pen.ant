@@ -1,0 +1,28 @@
+// SDL.Pen.PenAxis — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pen
+{
+	/// Values of SDL3.dll.
+	public enum PenAxis { Pressure, Xtilt, Ytilt, Distance, Rotation, Slider, TangentialPressure, Count }
+}
+
+// SDL.Pen.PenDeviceType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pen
+{
+	/// Values of SDL3.dll.
+	public enum PenDeviceType { Invalid = -1, Unknown = 0, Direct = 1, Indirect = 2 }
+}
+
+// SDL.Pen.Pen — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pen
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Pen
+	{
+		public:
+			[Import("SDL3.dll", "SDL_GetPenDeviceType")]
+			GetPenDeviceType(u32 instanceId) : PenDeviceType;
+	}
+}

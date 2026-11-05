@@ -1,0 +1,25 @@
+// SDL.Locale.Locale — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Locale
+{
+	/// C struct Locale of SDL3.dll: its fields in C's layout.
+	public value Locale
+	{
+		public:
+			i8* Language;
+			i8* Country;
+	}
+}
+
+// SDL.Locale.LocaleFunctions — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Locale
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class LocaleFunctions
+	{
+		public:
+			[Import("SDL3.dll", "SDL_GetPreferredLocales")]
+			GetPreferredLocales(i32* count) : Locale**;
+	}
+}

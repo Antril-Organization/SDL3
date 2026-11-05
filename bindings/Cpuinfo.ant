@@ -1,0 +1,71 @@
+// SDL.Cpuinfo.Cpuinfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Cpuinfo
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Cpuinfo
+	{
+		public:
+			readonly i32 CachelineSize = 128;
+
+			[Import("SDL3.dll", "SDL_GetNumLogicalCPUCores")]
+			GetNumLogicalCPUCores() : i32;
+
+			[Import("SDL3.dll", "SDL_GetCPUCacheLineSize")]
+			GetCPUCacheLineSize() : i32;
+
+			[Import("SDL3.dll", "SDL_HasAltiVec")]
+			HasAltiVec() : bool;
+
+			[Import("SDL3.dll", "SDL_HasMMX")]
+			HasMMX() : bool;
+
+			[Import("SDL3.dll", "SDL_HasSSE")]
+			HasSSE() : bool;
+
+			[Import("SDL3.dll", "SDL_HasSSE2")]
+			HasSSE2() : bool;
+
+			[Import("SDL3.dll", "SDL_HasSSE3")]
+			HasSSE3() : bool;
+
+			[Import("SDL3.dll", "SDL_HasSSE41")]
+			HasSSE41() : bool;
+
+			[Import("SDL3.dll", "SDL_HasSSE42")]
+			HasSSE42() : bool;
+
+			[Import("SDL3.dll", "SDL_HasAVX")]
+			HasAVX() : bool;
+
+			[Import("SDL3.dll", "SDL_HasAVX2")]
+			HasAVX2() : bool;
+
+			[Import("SDL3.dll", "SDL_HasAVX512F")]
+			HasAVX512F() : bool;
+
+			[Import("SDL3.dll", "SDL_HasARMSIMD")]
+			HasARMSIMD() : bool;
+
+			[Import("SDL3.dll", "SDL_HasNEON")]
+			HasNEON() : bool;
+
+			[Import("SDL3.dll", "SDL_HasSVE2")]
+			HasSVE2() : bool;
+
+			[Import("SDL3.dll", "SDL_HasLSX")]
+			HasLSX() : bool;
+
+			[Import("SDL3.dll", "SDL_HasLASX")]
+			HasLASX() : bool;
+
+			[Import("SDL3.dll", "SDL_GetSystemRAM")]
+			GetSystemRAM() : i32;
+
+			[Import("SDL3.dll", "SDL_GetSIMDAlignment")]
+			GetSIMDAlignment() : u64;
+
+			[Import("SDL3.dll", "SDL_GetSystemPageSize")]
+			GetSystemPageSize() : i32;
+	}
+}

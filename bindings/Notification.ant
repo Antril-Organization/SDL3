@@ -1,0 +1,71 @@
+import System.Runtime.InteropServices;
+import SDL.Surface;
+
+// SDL.Notification.NotificationPriority — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Notification
+{
+	/// Values of SDL3.dll.
+	public enum NotificationPriority { Low = -1, Normal = 0, High = 1, Critical = 2 }
+}
+
+// SDL.Notification.NotificationActionType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Notification
+{
+	/// Values of SDL3.dll.
+	public enum NotificationActionType { Button = 1 }
+}
+
+// SDL.Notification.NotificationActionButton — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Notification
+{
+	/// C struct NotificationActionButton of SDL3.dll: its fields in C's layout.
+	public value NotificationActionButton
+	{
+		public:
+			NotificationActionType Type;
+			i8* ActionId;
+			i8* ActionLabel;
+	}
+}
+
+// SDL.Notification.NotificationAction — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Notification
+{
+	/// C union NotificationAction of SDL3.dll: its members share the same bytes.
+	[ValueLayout(Layout.Explicit)]
+	public value NotificationAction
+	{
+		public:
+			[FieldOffset(0)] NotificationActionType Type;
+			[FieldOffset(0)] NotificationActionButton Button;
+			[FieldOffset(0)] fixed u8[128] Padding;
+	}
+}
+
+// SDL.Notification.Notification — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Notification
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Notification
+	{
+		public:
+			[Import("SDL3.dll", "SDL_RequestNotificationPermission")]
+			RequestNotificationPermission() : bool;
+
+			[Import("SDL3.dll", "SDL_ShowNotificationWithProperties")]
+			ShowNotificationWithProperties(u32 props) : u32;
+
+			[Import("SDL3.dll", "SDL_ShowNotification")]
+			ShowNotification(str? title, str? message, Surface* image, NotificationAction* actions, i32 numActions) : u32;
+
+			[Import("SDL3.dll", "SDL_RemoveNotification")]
+			RemoveNotification(u32 notification) : bool;
+	}
+}

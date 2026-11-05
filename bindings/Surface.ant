@@ -1,0 +1,255 @@
+import SDL.Pixels;
+import SDL.Rect;
+
+// SDL.Surface.ScaleMode — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Surface
+{
+	/// Values of SDL3.dll.
+	public enum ScaleMode { Invalid = -1, Nearest = 0, Linear = 1, Pixelart = 2 }
+}
+
+// SDL.Surface.FlipMode — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Surface
+{
+	/// Values of SDL3.dll.
+	public enum FlipMode { None, Horizontal, Vertical }
+}
+
+// SDL.Surface.Surface — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Surface
+{
+	/// C struct Surface of SDL3.dll: its fields in C's layout.
+	public value Surface
+	{
+		public:
+			u32 Flags;
+			PixelFormat Format;
+			i32 W;
+			i32 H;
+			i32 Pitch;
+			void* Pixels;
+			i32 Refcount;
+			void* Reserved;
+	}
+}
+
+// SDL.Surface.SurfaceFunctions — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Surface
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class SurfaceFunctions
+	{
+		public:
+			readonly i32 SurfacePreallocated = 1;
+			readonly i32 SurfaceLockNeeded = 2;
+			readonly i32 SurfaceLocked = 4;
+			readonly i32 SurfaceSimdAligned = 8;
+
+			[Import("SDL3.dll", "SDL_CreateSurface")]
+			CreateSurface(i32 width, i32 height, PixelFormat format) : Surface*;
+
+			[Import("SDL3.dll", "SDL_CreateSurfaceFrom")]
+			CreateSurfaceFrom(i32 width, i32 height, PixelFormat format, void* pixels, i32 pitch) : Surface*;
+
+			[Import("SDL3.dll", "SDL_DestroySurface")]
+			DestroySurface(Surface* surface);
+
+			[Import("SDL3.dll", "SDL_GetSurfaceProperties")]
+			GetSurfaceProperties(Surface* surface) : u32;
+
+			[Import("SDL3.dll", "SDL_SetSurfaceColorspace")]
+			SetSurfaceColorspace(Surface* surface, Colorspace colorspace) : bool;
+
+			[Import("SDL3.dll", "SDL_GetSurfaceColorspace")]
+			GetSurfaceColorspace(Surface* surface) : Colorspace;
+
+			[Import("SDL3.dll", "SDL_CreateSurfacePalette")]
+			CreateSurfacePalette(Surface* surface) : Palette*;
+
+			[Import("SDL3.dll", "SDL_SetSurfacePalette")]
+			SetSurfacePalette(Surface* surface, Palette* palette) : bool;
+
+			[Import("SDL3.dll", "SDL_GetSurfacePalette")]
+			GetSurfacePalette(Surface* surface) : Palette*;
+
+			[Import("SDL3.dll", "SDL_AddSurfaceAlternateImage")]
+			AddSurfaceAlternateImage(Surface* surface, Surface* image) : bool;
+
+			[Import("SDL3.dll", "SDL_SurfaceHasAlternateImages")]
+			SurfaceHasAlternateImages(Surface* surface) : bool;
+
+			[Import("SDL3.dll", "SDL_GetSurfaceImages")]
+			GetSurfaceImages(Surface* surface, i32* count) : Surface**;
+
+			[Import("SDL3.dll", "SDL_RemoveSurfaceAlternateImages")]
+			RemoveSurfaceAlternateImages(Surface* surface);
+
+			[Import("SDL3.dll", "SDL_LockSurface")]
+			LockSurface(Surface* surface) : bool;
+
+			[Import("SDL3.dll", "SDL_UnlockSurface")]
+			UnlockSurface(Surface* surface);
+
+			[Import("SDL3.dll", "SDL_LoadSurface_IO")]
+			LoadSurfaceIO(void* src, bool closeio) : Surface*;
+
+			[Import("SDL3.dll", "SDL_LoadSurface")]
+			LoadSurface(str? file) : Surface*;
+
+			[Import("SDL3.dll", "SDL_LoadBMP_IO")]
+			LoadBMPIO(void* src, bool closeio) : Surface*;
+
+			[Import("SDL3.dll", "SDL_LoadBMP")]
+			LoadBMP(str? file) : Surface*;
+
+			[Import("SDL3.dll", "SDL_SaveBMP_IO")]
+			SaveBMPIO(Surface* surface, void* dst, bool closeio) : bool;
+
+			[Import("SDL3.dll", "SDL_SaveBMP")]
+			SaveBMP(Surface* surface, str? file) : bool;
+
+			[Import("SDL3.dll", "SDL_LoadPNG_IO")]
+			LoadPNGIO(void* src, bool closeio) : Surface*;
+
+			[Import("SDL3.dll", "SDL_LoadPNG")]
+			LoadPNG(str? file) : Surface*;
+
+			[Import("SDL3.dll", "SDL_SavePNG_IO")]
+			SavePNGIO(Surface* surface, void* dst, bool closeio) : bool;
+
+			[Import("SDL3.dll", "SDL_SavePNG")]
+			SavePNG(Surface* surface, str? file) : bool;
+
+			[Import("SDL3.dll", "SDL_LoadJPG_IO")]
+			LoadJPGIO(void* src, bool closeio) : Surface*;
+
+			[Import("SDL3.dll", "SDL_LoadJPG")]
+			LoadJPG(str? file) : Surface*;
+
+			[Import("SDL3.dll", "SDL_SetSurfaceRLE")]
+			SetSurfaceRLE(Surface* surface, bool enabled) : bool;
+
+			[Import("SDL3.dll", "SDL_SurfaceHasRLE")]
+			SurfaceHasRLE(Surface* surface) : bool;
+
+			[Import("SDL3.dll", "SDL_SetSurfaceColorKey")]
+			SetSurfaceColorKey(Surface* surface, bool enabled, u32 key) : bool;
+
+			[Import("SDL3.dll", "SDL_SurfaceHasColorKey")]
+			SurfaceHasColorKey(Surface* surface) : bool;
+
+			[Import("SDL3.dll", "SDL_GetSurfaceColorKey")]
+			GetSurfaceColorKey(Surface* surface, u32* key) : bool;
+
+			[Import("SDL3.dll", "SDL_SetSurfaceColorMod")]
+			SetSurfaceColorMod(Surface* surface, u8 r, u8 g, u8 b) : bool;
+
+			[Import("SDL3.dll", "SDL_GetSurfaceColorMod")]
+			GetSurfaceColorMod(Surface* surface, u8* r, u8* g, u8* b) : bool;
+
+			[Import("SDL3.dll", "SDL_SetSurfaceAlphaMod")]
+			SetSurfaceAlphaMod(Surface* surface, u8 alpha) : bool;
+
+			[Import("SDL3.dll", "SDL_GetSurfaceAlphaMod")]
+			GetSurfaceAlphaMod(Surface* surface, u8* alpha) : bool;
+
+			[Import("SDL3.dll", "SDL_SetSurfaceBlendMode")]
+			SetSurfaceBlendMode(Surface* surface, u32 blendMode) : bool;
+
+			[Import("SDL3.dll", "SDL_GetSurfaceBlendMode")]
+			GetSurfaceBlendMode(Surface* surface, u32* blendMode) : bool;
+
+			[Import("SDL3.dll", "SDL_SetSurfaceClipRect")]
+			SetSurfaceClipRect(Surface* surface, Rect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_GetSurfaceClipRect")]
+			GetSurfaceClipRect(Surface* surface, Rect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_FlipSurface")]
+			FlipSurface(Surface* surface, FlipMode flip) : bool;
+
+			[Import("SDL3.dll", "SDL_RotateSurface")]
+			RotateSurface(Surface* surface, f32 angle) : Surface*;
+
+			[Import("SDL3.dll", "SDL_DuplicateSurface")]
+			DuplicateSurface(Surface* surface) : Surface*;
+
+			[Import("SDL3.dll", "SDL_ScaleSurface")]
+			ScaleSurface(Surface* surface, i32 width, i32 height, ScaleMode scaleMode) : Surface*;
+
+			[Import("SDL3.dll", "SDL_ConvertSurface")]
+			ConvertSurface(Surface* surface, PixelFormat format) : Surface*;
+
+			[Import("SDL3.dll", "SDL_ConvertSurfaceAndColorspace")]
+			ConvertSurfaceAndColorspace(Surface* surface, PixelFormat format, Palette* palette, Colorspace colorspace, u32 props) : Surface*;
+
+			[Import("SDL3.dll", "SDL_ConvertPixels")]
+			ConvertPixels(i32 width, i32 height, PixelFormat srcFormat, void* src, i32 srcPitch, PixelFormat dstFormat, void* dst, i32 dstPitch) : bool;
+
+			[Import("SDL3.dll", "SDL_ConvertPixelsAndColorspace")]
+			ConvertPixelsAndColorspace(i32 width, i32 height, PixelFormat srcFormat, Colorspace srcColorspace, u32 srcProperties, void* src, i32 srcPitch, PixelFormat dstFormat, Colorspace dstColorspace, u32 dstProperties, void* dst, i32 dstPitch) : bool;
+
+			[Import("SDL3.dll", "SDL_PremultiplyAlpha")]
+			PremultiplyAlpha(i32 width, i32 height, PixelFormat srcFormat, void* src, i32 srcPitch, PixelFormat dstFormat, void* dst, i32 dstPitch, bool linear) : bool;
+
+			[Import("SDL3.dll", "SDL_PremultiplySurfaceAlpha")]
+			PremultiplySurfaceAlpha(Surface* surface, bool linear) : bool;
+
+			[Import("SDL3.dll", "SDL_ClearSurface")]
+			ClearSurface(Surface* surface, f32 r, f32 g, f32 b, f32 a) : bool;
+
+			[Import("SDL3.dll", "SDL_FillSurfaceRect")]
+			FillSurfaceRect(Surface* dst, Rect* rect, u32 color) : bool;
+
+			[Import("SDL3.dll", "SDL_FillSurfaceRects")]
+			FillSurfaceRects(Surface* dst, Rect* rects, i32 count, u32 color) : bool;
+
+			[Import("SDL3.dll", "SDL_BlitSurface")]
+			BlitSurface(Surface* src, Rect* srcrect, Surface* dst, Rect* dstrect) : bool;
+
+			[Import("SDL3.dll", "SDL_BlitSurfaceUnchecked")]
+			BlitSurfaceUnchecked(Surface* src, Rect* srcrect, Surface* dst, Rect* dstrect) : bool;
+
+			[Import("SDL3.dll", "SDL_BlitSurfaceScaled")]
+			BlitSurfaceScaled(Surface* src, Rect* srcrect, Surface* dst, Rect* dstrect, ScaleMode scaleMode) : bool;
+
+			[Import("SDL3.dll", "SDL_BlitSurfaceUncheckedScaled")]
+			BlitSurfaceUncheckedScaled(Surface* src, Rect* srcrect, Surface* dst, Rect* dstrect, ScaleMode scaleMode) : bool;
+
+			[Import("SDL3.dll", "SDL_StretchSurface")]
+			StretchSurface(Surface* src, Rect* srcrect, Surface* dst, Rect* dstrect, ScaleMode scaleMode) : bool;
+
+			[Import("SDL3.dll", "SDL_BlitSurfaceTiled")]
+			BlitSurfaceTiled(Surface* src, Rect* srcrect, Surface* dst, Rect* dstrect) : bool;
+
+			[Import("SDL3.dll", "SDL_BlitSurfaceTiledWithScale")]
+			BlitSurfaceTiledWithScale(Surface* src, Rect* srcrect, f32 scale, ScaleMode scaleMode, Surface* dst, Rect* dstrect) : bool;
+
+			[Import("SDL3.dll", "SDL_BlitSurface9Grid")]
+			BlitSurface9Grid(Surface* src, Rect* srcrect, i32 leftWidth, i32 rightWidth, i32 topHeight, i32 bottomHeight, f32 scale, ScaleMode scaleMode, Surface* dst, Rect* dstrect) : bool;
+
+			[Import("SDL3.dll", "SDL_MapSurfaceRGB")]
+			MapSurfaceRGB(Surface* surface, u8 r, u8 g, u8 b) : u32;
+
+			[Import("SDL3.dll", "SDL_MapSurfaceRGBA")]
+			MapSurfaceRGBA(Surface* surface, u8 r, u8 g, u8 b, u8 a) : u32;
+
+			[Import("SDL3.dll", "SDL_ReadSurfacePixel")]
+			ReadSurfacePixel(Surface* surface, i32 x, i32 y, u8* r, u8* g, u8* b, u8* a) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadSurfacePixelFloat")]
+			ReadSurfacePixelFloat(Surface* surface, i32 x, i32 y, f32* r, f32* g, f32* b, f32* a) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteSurfacePixel")]
+			WriteSurfacePixel(Surface* surface, i32 x, i32 y, u8 r, u8 g, u8 b, u8 a) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteSurfacePixelFloat")]
+			WriteSurfacePixelFloat(Surface* surface, i32 x, i32 y, f32 r, f32 g, f32 b, f32 a) : bool;
+	}
+}

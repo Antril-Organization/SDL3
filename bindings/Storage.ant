@@ -1,0 +1,87 @@
+import SDL.Filesystem;
+
+// SDL.Storage.StorageInterface — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Storage
+{
+	/// C struct StorageInterface of SDL3.dll: its fields in C's layout.
+	public value StorageInterface
+	{
+		public:
+			u32 Version;
+			func*<void*> : bool Close;
+			func*<void*> : bool Ready;
+			func*<void*, i8*, func*<void*, i8*, i8*> : i32, void*> : bool Enumerate;
+			func*<void*, i8*, PathInfo*> : bool Info;
+			func*<void*, i8*, void*, u64> : bool ReadFile;
+			func*<void*, i8*, void*, u64> : bool WriteFile;
+			func*<void*, i8*> : bool Mkdir;
+			func*<void*, i8*> : bool Remove;
+			func*<void*, i8*, i8*> : bool Rename;
+			func*<void*, i8*, i8*> : bool Copy;
+			func*<void*> : u64 SpaceRemaining;
+	}
+}
+
+// SDL.Storage.Storage — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Storage
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Storage
+	{
+		public:
+			[Import("SDL3.dll", "SDL_OpenTitleStorage")]
+			OpenTitleStorage(str? override_, u32 props) : void*;
+
+			[Import("SDL3.dll", "SDL_OpenUserStorage")]
+			OpenUserStorage(str? org, str? app, u32 props) : void*;
+
+			[Import("SDL3.dll", "SDL_OpenFileStorage")]
+			OpenFileStorage(str? path) : void*;
+
+			[Import("SDL3.dll", "SDL_OpenStorage")]
+			OpenStorage(StorageInterface* iface, void* userdata) : void*;
+
+			[Import("SDL3.dll", "SDL_CloseStorage")]
+			CloseStorage(void* storage) : bool;
+
+			[Import("SDL3.dll", "SDL_StorageReady")]
+			StorageReady(void* storage) : bool;
+
+			[Import("SDL3.dll", "SDL_GetStorageFileSize")]
+			GetStorageFileSize(void* storage, str? path, u64* length) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadStorageFile")]
+			ReadStorageFile(void* storage, str? path, void* destination, u64 length) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteStorageFile")]
+			WriteStorageFile(void* storage, str? path, void* source, u64 length) : bool;
+
+			[Import("SDL3.dll", "SDL_CreateStorageDirectory")]
+			CreateStorageDirectory(void* storage, str? path) : bool;
+
+			[Import("SDL3.dll", "SDL_EnumerateStorageDirectory")]
+			EnumerateStorageDirectory(void* storage, str? path, func*<void*, i8*, i8*> : i32 callback, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_RemoveStoragePath")]
+			RemoveStoragePath(void* storage, str? path) : bool;
+
+			[Import("SDL3.dll", "SDL_RenameStoragePath")]
+			RenameStoragePath(void* storage, str? oldpath, str? newpath) : bool;
+
+			[Import("SDL3.dll", "SDL_CopyStorageFile")]
+			CopyStorageFile(void* storage, str? oldpath, str? newpath) : bool;
+
+			[Import("SDL3.dll", "SDL_GetStoragePathInfo")]
+			GetStoragePathInfo(void* storage, str? path, PathInfo* info) : bool;
+
+			[Import("SDL3.dll", "SDL_GetStorageSpaceRemaining")]
+			GetStorageSpaceRemaining(void* storage) : u64;
+
+			[Import("SDL3.dll", "SDL_GlobStorageDirectory")]
+			GlobStorageDirectory(void* storage, str? path, str? pattern, u32 flags, i32* count) : i8**;
+	}
+}

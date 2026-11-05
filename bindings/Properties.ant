@@ -1,0 +1,83 @@
+// SDL.Properties.PropertyType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Properties
+{
+	/// Values of SDL3.dll.
+	public enum PropertyType { Invalid, Pointer, String, Number, Float, Boolean }
+}
+
+// SDL.Properties.Properties — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Properties
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Properties
+	{
+		public:
+			[Import("SDL3.dll", "SDL_GetGlobalProperties")]
+			GetGlobalProperties() : u32;
+
+			[Import("SDL3.dll", "SDL_CreateProperties")]
+			CreateProperties() : u32;
+
+			[Import("SDL3.dll", "SDL_CopyProperties")]
+			CopyProperties(u32 src, u32 dst) : bool;
+
+			[Import("SDL3.dll", "SDL_LockProperties")]
+			LockProperties(u32 props) : bool;
+
+			[Import("SDL3.dll", "SDL_UnlockProperties")]
+			UnlockProperties(u32 props);
+
+			[Import("SDL3.dll", "SDL_SetPointerPropertyWithCleanup")]
+			SetPointerPropertyWithCleanup(u32 props, str? name, void* value, func*<void*, void*> cleanup, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_SetPointerProperty")]
+			SetPointerProperty(u32 props, str? name, void* value) : bool;
+
+			[Import("SDL3.dll", "SDL_SetStringProperty")]
+			SetStringProperty(u32 props, str? name, str? value) : bool;
+
+			[Import("SDL3.dll", "SDL_SetNumberProperty")]
+			SetNumberProperty(u32 props, str? name, i64 value) : bool;
+
+			[Import("SDL3.dll", "SDL_SetFloatProperty")]
+			SetFloatProperty(u32 props, str? name, f32 value) : bool;
+
+			[Import("SDL3.dll", "SDL_SetBooleanProperty")]
+			SetBooleanProperty(u32 props, str? name, bool value) : bool;
+
+			[Import("SDL3.dll", "SDL_HasProperty")]
+			HasProperty(u32 props, str? name) : bool;
+
+			[Import("SDL3.dll", "SDL_GetPropertyType")]
+			GetPropertyType(u32 props, str? name) : PropertyType;
+
+			[Import("SDL3.dll", "SDL_GetPointerProperty")]
+			GetPointerProperty(u32 props, str? name, void* defaultValue) : void*;
+
+			[Import("SDL3.dll", "SDL_GetStringProperty")]
+			GetStringProperty(u32 props, str? name, str? defaultValue) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetNumberProperty")]
+			GetNumberProperty(u32 props, str? name, i64 defaultValue) : i64;
+
+			[Import("SDL3.dll", "SDL_GetFloatProperty")]
+			GetFloatProperty(u32 props, str? name, f32 defaultValue) : f32;
+
+			[Import("SDL3.dll", "SDL_GetBooleanProperty")]
+			GetBooleanProperty(u32 props, str? name, bool defaultValue) : bool;
+
+			[Import("SDL3.dll", "SDL_ClearProperty")]
+			ClearProperty(u32 props, str? name) : bool;
+
+			[Import("SDL3.dll", "SDL_GetNumProperties")]
+			GetNumProperties(u32 props) : i32;
+
+			[Import("SDL3.dll", "SDL_EnumerateProperties")]
+			EnumerateProperties(u32 props, func*<void*, u32, i8*> callback, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_DestroyProperties")]
+			DestroyProperties(u32 props);
+	}
+}

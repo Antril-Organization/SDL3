@@ -1,0 +1,210 @@
+// SDL.Audio.AudioFormat — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Audio
+{
+	/// Values of SDL3.dll.
+	public enum AudioFormat { Unknown = 0, U8 = 8, S8 = 32776, S16le = 32784, S16be = 36880, S32le = 32800, S32be = 36896, F32le = 33056, F32be = 37152, S16 = 32784, S32 = 32800, F32 = 33056 }
+}
+
+// SDL.Audio.AudioSpec — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Audio
+{
+	/// C struct AudioSpec of SDL3.dll: its fields in C's layout.
+	public value AudioSpec
+	{
+		public:
+			AudioFormat Format;
+			i32 Channels;
+			i32 Freq;
+	}
+}
+
+// SDL.Audio.Audio — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Audio
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Audio
+	{
+		public:
+			readonly i32 AudioMaskBitsize = 255;
+
+			[Import("SDL3.dll", "SDL_GetNumAudioDrivers")]
+			GetNumAudioDrivers() : i32;
+
+			[Import("SDL3.dll", "SDL_GetAudioDriver")]
+			GetAudioDriver(i32 index) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetCurrentAudioDriver")]
+			GetCurrentAudioDriver() : i8*;
+
+			[Import("SDL3.dll", "SDL_GetAudioPlaybackDevices")]
+			GetAudioPlaybackDevices(i32* count) : u32*;
+
+			[Import("SDL3.dll", "SDL_GetAudioRecordingDevices")]
+			GetAudioRecordingDevices(i32* count) : u32*;
+
+			[Import("SDL3.dll", "SDL_GetAudioDeviceName")]
+			GetAudioDeviceName(u32 devid) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetAudioDeviceFormat")]
+			GetAudioDeviceFormat(u32 devid, AudioSpec* spec, i32* sampleFrames) : bool;
+
+			[Import("SDL3.dll", "SDL_GetAudioDeviceChannelMap")]
+			GetAudioDeviceChannelMap(u32 devid, i32* count) : i32*;
+
+			[Import("SDL3.dll", "SDL_GetAudioDeviceProperties")]
+			GetAudioDeviceProperties(u32 devid) : u32;
+
+			[Import("SDL3.dll", "SDL_OpenAudioDevice")]
+			OpenAudioDevice(u32 devid, AudioSpec* spec) : u32;
+
+			[Import("SDL3.dll", "SDL_IsAudioDevicePhysical")]
+			IsAudioDevicePhysical(u32 devid) : bool;
+
+			[Import("SDL3.dll", "SDL_IsAudioDevicePlayback")]
+			IsAudioDevicePlayback(u32 devid) : bool;
+
+			[Import("SDL3.dll", "SDL_PauseAudioDevice")]
+			PauseAudioDevice(u32 devid) : bool;
+
+			[Import("SDL3.dll", "SDL_ResumeAudioDevice")]
+			ResumeAudioDevice(u32 devid) : bool;
+
+			[Import("SDL3.dll", "SDL_AudioDevicePaused")]
+			AudioDevicePaused(u32 devid) : bool;
+
+			[Import("SDL3.dll", "SDL_GetAudioDeviceGain")]
+			GetAudioDeviceGain(u32 devid) : f32;
+
+			[Import("SDL3.dll", "SDL_SetAudioDeviceGain")]
+			SetAudioDeviceGain(u32 devid, f32 gain) : bool;
+
+			[Import("SDL3.dll", "SDL_CloseAudioDevice")]
+			CloseAudioDevice(u32 devid);
+
+			[Import("SDL3.dll", "SDL_BindAudioStreams")]
+			BindAudioStreams(u32 devid, void** streams, i32 numStreams) : bool;
+
+			[Import("SDL3.dll", "SDL_BindAudioStream")]
+			BindAudioStream(u32 devid, void* stream) : bool;
+
+			[Import("SDL3.dll", "SDL_UnbindAudioStreams")]
+			UnbindAudioStreams(void** streams, i32 numStreams);
+
+			[Import("SDL3.dll", "SDL_UnbindAudioStream")]
+			UnbindAudioStream(void* stream);
+
+			[Import("SDL3.dll", "SDL_GetAudioStreamDevice")]
+			GetAudioStreamDevice(void* stream) : u32;
+
+			[Import("SDL3.dll", "SDL_CreateAudioStream")]
+			CreateAudioStream(AudioSpec* srcSpec, AudioSpec* dstSpec) : void*;
+
+			[Import("SDL3.dll", "SDL_GetAudioStreamProperties")]
+			GetAudioStreamProperties(void* stream) : u32;
+
+			[Import("SDL3.dll", "SDL_GetAudioStreamFormat")]
+			GetAudioStreamFormat(void* stream, AudioSpec* srcSpec, AudioSpec* dstSpec) : bool;
+
+			[Import("SDL3.dll", "SDL_SetAudioStreamFormat")]
+			SetAudioStreamFormat(void* stream, AudioSpec* srcSpec, AudioSpec* dstSpec) : bool;
+
+			[Import("SDL3.dll", "SDL_GetAudioStreamFrequencyRatio")]
+			GetAudioStreamFrequencyRatio(void* stream) : f32;
+
+			[Import("SDL3.dll", "SDL_SetAudioStreamFrequencyRatio")]
+			SetAudioStreamFrequencyRatio(void* stream, f32 ratio) : bool;
+
+			[Import("SDL3.dll", "SDL_GetAudioStreamGain")]
+			GetAudioStreamGain(void* stream) : f32;
+
+			[Import("SDL3.dll", "SDL_SetAudioStreamGain")]
+			SetAudioStreamGain(void* stream, f32 gain) : bool;
+
+			[Import("SDL3.dll", "SDL_GetAudioStreamInputChannelMap")]
+			GetAudioStreamInputChannelMap(void* stream, i32* count) : i32*;
+
+			[Import("SDL3.dll", "SDL_GetAudioStreamOutputChannelMap")]
+			GetAudioStreamOutputChannelMap(void* stream, i32* count) : i32*;
+
+			[Import("SDL3.dll", "SDL_SetAudioStreamInputChannelMap")]
+			SetAudioStreamInputChannelMap(void* stream, i32* chmap, i32 count) : bool;
+
+			[Import("SDL3.dll", "SDL_SetAudioStreamOutputChannelMap")]
+			SetAudioStreamOutputChannelMap(void* stream, i32* chmap, i32 count) : bool;
+
+			[Import("SDL3.dll", "SDL_PutAudioStreamData")]
+			PutAudioStreamData(void* stream, void* buf, i32 len) : bool;
+
+			[Import("SDL3.dll", "SDL_PutAudioStreamDataNoCopy")]
+			PutAudioStreamDataNoCopy(void* stream, void* buf, i32 len, func*<void*, void*, i32> callback, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_PutAudioStreamPlanarData")]
+			PutAudioStreamPlanarData(void* stream, void** channelBuffers, i32 numChannels, i32 numSamples) : bool;
+
+			[Import("SDL3.dll", "SDL_GetAudioStreamData")]
+			GetAudioStreamData(void* stream, void* buf, i32 len) : i32;
+
+			[Import("SDL3.dll", "SDL_GetAudioStreamAvailable")]
+			GetAudioStreamAvailable(void* stream) : i32;
+
+			[Import("SDL3.dll", "SDL_GetAudioStreamQueued")]
+			GetAudioStreamQueued(void* stream) : i32;
+
+			[Import("SDL3.dll", "SDL_FlushAudioStream")]
+			FlushAudioStream(void* stream) : bool;
+
+			[Import("SDL3.dll", "SDL_ClearAudioStream")]
+			ClearAudioStream(void* stream) : bool;
+
+			[Import("SDL3.dll", "SDL_PauseAudioStreamDevice")]
+			PauseAudioStreamDevice(void* stream) : bool;
+
+			[Import("SDL3.dll", "SDL_ResumeAudioStreamDevice")]
+			ResumeAudioStreamDevice(void* stream) : bool;
+
+			[Import("SDL3.dll", "SDL_AudioStreamDevicePaused")]
+			AudioStreamDevicePaused(void* stream) : bool;
+
+			[Import("SDL3.dll", "SDL_LockAudioStream")]
+			LockAudioStream(void* stream) : bool;
+
+			[Import("SDL3.dll", "SDL_UnlockAudioStream")]
+			UnlockAudioStream(void* stream) : bool;
+
+			[Import("SDL3.dll", "SDL_SetAudioStreamGetCallback")]
+			SetAudioStreamGetCallback(void* stream, func*<void*, void*, i32, i32> callback, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_SetAudioStreamPutCallback")]
+			SetAudioStreamPutCallback(void* stream, func*<void*, void*, i32, i32> callback, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_DestroyAudioStream")]
+			DestroyAudioStream(void* stream);
+
+			[Import("SDL3.dll", "SDL_OpenAudioDeviceStream")]
+			OpenAudioDeviceStream(u32 devid, AudioSpec* spec, func*<void*, void*, i32, i32> callback, void* userdata) : void*;
+
+			[Import("SDL3.dll", "SDL_SetAudioPostmixCallback")]
+			SetAudioPostmixCallback(u32 devid, func*<void*, AudioSpec*, f32*, i32> callback, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_LoadWAV_IO")]
+			LoadWAVIO(void* src, bool closeio, AudioSpec* spec, u8** audioBuf, u32* audioLen) : bool;
+
+			[Import("SDL3.dll", "SDL_LoadWAV")]
+			LoadWAV(str? path, AudioSpec* spec, u8** audioBuf, u32* audioLen) : bool;
+
+			[Import("SDL3.dll", "SDL_MixAudio")]
+			MixAudio(u8* dst, u8* src, AudioFormat format, u32 len, f32 volume) : bool;
+
+			[Import("SDL3.dll", "SDL_ConvertAudioSamples")]
+			ConvertAudioSamples(AudioSpec* srcSpec, u8* srcData, i32 srcLen, AudioSpec* dstSpec, u8** dstData, i32* dstLen) : bool;
+
+			[Import("SDL3.dll", "SDL_GetAudioFormatName")]
+			GetAudioFormatName(AudioFormat format) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetSilenceValueForFormat")]
+			GetSilenceValueForFormat(AudioFormat format) : i32;
+	}
+}

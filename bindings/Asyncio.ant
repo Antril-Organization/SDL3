@@ -1,0 +1,77 @@
+// SDL.Asyncio.AsyncIOTaskType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Asyncio
+{
+	/// Values of SDL3.dll.
+	public enum AsyncIOTaskType { Read, Write, Close }
+}
+
+// SDL.Asyncio.AsyncIOResult — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Asyncio
+{
+	/// Values of SDL3.dll.
+	public enum AsyncIOResult { Complete, Failure, Canceled }
+}
+
+// SDL.Asyncio.AsyncIOOutcome — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Asyncio
+{
+	/// C struct AsyncIOOutcome of SDL3.dll: its fields in C's layout.
+	public value AsyncIOOutcome
+	{
+		public:
+			void* Asyncio;
+			AsyncIOTaskType Type;
+			AsyncIOResult Result;
+			void* Buffer;
+			u64 Offset;
+			u64 BytesRequested;
+			u64 BytesTransferred;
+			void* Userdata;
+	}
+}
+
+// SDL.Asyncio.Asyncio — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Asyncio
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Asyncio
+	{
+		public:
+			[Import("SDL3.dll", "SDL_AsyncIOFromFile")]
+			AsyncIOFromFile(str? file, str? mode) : void*;
+
+			[Import("SDL3.dll", "SDL_GetAsyncIOSize")]
+			GetAsyncIOSize(void* asyncio) : i64;
+
+			[Import("SDL3.dll", "SDL_ReadAsyncIO")]
+			ReadAsyncIO(void* asyncio, void* ptr, u64 offset, u64 size, void* queue, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteAsyncIO")]
+			WriteAsyncIO(void* asyncio, void* ptr, u64 offset, u64 size, void* queue, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_CloseAsyncIO")]
+			CloseAsyncIO(void* asyncio, bool flush, void* queue, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_CreateAsyncIOQueue")]
+			CreateAsyncIOQueue() : void*;
+
+			[Import("SDL3.dll", "SDL_DestroyAsyncIOQueue")]
+			DestroyAsyncIOQueue(void* queue);
+
+			[Import("SDL3.dll", "SDL_GetAsyncIOResult")]
+			GetAsyncIOResult(void* queue, AsyncIOOutcome* outcome) : bool;
+
+			[Import("SDL3.dll", "SDL_WaitAsyncIOResult")]
+			WaitAsyncIOResult(void* queue, AsyncIOOutcome* outcome, i32 timeoutMS) : bool;
+
+			[Import("SDL3.dll", "SDL_SignalAsyncIOQueue")]
+			SignalAsyncIOQueue(void* queue);
+
+			[Import("SDL3.dll", "SDL_LoadFileAsync")]
+			LoadFileAsync(str? file, void* queue, void* userdata) : bool;
+	}
+}

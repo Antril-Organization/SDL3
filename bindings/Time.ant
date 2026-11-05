@@ -1,0 +1,72 @@
+// SDL.Time.DateFormat — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Time
+{
+	/// Values of SDL3.dll.
+	public enum DateFormat { Yyyymmdd, Ddmmyyyy, Mmddyyyy }
+}
+
+// SDL.Time.TimeFormat — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Time
+{
+	/// Values of SDL3.dll.
+	public enum TimeFormat { _24hr, _12hr }
+}
+
+// SDL.Time.DateTime — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Time
+{
+	/// C struct DateTime of SDL3.dll: its fields in C's layout.
+	public value DateTime
+	{
+		public:
+			i32 Year;
+			i32 Month;
+			i32 Day;
+			i32 Hour;
+			i32 Minute;
+			i32 Second;
+			i32 Nanosecond;
+			i32 DayOfWeek;
+			i32 UtcOffset;
+	}
+}
+
+// SDL.Time.Time — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Time
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Time
+	{
+		public:
+			[Import("SDL3.dll", "SDL_GetDateTimeLocalePreferences")]
+			GetDateTimeLocalePreferences(DateFormat* dateFormat, TimeFormat* timeFormat) : bool;
+
+			[Import("SDL3.dll", "SDL_GetCurrentTime")]
+			GetCurrentTime(i64* ticks) : bool;
+
+			[Import("SDL3.dll", "SDL_TimeToDateTime")]
+			TimeToDateTime(i64 ticks, DateTime* dt, bool localTime) : bool;
+
+			[Import("SDL3.dll", "SDL_DateTimeToTime")]
+			DateTimeToTime(DateTime* dt, i64* ticks) : bool;
+
+			[Import("SDL3.dll", "SDL_TimeToWindows")]
+			TimeToWindows(i64 ticks, u32* dwLowDateTime, u32* dwHighDateTime);
+
+			[Import("SDL3.dll", "SDL_TimeFromWindows")]
+			TimeFromWindows(u32 dwLowDateTime, u32 dwHighDateTime) : i64;
+
+			[Import("SDL3.dll", "SDL_GetDaysInMonth")]
+			GetDaysInMonth(i32 year, i32 month) : i32;
+
+			[Import("SDL3.dll", "SDL_GetDayOfYear")]
+			GetDayOfYear(i32 year, i32 month, i32 day) : i32;
+
+			[Import("SDL3.dll", "SDL_GetDayOfWeek")]
+			GetDayOfWeek(i32 year, i32 month, i32 day) : i32;
+	}
+}

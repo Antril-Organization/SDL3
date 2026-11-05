@@ -1,0 +1,1122 @@
+import SDL.Pixels;
+import SDL.Surface;
+import SDL.Rect;
+
+// SDL.Gpu.GPUPrimitiveType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUPrimitiveType { Trianglelist, Trianglestrip, Linelist, Linestrip, Pointlist }
+}
+
+// SDL.Gpu.GPULoadOp — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPULoadOp { Load, Clear, DontCare }
+}
+
+// SDL.Gpu.GPUStoreOp — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUStoreOp { Store, DontCare, Resolve, ResolveAndStore }
+}
+
+// SDL.Gpu.GPUIndexElementSize — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUIndexElementSize { _16bit, _32bit }
+}
+
+// SDL.Gpu.GPUTextureFormat — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUTextureFormat { Invalid, A8Unorm, R8Unorm, R8g8Unorm, R8g8b8a8Unorm, R16Unorm, R16g16Unorm, R16g16b16a16Unorm, R10g10b10a2Unorm, B5g6r5Unorm, B5g5r5a1Unorm, B4g4r4a4Unorm, B8g8r8a8Unorm, Bc1RgbaUnorm, Bc2RgbaUnorm, Bc3RgbaUnorm, Bc4RUnorm, Bc5RgUnorm, Bc7RgbaUnorm, Bc6hRgbFloat, Bc6hRgbUfloat, R8Snorm, R8g8Snorm, R8g8b8a8Snorm, R16Snorm, R16g16Snorm, R16g16b16a16Snorm, R16Float, R16g16Float, R16g16b16a16Float, R32Float, R32g32Float, R32g32b32a32Float, R11g11b10Ufloat, R8Uint, R8g8Uint, R8g8b8a8Uint, R16Uint, R16g16Uint, R16g16b16a16Uint, R32Uint, R32g32Uint, R32g32b32a32Uint, R8Int, R8g8Int, R8g8b8a8Int, R16Int, R16g16Int, R16g16b16a16Int, R32Int, R32g32Int, R32g32b32a32Int, R8g8b8a8UnormSrgb, B8g8r8a8UnormSrgb, Bc1RgbaUnormSrgb, Bc2RgbaUnormSrgb, Bc3RgbaUnormSrgb, Bc7RgbaUnormSrgb, D16Unorm, D24Unorm, D32Float, D24UnormS8Uint, D32FloatS8Uint, ASTC4x4UNORM, ASTC5x4UNORM, ASTC5x5UNORM, ASTC6x5UNORM, ASTC6x6UNORM, ASTC8x5UNORM, ASTC8x6UNORM, ASTC8x8UNORM, ASTC10x5UNORM, ASTC10x6UNORM, ASTC10x8UNORM, ASTC10x10UNORM, ASTC12x10UNORM, ASTC12x12UNORM, ASTC4x4UNORMSRGB, ASTC5x4UNORMSRGB, ASTC5x5UNORMSRGB, ASTC6x5UNORMSRGB, ASTC6x6UNORMSRGB, ASTC8x5UNORMSRGB, ASTC8x6UNORMSRGB, ASTC8x8UNORMSRGB, ASTC10x5UNORMSRGB, ASTC10x6UNORMSRGB, ASTC10x8UNORMSRGB, ASTC10x10UNORMSRGB, ASTC12x10UNORMSRGB, ASTC12x12UNORMSRGB, ASTC4x4FLOAT, ASTC5x4FLOAT, ASTC5x5FLOAT, ASTC6x5FLOAT, ASTC6x6FLOAT, ASTC8x5FLOAT, ASTC8x6FLOAT, ASTC8x8FLOAT, ASTC10x5FLOAT, ASTC10x6FLOAT, ASTC10x8FLOAT, ASTC10x10FLOAT, ASTC12x10FLOAT, ASTC12x12FLOAT }
+}
+
+// SDL.Gpu.GPUTextureType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUTextureType { _2d, _2dArray, _3d, Cube, CubeArray }
+}
+
+// SDL.Gpu.GPUSampleCount — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUSampleCount { _1, _2, _4, _8 }
+}
+
+// SDL.Gpu.GPUCubeMapFace — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUCubeMapFace { Positivex, Negativex, Positivey, Negativey, Positivez, Negativez }
+}
+
+// SDL.Gpu.GPUTransferBufferUsage — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUTransferBufferUsage { Upload, Download }
+}
+
+// SDL.Gpu.GPUShaderStage — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUShaderStage { Vertex, Fragment }
+}
+
+// SDL.Gpu.GPUVertexElementFormat — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUVertexElementFormat { Invalid, Int, Int2, Int3, Int4, Uint, Uint2, Uint3, Uint4, Float, Float2, Float3, Float4, Byte2, Byte4, Ubyte2, Ubyte4, Byte2Norm, Byte4Norm, Ubyte2Norm, Ubyte4Norm, Short2, Short4, Ushort2, Ushort4, Short2Norm, Short4Norm, Ushort2Norm, Ushort4Norm, Half2, Half4, R10g10b10a2Unorm }
+}
+
+// SDL.Gpu.GPUVertexInputRate — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUVertexInputRate { Vertex, Instance }
+}
+
+// SDL.Gpu.GPUFillMode — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUFillMode { Fill, Line }
+}
+
+// SDL.Gpu.GPUCullMode — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUCullMode { None, Front, Back }
+}
+
+// SDL.Gpu.GPUFrontFace — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUFrontFace { CounterClockwise, Clockwise }
+}
+
+// SDL.Gpu.GPUCompareOp — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUCompareOp { Invalid, Never, Less, Equal, LessOrEqual, Greater, NotEqual, GreaterOrEqual, Always }
+}
+
+// SDL.Gpu.GPUStencilOp — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUStencilOp { Invalid, Keep, Zero, Replace, IncrementAndClamp, DecrementAndClamp, Invert, IncrementAndWrap, DecrementAndWrap }
+}
+
+// SDL.Gpu.GPUBlendOp — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUBlendOp { Invalid, Add, Subtract, ReverseSubtract, Min, Max }
+}
+
+// SDL.Gpu.GPUBlendFactor — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUBlendFactor { Invalid, Zero, One, SrcColor, OneMinusSrcColor, DstColor, OneMinusDstColor, SrcAlpha, OneMinusSrcAlpha, DstAlpha, OneMinusDstAlpha, ConstantColor, OneMinusConstantColor, SrcAlphaSaturate }
+}
+
+// SDL.Gpu.GPUFilter — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUFilter { Nearest, Linear }
+}
+
+// SDL.Gpu.GPUSamplerMipmapMode — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUSamplerMipmapMode { Nearest, Linear }
+}
+
+// SDL.Gpu.GPUSamplerAddressMode — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUSamplerAddressMode { Repeat, MirroredRepeat, ClampToEdge }
+}
+
+// SDL.Gpu.GPUPresentMode — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUPresentMode { Vsync, Immediate, Mailbox }
+}
+
+// SDL.Gpu.GPUSwapchainComposition — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// Values of SDL3.dll.
+	public enum GPUSwapchainComposition { Sdr, SdrLinear, HdrExtendedLinear, Hdr10St2084 }
+}
+
+// SDL.Gpu.GPUViewport — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUViewport of SDL3.dll: its fields in C's layout.
+	public value GPUViewport
+	{
+		public:
+			f32 X;
+			f32 Y;
+			f32 W;
+			f32 H;
+			f32 MinDepth;
+			f32 MaxDepth;
+	}
+}
+
+// SDL.Gpu.GPUTextureTransferInfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUTextureTransferInfo of SDL3.dll: its fields in C's layout.
+	public value GPUTextureTransferInfo
+	{
+		public:
+			void* TransferBuffer;
+			u32 Offset;
+			u32 PixelsPerRow;
+			u32 RowsPerLayer;
+	}
+}
+
+// SDL.Gpu.GPUTransferBufferLocation — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUTransferBufferLocation of SDL3.dll: its fields in C's layout.
+	public value GPUTransferBufferLocation
+	{
+		public:
+			void* TransferBuffer;
+			u32 Offset;
+	}
+}
+
+// SDL.Gpu.GPUTextureLocation — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUTextureLocation of SDL3.dll: its fields in C's layout.
+	public value GPUTextureLocation
+	{
+		public:
+			void* Texture;
+			u32 MipLevel;
+			u32 Layer;
+			u32 X;
+			u32 Y;
+			u32 Z;
+	}
+}
+
+// SDL.Gpu.GPUTextureRegion — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUTextureRegion of SDL3.dll: its fields in C's layout.
+	public value GPUTextureRegion
+	{
+		public:
+			void* Texture;
+			u32 MipLevel;
+			u32 Layer;
+			u32 X;
+			u32 Y;
+			u32 Z;
+			u32 W;
+			u32 H;
+			u32 D;
+	}
+}
+
+// SDL.Gpu.GPUBlitRegion — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUBlitRegion of SDL3.dll: its fields in C's layout.
+	public value GPUBlitRegion
+	{
+		public:
+			void* Texture;
+			u32 MipLevel;
+			u32 LayerOrDepthPlane;
+			u32 X;
+			u32 Y;
+			u32 W;
+			u32 H;
+	}
+}
+
+// SDL.Gpu.GPUBufferLocation — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUBufferLocation of SDL3.dll: its fields in C's layout.
+	public value GPUBufferLocation
+	{
+		public:
+			void* Buffer;
+			u32 Offset;
+	}
+}
+
+// SDL.Gpu.GPUBufferRegion — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUBufferRegion of SDL3.dll: its fields in C's layout.
+	public value GPUBufferRegion
+	{
+		public:
+			void* Buffer;
+			u32 Offset;
+			u32 Size;
+	}
+}
+
+// SDL.Gpu.GPUIndirectDrawCommand — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUIndirectDrawCommand of SDL3.dll: its fields in C's layout.
+	public value GPUIndirectDrawCommand
+	{
+		public:
+			u32 NumVertices;
+			u32 NumInstances;
+			u32 FirstVertex;
+			u32 FirstInstance;
+	}
+}
+
+// SDL.Gpu.GPUIndexedIndirectDrawCommand — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUIndexedIndirectDrawCommand of SDL3.dll: its fields in C's layout.
+	public value GPUIndexedIndirectDrawCommand
+	{
+		public:
+			u32 NumIndices;
+			u32 NumInstances;
+			u32 FirstIndex;
+			i32 VertexOffset;
+			u32 FirstInstance;
+	}
+}
+
+// SDL.Gpu.GPUIndirectDispatchCommand — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUIndirectDispatchCommand of SDL3.dll: its fields in C's layout.
+	public value GPUIndirectDispatchCommand
+	{
+		public:
+			u32 GroupcountX;
+			u32 GroupcountY;
+			u32 GroupcountZ;
+	}
+}
+
+// SDL.Gpu.GPUSamplerCreateInfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUSamplerCreateInfo of SDL3.dll: its fields in C's layout.
+	public value GPUSamplerCreateInfo
+	{
+		public:
+			GPUFilter MinFilter;
+			GPUFilter MagFilter;
+			GPUSamplerMipmapMode MipmapMode;
+			GPUSamplerAddressMode AddressModeU;
+			GPUSamplerAddressMode AddressModeV;
+			GPUSamplerAddressMode AddressModeW;
+			f32 MipLodBias;
+			f32 MaxAnisotropy;
+			GPUCompareOp CompareOp;
+			f32 MinLod;
+			f32 MaxLod;
+			bool EnableAnisotropy;
+			bool EnableCompare;
+			u8 Padding1;
+			u8 Padding2;
+			u32 Props;
+	}
+}
+
+// SDL.Gpu.GPUVertexBufferDescription — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUVertexBufferDescription of SDL3.dll: its fields in C's layout.
+	public value GPUVertexBufferDescription
+	{
+		public:
+			u32 Slot;
+			u32 Pitch;
+			GPUVertexInputRate InputRate;
+			u32 InstanceStepRate;
+	}
+}
+
+// SDL.Gpu.GPUVertexAttribute — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUVertexAttribute of SDL3.dll: its fields in C's layout.
+	public value GPUVertexAttribute
+	{
+		public:
+			u32 Location;
+			u32 BufferSlot;
+			GPUVertexElementFormat Format;
+			u32 Offset;
+	}
+}
+
+// SDL.Gpu.GPUVertexInputState — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUVertexInputState of SDL3.dll: its fields in C's layout.
+	public value GPUVertexInputState
+	{
+		public:
+			GPUVertexBufferDescription* VertexBufferDescriptions;
+			u32 NumVertexBuffers;
+			GPUVertexAttribute* VertexAttributes;
+			u32 NumVertexAttributes;
+	}
+}
+
+// SDL.Gpu.GPUStencilOpState — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUStencilOpState of SDL3.dll: its fields in C's layout.
+	public value GPUStencilOpState
+	{
+		public:
+			GPUStencilOp FailOp;
+			GPUStencilOp PassOp;
+			GPUStencilOp DepthFailOp;
+			GPUCompareOp CompareOp;
+	}
+}
+
+// SDL.Gpu.GPUColorTargetBlendState — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUColorTargetBlendState of SDL3.dll: its fields in C's layout.
+	public value GPUColorTargetBlendState
+	{
+		public:
+			GPUBlendFactor SrcColorBlendfactor;
+			GPUBlendFactor DstColorBlendfactor;
+			GPUBlendOp ColorBlendOp;
+			GPUBlendFactor SrcAlphaBlendfactor;
+			GPUBlendFactor DstAlphaBlendfactor;
+			GPUBlendOp AlphaBlendOp;
+			u8 ColorWriteMask;
+			bool EnableBlend;
+			bool EnableColorWriteMask;
+			u8 Padding1;
+			u8 Padding2;
+	}
+}
+
+// SDL.Gpu.GPUShaderCreateInfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUShaderCreateInfo of SDL3.dll: its fields in C's layout.
+	public value GPUShaderCreateInfo
+	{
+		public:
+			u64 CodeSize;
+			u8* Code;
+			i8* Entrypoint;
+			u32 Format;
+			GPUShaderStage Stage;
+			u32 NumSamplers;
+			u32 NumStorageTextures;
+			u32 NumStorageBuffers;
+			u32 NumUniformBuffers;
+			u32 Props;
+	}
+}
+
+// SDL.Gpu.GPUTextureCreateInfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUTextureCreateInfo of SDL3.dll: its fields in C's layout.
+	public value GPUTextureCreateInfo
+	{
+		public:
+			GPUTextureType Type;
+			GPUTextureFormat Format;
+			u32 Usage;
+			u32 Width;
+			u32 Height;
+			u32 LayerCountOrDepth;
+			u32 NumLevels;
+			GPUSampleCount SampleCount;
+			u32 Props;
+	}
+}
+
+// SDL.Gpu.GPUBufferCreateInfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUBufferCreateInfo of SDL3.dll: its fields in C's layout.
+	public value GPUBufferCreateInfo
+	{
+		public:
+			u32 Usage;
+			u32 Size;
+			u32 Props;
+	}
+}
+
+// SDL.Gpu.GPUTransferBufferCreateInfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUTransferBufferCreateInfo of SDL3.dll: its fields in C's layout.
+	public value GPUTransferBufferCreateInfo
+	{
+		public:
+			GPUTransferBufferUsage Usage;
+			u32 Size;
+			u32 Props;
+	}
+}
+
+// SDL.Gpu.GPURasterizerState — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPURasterizerState of SDL3.dll: its fields in C's layout.
+	public value GPURasterizerState
+	{
+		public:
+			GPUFillMode FillMode;
+			GPUCullMode CullMode;
+			GPUFrontFace FrontFace;
+			f32 DepthBiasConstantFactor;
+			f32 DepthBiasClamp;
+			f32 DepthBiasSlopeFactor;
+			bool EnableDepthBias;
+			bool EnableDepthClip;
+			u8 Padding1;
+			u8 Padding2;
+	}
+}
+
+// SDL.Gpu.GPUMultisampleState — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUMultisampleState of SDL3.dll: its fields in C's layout.
+	public value GPUMultisampleState
+	{
+		public:
+			GPUSampleCount SampleCount;
+			u32 SampleMask;
+			bool EnableMask;
+			bool EnableAlphaToCoverage;
+			u8 Padding2;
+			u8 Padding3;
+	}
+}
+
+// SDL.Gpu.GPUDepthStencilState — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUDepthStencilState of SDL3.dll: its fields in C's layout.
+	public value GPUDepthStencilState
+	{
+		public:
+			GPUCompareOp CompareOp;
+			GPUStencilOpState BackStencilState;
+			GPUStencilOpState FrontStencilState;
+			u8 CompareMask;
+			u8 WriteMask;
+			bool EnableDepthTest;
+			bool EnableDepthWrite;
+			bool EnableStencilTest;
+			u8 Padding1;
+			u8 Padding2;
+			u8 Padding3;
+	}
+}
+
+// SDL.Gpu.GPUColorTargetDescription — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUColorTargetDescription of SDL3.dll: its fields in C's layout.
+	public value GPUColorTargetDescription
+	{
+		public:
+			GPUTextureFormat Format;
+			GPUColorTargetBlendState BlendState;
+	}
+}
+
+// SDL.Gpu.GPUGraphicsPipelineTargetInfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUGraphicsPipelineTargetInfo of SDL3.dll: its fields in C's layout.
+	public value GPUGraphicsPipelineTargetInfo
+	{
+		public:
+			GPUColorTargetDescription* ColorTargetDescriptions;
+			u32 NumColorTargets;
+			GPUTextureFormat DepthStencilFormat;
+			bool HasDepthStencilTarget;
+			u8 Padding1;
+			u8 Padding2;
+			u8 Padding3;
+	}
+}
+
+// SDL.Gpu.GPUGraphicsPipelineCreateInfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUGraphicsPipelineCreateInfo of SDL3.dll: its fields in C's layout.
+	public value GPUGraphicsPipelineCreateInfo
+	{
+		public:
+			void* VertexShader;
+			void* FragmentShader;
+			GPUVertexInputState VertexInputState;
+			GPUPrimitiveType PrimitiveType;
+			GPURasterizerState RasterizerState;
+			GPUMultisampleState MultisampleState;
+			GPUDepthStencilState DepthStencilState;
+			GPUGraphicsPipelineTargetInfo TargetInfo;
+			u32 Props;
+	}
+}
+
+// SDL.Gpu.GPUComputePipelineCreateInfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUComputePipelineCreateInfo of SDL3.dll: its fields in C's layout.
+	public value GPUComputePipelineCreateInfo
+	{
+		public:
+			u64 CodeSize;
+			u8* Code;
+			i8* Entrypoint;
+			u32 Format;
+			u32 NumSamplers;
+			u32 NumReadonlyStorageTextures;
+			u32 NumReadonlyStorageBuffers;
+			u32 NumReadwriteStorageTextures;
+			u32 NumReadwriteStorageBuffers;
+			u32 NumUniformBuffers;
+			u32 ThreadcountX;
+			u32 ThreadcountY;
+			u32 ThreadcountZ;
+			u32 Props;
+	}
+}
+
+// SDL.Gpu.GPUColorTargetInfo — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUColorTargetInfo of SDL3.dll: its fields in C's layout.
+	public value GPUColorTargetInfo
+	{
+		public:
+			void* Texture;
+			u32 MipLevel;
+			u32 LayerOrDepthPlane;
+			FColor ClearColor;
+			GPULoadOp LoadOp;
+			GPUStoreOp StoreOp;
+			void* ResolveTexture;
+			u32 ResolveMipLevel;
+			u32 ResolveLayer;
+			bool Cycle;
+			bool CycleResolveTexture;
+			u8 Padding1;
+			u8 Padding2;
+	}
+}
+
+// SDL.Gpu.GPUDepthStencilTargetInfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUDepthStencilTargetInfo of SDL3.dll: its fields in C's layout.
+	public value GPUDepthStencilTargetInfo
+	{
+		public:
+			void* Texture;
+			f32 ClearDepth;
+			GPULoadOp LoadOp;
+			GPUStoreOp StoreOp;
+			GPULoadOp StencilLoadOp;
+			GPUStoreOp StencilStoreOp;
+			bool Cycle;
+			u8 ClearStencil;
+			u8 MipLevel;
+			u8 Layer;
+	}
+}
+
+// SDL.Gpu.GPUBlitInfo — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUBlitInfo of SDL3.dll: its fields in C's layout.
+	public value GPUBlitInfo
+	{
+		public:
+			GPUBlitRegion Source;
+			GPUBlitRegion Destination;
+			GPULoadOp LoadOp;
+			FColor ClearColor;
+			FlipMode FlipMode;
+			GPUFilter Filter;
+			bool Cycle;
+			u8 Padding1;
+			u8 Padding2;
+			u8 Padding3;
+	}
+}
+
+// SDL.Gpu.GPUBufferBinding — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUBufferBinding of SDL3.dll: its fields in C's layout.
+	public value GPUBufferBinding
+	{
+		public:
+			void* Buffer;
+			u32 Offset;
+	}
+}
+
+// SDL.Gpu.GPUTextureSamplerBinding — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUTextureSamplerBinding of SDL3.dll: its fields in C's layout.
+	public value GPUTextureSamplerBinding
+	{
+		public:
+			void* Texture;
+			void* Sampler;
+	}
+}
+
+// SDL.Gpu.GPUStorageBufferReadWriteBinding — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUStorageBufferReadWriteBinding of SDL3.dll: its fields in C's layout.
+	public value GPUStorageBufferReadWriteBinding
+	{
+		public:
+			void* Buffer;
+			bool Cycle;
+			u8 Padding1;
+			u8 Padding2;
+			u8 Padding3;
+	}
+}
+
+// SDL.Gpu.GPUStorageTextureReadWriteBinding — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUStorageTextureReadWriteBinding of SDL3.dll: its fields in C's layout.
+	public value GPUStorageTextureReadWriteBinding
+	{
+		public:
+			void* Texture;
+			u32 MipLevel;
+			u32 Layer;
+			bool Cycle;
+			u8 Padding1;
+			u8 Padding2;
+			u8 Padding3;
+	}
+}
+
+// SDL.Gpu.GPUVulkanOptions — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gpu
+{
+	/// C struct GPUVulkanOptions of SDL3.dll: its fields in C's layout.
+	public value GPUVulkanOptions
+	{
+		public:
+			u32 VulkanApiVersion;
+			void* FeatureList;
+			void* Vulkan10PhysicalDeviceFeatures;
+			u32 DeviceExtensionCount;
+			i8** DeviceExtensionNames;
+			u32 InstanceExtensionCount;
+			i8** InstanceExtensionNames;
+	}
+}
+
+// SDL.Gpu.Gpu — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Gpu
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Gpu
+	{
+		public:
+			readonly i32 GpuShaderformatInvalid = 0;
+
+			[Import("SDL3.dll", "SDL_GPUSupportsShaderFormats")]
+			GPUSupportsShaderFormats(u32 formatFlags, str? name) : bool;
+
+			[Import("SDL3.dll", "SDL_GPUSupportsProperties")]
+			GPUSupportsProperties(u32 props) : bool;
+
+			[Import("SDL3.dll", "SDL_CreateGPUDevice")]
+			CreateGPUDevice(u32 formatFlags, bool debugMode, str? name) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateGPUDeviceWithProperties")]
+			CreateGPUDeviceWithProperties(u32 props) : void*;
+
+			[Import("SDL3.dll", "SDL_DestroyGPUDevice")]
+			DestroyGPUDevice(void* device);
+
+			[Import("SDL3.dll", "SDL_GetNumGPUDrivers")]
+			GetNumGPUDrivers() : i32;
+
+			[Import("SDL3.dll", "SDL_GetGPUDriver")]
+			GetGPUDriver(i32 index) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetGPUDeviceDriver")]
+			GetGPUDeviceDriver(void* device) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetGPUShaderFormats")]
+			GetGPUShaderFormats(void* device) : u32;
+
+			[Import("SDL3.dll", "SDL_GetGPUDeviceProperties")]
+			GetGPUDeviceProperties(void* device) : u32;
+
+			[Import("SDL3.dll", "SDL_CreateGPUComputePipeline")]
+			CreateGPUComputePipeline(void* device, GPUComputePipelineCreateInfo* createinfo) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateGPUGraphicsPipeline")]
+			CreateGPUGraphicsPipeline(void* device, GPUGraphicsPipelineCreateInfo* createinfo) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateGPUSampler")]
+			CreateGPUSampler(void* device, GPUSamplerCreateInfo* createinfo) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateGPUShader")]
+			CreateGPUShader(void* device, GPUShaderCreateInfo* createinfo) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateGPUTexture")]
+			CreateGPUTexture(void* device, GPUTextureCreateInfo* createinfo) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateGPUBuffer")]
+			CreateGPUBuffer(void* device, GPUBufferCreateInfo* createinfo) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateGPUTransferBuffer")]
+			CreateGPUTransferBuffer(void* device, GPUTransferBufferCreateInfo* createinfo) : void*;
+
+			[Import("SDL3.dll", "SDL_SetGPUBufferName")]
+			SetGPUBufferName(void* device, void* buffer, str? text);
+
+			[Import("SDL3.dll", "SDL_SetGPUTextureName")]
+			SetGPUTextureName(void* device, void* texture, str? text);
+
+			[Import("SDL3.dll", "SDL_InsertGPUDebugLabel")]
+			InsertGPUDebugLabel(void* commandBuffer, str? text);
+
+			[Import("SDL3.dll", "SDL_PushGPUDebugGroup")]
+			PushGPUDebugGroup(void* commandBuffer, str? name);
+
+			[Import("SDL3.dll", "SDL_PopGPUDebugGroup")]
+			PopGPUDebugGroup(void* commandBuffer);
+
+			[Import("SDL3.dll", "SDL_ReleaseGPUTexture")]
+			ReleaseGPUTexture(void* device, void* texture);
+
+			[Import("SDL3.dll", "SDL_ReleaseGPUSampler")]
+			ReleaseGPUSampler(void* device, void* sampler);
+
+			[Import("SDL3.dll", "SDL_ReleaseGPUBuffer")]
+			ReleaseGPUBuffer(void* device, void* buffer);
+
+			[Import("SDL3.dll", "SDL_ReleaseGPUTransferBuffer")]
+			ReleaseGPUTransferBuffer(void* device, void* transferBuffer);
+
+			[Import("SDL3.dll", "SDL_ReleaseGPUComputePipeline")]
+			ReleaseGPUComputePipeline(void* device, void* computePipeline);
+
+			[Import("SDL3.dll", "SDL_ReleaseGPUShader")]
+			ReleaseGPUShader(void* device, void* shader);
+
+			[Import("SDL3.dll", "SDL_ReleaseGPUGraphicsPipeline")]
+			ReleaseGPUGraphicsPipeline(void* device, void* graphicsPipeline);
+
+			[Import("SDL3.dll", "SDL_AcquireGPUCommandBuffer")]
+			AcquireGPUCommandBuffer(void* device) : void*;
+
+			[Import("SDL3.dll", "SDL_PushGPUVertexUniformData")]
+			PushGPUVertexUniformData(void* commandBuffer, u32 slotIndex, void* data, u32 length);
+
+			[Import("SDL3.dll", "SDL_PushGPUFragmentUniformData")]
+			PushGPUFragmentUniformData(void* commandBuffer, u32 slotIndex, void* data, u32 length);
+
+			[Import("SDL3.dll", "SDL_PushGPUComputeUniformData")]
+			PushGPUComputeUniformData(void* commandBuffer, u32 slotIndex, void* data, u32 length);
+
+			[Import("SDL3.dll", "SDL_BeginGPURenderPass")]
+			BeginGPURenderPass(void* commandBuffer, GPUColorTargetInfo* colorTargetInfos, u32 numColorTargets, GPUDepthStencilTargetInfo* depthStencilTargetInfo) : void*;
+
+			[Import("SDL3.dll", "SDL_BindGPUGraphicsPipeline")]
+			BindGPUGraphicsPipeline(void* renderPass, void* graphicsPipeline);
+
+			[Import("SDL3.dll", "SDL_SetGPUViewport")]
+			SetGPUViewport(void* renderPass, GPUViewport* viewport);
+
+			[Import("SDL3.dll", "SDL_SetGPUScissor")]
+			SetGPUScissor(void* renderPass, Rect* scissor);
+
+			[Import("SDL3.dll", "SDL_SetGPUStencilReference")]
+			SetGPUStencilReference(void* renderPass, u8 reference);
+
+			[Import("SDL3.dll", "SDL_BindGPUVertexBuffers")]
+			BindGPUVertexBuffers(void* renderPass, u32 firstSlot, GPUBufferBinding* bindings, u32 numBindings);
+
+			[Import("SDL3.dll", "SDL_BindGPUIndexBuffer")]
+			BindGPUIndexBuffer(void* renderPass, GPUBufferBinding* binding, GPUIndexElementSize indexElementSize);
+
+			[Import("SDL3.dll", "SDL_BindGPUVertexSamplers")]
+			BindGPUVertexSamplers(void* renderPass, u32 firstSlot, GPUTextureSamplerBinding* textureSamplerBindings, u32 numBindings);
+
+			[Import("SDL3.dll", "SDL_BindGPUVertexStorageTextures")]
+			BindGPUVertexStorageTextures(void* renderPass, u32 firstSlot, void** storageTextures, u32 numBindings);
+
+			[Import("SDL3.dll", "SDL_BindGPUVertexStorageBuffers")]
+			BindGPUVertexStorageBuffers(void* renderPass, u32 firstSlot, void** storageBuffers, u32 numBindings);
+
+			[Import("SDL3.dll", "SDL_BindGPUFragmentSamplers")]
+			BindGPUFragmentSamplers(void* renderPass, u32 firstSlot, GPUTextureSamplerBinding* textureSamplerBindings, u32 numBindings);
+
+			[Import("SDL3.dll", "SDL_BindGPUFragmentStorageTextures")]
+			BindGPUFragmentStorageTextures(void* renderPass, u32 firstSlot, void** storageTextures, u32 numBindings);
+
+			[Import("SDL3.dll", "SDL_BindGPUFragmentStorageBuffers")]
+			BindGPUFragmentStorageBuffers(void* renderPass, u32 firstSlot, void** storageBuffers, u32 numBindings);
+
+			[Import("SDL3.dll", "SDL_DrawGPUIndexedPrimitives")]
+			DrawGPUIndexedPrimitives(void* renderPass, u32 numIndices, u32 numInstances, u32 firstIndex, i32 vertexOffset, u32 firstInstance);
+
+			[Import("SDL3.dll", "SDL_DrawGPUPrimitives")]
+			DrawGPUPrimitives(void* renderPass, u32 numVertices, u32 numInstances, u32 firstVertex, u32 firstInstance);
+
+			[Import("SDL3.dll", "SDL_DrawGPUPrimitivesIndirect")]
+			DrawGPUPrimitivesIndirect(void* renderPass, void* buffer, u32 offset, u32 drawCount);
+
+			[Import("SDL3.dll", "SDL_DrawGPUIndexedPrimitivesIndirect")]
+			DrawGPUIndexedPrimitivesIndirect(void* renderPass, void* buffer, u32 offset, u32 drawCount);
+
+			[Import("SDL3.dll", "SDL_EndGPURenderPass")]
+			EndGPURenderPass(void* renderPass);
+
+			[Import("SDL3.dll", "SDL_BeginGPUComputePass")]
+			BeginGPUComputePass(void* commandBuffer, GPUStorageTextureReadWriteBinding* storageTextureBindings, u32 numStorageTextureBindings, GPUStorageBufferReadWriteBinding* storageBufferBindings, u32 numStorageBufferBindings) : void*;
+
+			[Import("SDL3.dll", "SDL_BindGPUComputePipeline")]
+			BindGPUComputePipeline(void* computePass, void* computePipeline);
+
+			[Import("SDL3.dll", "SDL_BindGPUComputeSamplers")]
+			BindGPUComputeSamplers(void* computePass, u32 firstSlot, GPUTextureSamplerBinding* textureSamplerBindings, u32 numBindings);
+
+			[Import("SDL3.dll", "SDL_BindGPUComputeStorageTextures")]
+			BindGPUComputeStorageTextures(void* computePass, u32 firstSlot, void** storageTextures, u32 numBindings);
+
+			[Import("SDL3.dll", "SDL_BindGPUComputeStorageBuffers")]
+			BindGPUComputeStorageBuffers(void* computePass, u32 firstSlot, void** storageBuffers, u32 numBindings);
+
+			[Import("SDL3.dll", "SDL_DispatchGPUCompute")]
+			DispatchGPUCompute(void* computePass, u32 groupcountX, u32 groupcountY, u32 groupcountZ);
+
+			[Import("SDL3.dll", "SDL_DispatchGPUComputeIndirect")]
+			DispatchGPUComputeIndirect(void* computePass, void* buffer, u32 offset);
+
+			[Import("SDL3.dll", "SDL_EndGPUComputePass")]
+			EndGPUComputePass(void* computePass);
+
+			[Import("SDL3.dll", "SDL_MapGPUTransferBuffer")]
+			MapGPUTransferBuffer(void* device, void* transferBuffer, bool cycle) : void*;
+
+			[Import("SDL3.dll", "SDL_UnmapGPUTransferBuffer")]
+			UnmapGPUTransferBuffer(void* device, void* transferBuffer);
+
+			[Import("SDL3.dll", "SDL_BeginGPUCopyPass")]
+			BeginGPUCopyPass(void* commandBuffer) : void*;
+
+			[Import("SDL3.dll", "SDL_UploadToGPUTexture")]
+			UploadToGPUTexture(void* copyPass, GPUTextureTransferInfo* source, GPUTextureRegion* destination, bool cycle);
+
+			[Import("SDL3.dll", "SDL_UploadToGPUBuffer")]
+			UploadToGPUBuffer(void* copyPass, GPUTransferBufferLocation* source, GPUBufferRegion* destination, bool cycle);
+
+			[Import("SDL3.dll", "SDL_CopyGPUTextureToTexture")]
+			CopyGPUTextureToTexture(void* copyPass, GPUTextureLocation* source, GPUTextureLocation* destination, u32 w, u32 h, u32 d, bool cycle);
+
+			[Import("SDL3.dll", "SDL_CopyGPUBufferToBuffer")]
+			CopyGPUBufferToBuffer(void* copyPass, GPUBufferLocation* source, GPUBufferLocation* destination, u32 size, bool cycle);
+
+			[Import("SDL3.dll", "SDL_DownloadFromGPUTexture")]
+			DownloadFromGPUTexture(void* copyPass, GPUTextureRegion* source, GPUTextureTransferInfo* destination);
+
+			[Import("SDL3.dll", "SDL_DownloadFromGPUBuffer")]
+			DownloadFromGPUBuffer(void* copyPass, GPUBufferRegion* source, GPUTransferBufferLocation* destination);
+
+			[Import("SDL3.dll", "SDL_EndGPUCopyPass")]
+			EndGPUCopyPass(void* copyPass);
+
+			[Import("SDL3.dll", "SDL_GenerateMipmapsForGPUTexture")]
+			GenerateMipmapsForGPUTexture(void* commandBuffer, void* texture);
+
+			[Import("SDL3.dll", "SDL_BlitGPUTexture")]
+			BlitGPUTexture(void* commandBuffer, GPUBlitInfo* info);
+
+			[Import("SDL3.dll", "SDL_WindowSupportsGPUSwapchainComposition")]
+			WindowSupportsGPUSwapchainComposition(void* device, void* window, GPUSwapchainComposition swapchainComposition) : bool;
+
+			[Import("SDL3.dll", "SDL_WindowSupportsGPUPresentMode")]
+			WindowSupportsGPUPresentMode(void* device, void* window, GPUPresentMode presentMode) : bool;
+
+			[Import("SDL3.dll", "SDL_ClaimWindowForGPUDevice")]
+			ClaimWindowForGPUDevice(void* device, void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_ReleaseWindowFromGPUDevice")]
+			ReleaseWindowFromGPUDevice(void* device, void* window);
+
+			[Import("SDL3.dll", "SDL_SetGPUSwapchainParameters")]
+			SetGPUSwapchainParameters(void* device, void* window, GPUSwapchainComposition swapchainComposition, GPUPresentMode presentMode) : bool;
+
+			[Import("SDL3.dll", "SDL_SetGPUAllowedFramesInFlight")]
+			SetGPUAllowedFramesInFlight(void* device, u32 allowedFramesInFlight) : bool;
+
+			[Import("SDL3.dll", "SDL_GetGPUSwapchainTextureFormat")]
+			GetGPUSwapchainTextureFormat(void* device, void* window) : GPUTextureFormat;
+
+			[Import("SDL3.dll", "SDL_AcquireGPUSwapchainTexture")]
+			AcquireGPUSwapchainTexture(void* commandBuffer, void* window, void** swapchainTexture, u32* swapchainTextureWidth, u32* swapchainTextureHeight) : bool;
+
+			[Import("SDL3.dll", "SDL_WaitForGPUSwapchain")]
+			WaitForGPUSwapchain(void* device, void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_WaitAndAcquireGPUSwapchainTexture")]
+			WaitAndAcquireGPUSwapchainTexture(void* commandBuffer, void* window, void** swapchainTexture, u32* swapchainTextureWidth, u32* swapchainTextureHeight) : bool;
+
+			[Import("SDL3.dll", "SDL_SubmitGPUCommandBuffer")]
+			SubmitGPUCommandBuffer(void* commandBuffer) : bool;
+
+			[Import("SDL3.dll", "SDL_SubmitGPUCommandBufferAndAcquireFence")]
+			SubmitGPUCommandBufferAndAcquireFence(void* commandBuffer) : void*;
+
+			[Import("SDL3.dll", "SDL_CancelGPUCommandBuffer")]
+			CancelGPUCommandBuffer(void* commandBuffer) : bool;
+
+			[Import("SDL3.dll", "SDL_WaitForGPUIdle")]
+			WaitForGPUIdle(void* device) : bool;
+
+			[Import("SDL3.dll", "SDL_WaitForGPUFences")]
+			WaitForGPUFences(void* device, bool waitAll, void** fences, u32 numFences) : bool;
+
+			[Import("SDL3.dll", "SDL_QueryGPUFence")]
+			QueryGPUFence(void* device, void* fence) : bool;
+
+			[Import("SDL3.dll", "SDL_ReleaseGPUFence")]
+			ReleaseGPUFence(void* device, void* fence);
+
+			[Import("SDL3.dll", "SDL_GPUTextureFormatTexelBlockSize")]
+			GPUTextureFormatTexelBlockSize(GPUTextureFormat format) : u32;
+
+			[Import("SDL3.dll", "SDL_GPUTextureSupportsFormat")]
+			GPUTextureSupportsFormat(void* device, GPUTextureFormat format, GPUTextureType type, u32 usage) : bool;
+
+			[Import("SDL3.dll", "SDL_GPUTextureSupportsSampleCount")]
+			GPUTextureSupportsSampleCount(void* device, GPUTextureFormat format, GPUSampleCount sampleCount) : bool;
+
+			[Import("SDL3.dll", "SDL_CalculateGPUTextureFormatSize")]
+			CalculateGPUTextureFormatSize(GPUTextureFormat format, u32 width, u32 height, u32 depthOrLayerCount) : u32;
+
+			[Import("SDL3.dll", "SDL_GetPixelFormatFromGPUTextureFormat")]
+			GetPixelFormatFromGPUTextureFormat(GPUTextureFormat format) : PixelFormat;
+
+			[Import("SDL3.dll", "SDL_GetGPUTextureFormatFromPixelFormat")]
+			GetGPUTextureFormatFromPixelFormat(PixelFormat format) : GPUTextureFormat;
+	}
+}

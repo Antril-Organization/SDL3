@@ -1,0 +1,45 @@
+// SDL.Timer.Timer — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Timer
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Timer
+	{
+		public:
+			readonly i32 MsPerSecond = 1000;
+			readonly i32 UsPerSecond = 1000000;
+			readonly i32 NsPerSecond = 1000000000;
+			readonly i32 NsPerMs = 1000000;
+			readonly i32 NsPerUs = 1000;
+
+			[Import("SDL3.dll", "SDL_GetTicks")]
+			GetTicks() : u64;
+
+			[Import("SDL3.dll", "SDL_GetTicksNS")]
+			GetTicksNS() : u64;
+
+			[Import("SDL3.dll", "SDL_GetPerformanceCounter")]
+			GetPerformanceCounter() : u64;
+
+			[Import("SDL3.dll", "SDL_GetPerformanceFrequency")]
+			GetPerformanceFrequency() : u64;
+
+			[Import("SDL3.dll", "SDL_Delay")]
+			Delay(u32 ms);
+
+			[Import("SDL3.dll", "SDL_DelayNS")]
+			DelayNS(u64 ns);
+
+			[Import("SDL3.dll", "SDL_DelayPrecise")]
+			DelayPrecise(u64 ns);
+
+			[Import("SDL3.dll", "SDL_AddTimer")]
+			AddTimer(u32 interval, func*<void*, u32, u32> : u32 callback, void* userdata) : u32;
+
+			[Import("SDL3.dll", "SDL_AddTimerNS")]
+			AddTimerNS(u64 interval, func*<void*, u32, u64> : u64 callback, void* userdata) : u32;
+
+			[Import("SDL3.dll", "SDL_RemoveTimer")]
+			RemoveTimer(u32 id) : bool;
+	}
+}

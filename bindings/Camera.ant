@@ -1,0 +1,92 @@
+import SDL.Pixels;
+import SDL.Surface;
+
+// SDL.Camera.CameraPosition — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Camera
+{
+	/// Values of SDL3.dll.
+	public enum CameraPosition { Unknown, FrontFacing, BackFacing }
+}
+
+// SDL.Camera.CameraPermissionState — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Camera
+{
+	/// Values of SDL3.dll.
+	public enum CameraPermissionState { Denied = -1, Pending = 0, Approved = 1 }
+}
+
+// SDL.Camera.CameraSpec — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Camera
+{
+	/// C struct CameraSpec of SDL3.dll: its fields in C's layout.
+	public value CameraSpec
+	{
+		public:
+			PixelFormat Format;
+			Colorspace Colorspace;
+			i32 Width;
+			i32 Height;
+			i32 FramerateNumerator;
+			i32 FramerateDenominator;
+	}
+}
+
+// SDL.Camera.Camera — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Camera
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Camera
+	{
+		public:
+			[Import("SDL3.dll", "SDL_GetNumCameraDrivers")]
+			GetNumCameraDrivers() : i32;
+
+			[Import("SDL3.dll", "SDL_GetCameraDriver")]
+			GetCameraDriver(i32 index) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetCurrentCameraDriver")]
+			GetCurrentCameraDriver() : i8*;
+
+			[Import("SDL3.dll", "SDL_GetCameras")]
+			GetCameras(i32* count) : u32*;
+
+			[Import("SDL3.dll", "SDL_GetCameraSupportedFormats")]
+			GetCameraSupportedFormats(u32 instanceId, i32* count) : CameraSpec**;
+
+			[Import("SDL3.dll", "SDL_GetCameraName")]
+			GetCameraName(u32 instanceId) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetCameraPosition")]
+			GetCameraPosition(u32 instanceId) : CameraPosition;
+
+			[Import("SDL3.dll", "SDL_OpenCamera")]
+			OpenCamera(u32 instanceId, CameraSpec* spec) : void*;
+
+			[Import("SDL3.dll", "SDL_GetCameraPermissionState")]
+			GetCameraPermissionState(void* camera) : CameraPermissionState;
+
+			[Import("SDL3.dll", "SDL_GetCameraID")]
+			GetCameraID(void* camera) : u32;
+
+			[Import("SDL3.dll", "SDL_GetCameraProperties")]
+			GetCameraProperties(void* camera) : u32;
+
+			[Import("SDL3.dll", "SDL_GetCameraFormat")]
+			GetCameraFormat(void* camera, CameraSpec* spec) : bool;
+
+			[Import("SDL3.dll", "SDL_AcquireCameraFrame")]
+			AcquireCameraFrame(void* camera, u64* timestampNS) : Surface*;
+
+			[Import("SDL3.dll", "SDL_ReleaseCameraFrame")]
+			ReleaseCameraFrame(void* camera, Surface* frame);
+
+			[Import("SDL3.dll", "SDL_CloseCamera")]
+			CloseCamera(void* camera);
+	}
+}

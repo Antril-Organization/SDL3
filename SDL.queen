@@ -1,0 +1,20 @@
+queen 1.0;
+
+chunk PROJ:
+   name: SDL,
+   type: library,
+   version: v1.0
+
+chunk BUILD:
+   gc: default,
+   backend: llvm,
+   optimization: 3,
+   borrowcheck: off,
+   unsafe: allow
+
+chunk SOURCES:
+   exclude: [bindings, SDLBindingProfile.ant]
+
+chunk DEPS:
+   assembly: SDL.Bindings.dll,
+   lib: build/SDL3.dll

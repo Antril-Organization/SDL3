@@ -1,0 +1,20 @@
+// SDL.Power.PowerState — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Power
+{
+	/// Values of SDL3.dll.
+	public enum PowerState { Error = -1, Unknown = 0, OnBattery = 1, NoBattery = 2, Charging = 3, Charged = 4 }
+}
+
+// SDL.Power.Power — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Power
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Power
+	{
+		public:
+			[Import("SDL3.dll", "SDL_GetPowerInfo")]
+			GetPowerInfo(i32* seconds, i32* percent) : PowerState;
+	}
+}

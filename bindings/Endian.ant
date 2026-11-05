@@ -1,0 +1,12 @@
+// SDL.Endian.Endian — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Endian
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Endian
+	{
+		public:
+			readonly i32 LilEndian = 1234;
+			readonly i32 BigEndian = 4321;
+	}
+}

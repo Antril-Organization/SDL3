@@ -1,0 +1,59 @@
+// SDL.Sensor.SensorType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Sensor
+{
+	/// Values of SDL3.dll.
+	public enum SensorType { Invalid = -1, Unknown = 0, Accel = 1, Gyro = 2, AccelL = 3, GyroL = 4, AccelR = 5, GyroR = 6, Count = 7 }
+}
+
+// SDL.Sensor.Sensor — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Sensor
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Sensor
+	{
+		public:
+			[Import("SDL3.dll", "SDL_GetSensors")]
+			GetSensors(i32* count) : u32*;
+
+			[Import("SDL3.dll", "SDL_GetSensorNameForID")]
+			GetSensorNameForID(u32 instanceId) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetSensorTypeForID")]
+			GetSensorTypeForID(u32 instanceId) : SensorType;
+
+			[Import("SDL3.dll", "SDL_GetSensorNonPortableTypeForID")]
+			GetSensorNonPortableTypeForID(u32 instanceId) : i32;
+
+			[Import("SDL3.dll", "SDL_OpenSensor")]
+			OpenSensor(u32 instanceId) : void*;
+
+			[Import("SDL3.dll", "SDL_GetSensorFromID")]
+			GetSensorFromID(u32 instanceId) : void*;
+
+			[Import("SDL3.dll", "SDL_GetSensorProperties")]
+			GetSensorProperties(void* sensor) : u32;
+
+			[Import("SDL3.dll", "SDL_GetSensorName")]
+			GetSensorName(void* sensor) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetSensorType")]
+			GetSensorType(void* sensor) : SensorType;
+
+			[Import("SDL3.dll", "SDL_GetSensorNonPortableType")]
+			GetSensorNonPortableType(void* sensor) : i32;
+
+			[Import("SDL3.dll", "SDL_GetSensorID")]
+			GetSensorID(void* sensor) : u32;
+
+			[Import("SDL3.dll", "SDL_GetSensorData")]
+			GetSensorData(void* sensor, f32* data, i32 numValues) : bool;
+
+			[Import("SDL3.dll", "SDL_CloseSensor")]
+			CloseSensor(void* sensor);
+
+			[Import("SDL3.dll", "SDL_UpdateSensors")]
+			UpdateSensors();
+	}
+}

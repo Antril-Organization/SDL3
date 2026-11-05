@@ -1,0 +1,19 @@
+// SDL.Version.Version — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Version
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Version
+	{
+		public:
+			readonly i32 MajorVersion = 3;
+			readonly i32 MinorVersion = 5;
+			readonly i32 MicroVersion = 0;
+
+			[Import("SDL3.dll", "SDL_GetVersion")]
+			GetVersion() : i32;
+
+			[Import("SDL3.dll", "SDL_GetRevision")]
+			GetRevision() : i8*;
+	}
+}

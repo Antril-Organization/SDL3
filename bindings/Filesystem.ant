@@ -1,0 +1,82 @@
+// SDL.Filesystem.Folder — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Filesystem
+{
+	/// Values of SDL3.dll.
+	public enum Folder { Home, Desktop, Documents, Downloads, Music, Pictures, Publicshare, Savedgames, Screenshots, Templates, Videos, Count }
+}
+
+// SDL.Filesystem.PathType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Filesystem
+{
+	/// Values of SDL3.dll.
+	public enum PathType { None, File, Directory, Other }
+}
+
+// SDL.Filesystem.EnumerationResult — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Filesystem
+{
+	/// Values of SDL3.dll.
+	public enum EnumerationResult { Continue, Success, Failure }
+}
+
+// SDL.Filesystem.PathInfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Filesystem
+{
+	/// C struct PathInfo of SDL3.dll: its fields in C's layout.
+	public value PathInfo
+	{
+		public:
+			PathType Type;
+			u64 Size;
+			i64 CreateTime;
+			i64 ModifyTime;
+			i64 AccessTime;
+	}
+}
+
+// SDL.Filesystem.Filesystem — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Filesystem
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Filesystem
+	{
+		public:
+			[Import("SDL3.dll", "SDL_GetBasePath")]
+			GetBasePath() : i8*;
+
+			[Import("SDL3.dll", "SDL_GetPrefPath")]
+			GetPrefPath(str? org, str? app) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetUserFolder")]
+			GetUserFolder(Folder folder) : i8*;
+
+			[Import("SDL3.dll", "SDL_CreateDirectory")]
+			CreateDirectory(str? path) : bool;
+
+			[Import("SDL3.dll", "SDL_EnumerateDirectory")]
+			EnumerateDirectory(str? path, func*<void*, i8*, i8*> : i32 callback, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_RemovePath")]
+			RemovePath(str? path) : bool;
+
+			[Import("SDL3.dll", "SDL_RenamePath")]
+			RenamePath(str? oldpath, str? newpath) : bool;
+
+			[Import("SDL3.dll", "SDL_CopyFile")]
+			CopyFile(str? oldpath, str? newpath) : bool;
+
+			[Import("SDL3.dll", "SDL_GetPathInfo")]
+			GetPathInfo(str? path, PathInfo* info) : bool;
+
+			[Import("SDL3.dll", "SDL_GlobDirectory")]
+			GlobDirectory(str? path, str? pattern, u32 flags, i32* count) : i8**;
+
+			[Import("SDL3.dll", "SDL_GetCurrentDirectory")]
+			GetCurrentDirectory() : i8*;
+	}
+}

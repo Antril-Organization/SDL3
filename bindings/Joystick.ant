@@ -1,0 +1,284 @@
+import SDL.Sensor;
+import SDL.Power;
+
+// SDL.Joystick.JoystickType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Joystick
+{
+	/// Values of SDL3.dll.
+	public enum JoystickType { Unknown, Gamepad, Wheel, ArcadeStick, FlightStick, DancePad, Guitar, DrumKit, ArcadePad, Throttle, Count }
+}
+
+// SDL.Joystick.JoystickConnectionState — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Joystick
+{
+	/// Values of SDL3.dll.
+	public enum JoystickConnectionState { Invalid = -1, Unknown = 0, Wired = 1, Wireless = 2 }
+}
+
+// SDL.Joystick.VirtualJoystickTouchpadDesc — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Joystick
+{
+	/// C struct VirtualJoystickTouchpadDesc of SDL3.dll: its fields in C's layout.
+	public value VirtualJoystickTouchpadDesc
+	{
+		public:
+			u16 Nfingers;
+			fixed u16[3] Padding;
+	}
+}
+
+// SDL.Joystick.VirtualJoystickSensorDesc — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Joystick
+{
+	/// C struct VirtualJoystickSensorDesc of SDL3.dll: its fields in C's layout.
+	public value VirtualJoystickSensorDesc
+	{
+		public:
+			SensorType Type;
+			f32 Rate;
+	}
+}
+
+// SDL.Joystick.VirtualJoystickDesc — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Joystick
+{
+	/// C struct VirtualJoystickDesc of SDL3.dll: its fields in C's layout.
+	public value VirtualJoystickDesc
+	{
+		public:
+			u32 Version;
+			u16 Type;
+			u16 Padding;
+			u16 VendorId;
+			u16 ProductId;
+			u16 Naxes;
+			u16 Nbuttons;
+			u16 Nballs;
+			u16 Nhats;
+			u16 Ntouchpads;
+			u16 Nsensors;
+			fixed u16[2] Padding2;
+			u32 ButtonMask;
+			u32 AxisMask;
+			i8* Name;
+			VirtualJoystickTouchpadDesc* Touchpads;
+			VirtualJoystickSensorDesc* Sensors;
+			void* Userdata;
+			func*<void*> Update;
+			func*<void*, i32> SetPlayerIndex;
+			func*<void*, u16, u16> : bool Rumble;
+			func*<void*, u16, u16> : bool RumbleTriggers;
+			func*<void*, u8, u8, u8> : bool SetLED;
+			func*<void*, void*, i32> : bool SendEffect;
+			func*<void*, bool> : bool SetSensorsEnabled;
+			func*<void*> Cleanup;
+	}
+}
+
+// SDL.Joystick.Joystick — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Joystick
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Joystick
+	{
+		public:
+			readonly i32 JoystickAxisMax = 32767;
+			readonly i32 JoystickAxisMin = -32768;
+			readonly i32 HatCentered = 0;
+			readonly i32 HatUp = 1;
+			readonly i32 HatRight = 2;
+			readonly i32 HatDown = 4;
+			readonly i32 HatLeft = 8;
+
+			[Import("SDL3.dll", "SDL_LockJoysticks")]
+			LockJoysticks();
+
+			[Import("SDL3.dll", "SDL_TryLockJoysticks")]
+			TryLockJoysticks() : bool;
+
+			[Import("SDL3.dll", "SDL_UnlockJoysticks")]
+			UnlockJoysticks();
+
+			[Import("SDL3.dll", "SDL_HasJoystick")]
+			HasJoystick() : bool;
+
+			[Import("SDL3.dll", "SDL_GetJoysticks")]
+			GetJoysticks(i32* count) : u32*;
+
+			[Import("SDL3.dll", "SDL_GetJoystickNameForID")]
+			GetJoystickNameForID(u32 instanceId) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetJoystickPathForID")]
+			GetJoystickPathForID(u32 instanceId) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetJoystickPlayerIndexForID")]
+			GetJoystickPlayerIndexForID(u32 instanceId) : i32;
+
+			[Import("SDL3.dll", "SDL_GetJoystickVendorForID")]
+			GetJoystickVendorForID(u32 instanceId) : u16;
+
+			[Import("SDL3.dll", "SDL_GetJoystickProductForID")]
+			GetJoystickProductForID(u32 instanceId) : u16;
+
+			[Import("SDL3.dll", "SDL_GetJoystickProductVersionForID")]
+			GetJoystickProductVersionForID(u32 instanceId) : u16;
+
+			[Import("SDL3.dll", "SDL_GetJoystickTypeForID")]
+			GetJoystickTypeForID(u32 instanceId) : JoystickType;
+
+			[Import("SDL3.dll", "SDL_OpenJoystick")]
+			OpenJoystick(u32 instanceId) : void*;
+
+			[Import("SDL3.dll", "SDL_GetJoystickFromID")]
+			GetJoystickFromID(u32 instanceId) : void*;
+
+			[Import("SDL3.dll", "SDL_GetJoystickFromPlayerIndex")]
+			GetJoystickFromPlayerIndex(i32 playerIndex) : void*;
+
+			[Import("SDL3.dll", "SDL_AttachVirtualJoystick")]
+			AttachVirtualJoystick(VirtualJoystickDesc* desc) : u32;
+
+			[Import("SDL3.dll", "SDL_DetachVirtualJoystick")]
+			DetachVirtualJoystick(u32 instanceId) : bool;
+
+			[Import("SDL3.dll", "SDL_IsJoystickVirtual")]
+			IsJoystickVirtual(u32 instanceId) : bool;
+
+			[Import("SDL3.dll", "SDL_SetJoystickVirtualAxis")]
+			SetJoystickVirtualAxis(void* joystick, i32 axis, i16 value) : bool;
+
+			[Import("SDL3.dll", "SDL_SetJoystickVirtualBall")]
+			SetJoystickVirtualBall(void* joystick, i32 ball, i16 xrel, i16 yrel) : bool;
+
+			[Import("SDL3.dll", "SDL_SetJoystickVirtualButton")]
+			SetJoystickVirtualButton(void* joystick, i32 button, bool down) : bool;
+
+			[Import("SDL3.dll", "SDL_SetJoystickVirtualHat")]
+			SetJoystickVirtualHat(void* joystick, i32 hat, u8 value) : bool;
+
+			[Import("SDL3.dll", "SDL_SetJoystickVirtualTouchpad")]
+			SetJoystickVirtualTouchpad(void* joystick, i32 touchpad, i32 finger, bool down, f32 x, f32 y, f32 pressure) : bool;
+
+			[Import("SDL3.dll", "SDL_SendJoystickVirtualSensorData")]
+			SendJoystickVirtualSensorData(void* joystick, SensorType type, u64 sensorTimestamp, f32* data, i32 numValues) : bool;
+
+			[Import("SDL3.dll", "SDL_GetJoystickProperties")]
+			GetJoystickProperties(void* joystick) : u32;
+
+			[Import("SDL3.dll", "SDL_GetJoystickName")]
+			GetJoystickName(void* joystick) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetJoystickPath")]
+			GetJoystickPath(void* joystick) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetJoystickPlayerIndex")]
+			GetJoystickPlayerIndex(void* joystick) : i32;
+
+			[Import("SDL3.dll", "SDL_SetJoystickPlayerIndex")]
+			SetJoystickPlayerIndex(void* joystick, i32 playerIndex) : bool;
+
+			[Import("SDL3.dll", "SDL_GetJoystickVendor")]
+			GetJoystickVendor(void* joystick) : u16;
+
+			[Import("SDL3.dll", "SDL_GetJoystickProduct")]
+			GetJoystickProduct(void* joystick) : u16;
+
+			[Import("SDL3.dll", "SDL_GetJoystickProductVersion")]
+			GetJoystickProductVersion(void* joystick) : u16;
+
+			[Import("SDL3.dll", "SDL_GetJoystickFirmwareVersion")]
+			GetJoystickFirmwareVersion(void* joystick) : u16;
+
+			[Import("SDL3.dll", "SDL_GetJoystickSerial")]
+			GetJoystickSerial(void* joystick) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetJoystickType")]
+			GetJoystickType(void* joystick) : JoystickType;
+
+			[Import("SDL3.dll", "SDL_JoystickConnected")]
+			JoystickConnected(void* joystick) : bool;
+
+			[Import("SDL3.dll", "SDL_GetJoystickID")]
+			GetJoystickID(void* joystick) : u32;
+
+			[Import("SDL3.dll", "SDL_GetNumJoystickAxes")]
+			GetNumJoystickAxes(void* joystick) : i32;
+
+			[Import("SDL3.dll", "SDL_GetNumJoystickBalls")]
+			GetNumJoystickBalls(void* joystick) : i32;
+
+			[Import("SDL3.dll", "SDL_GetNumJoystickHats")]
+			GetNumJoystickHats(void* joystick) : i32;
+
+			[Import("SDL3.dll", "SDL_GetNumJoystickButtons")]
+			GetNumJoystickButtons(void* joystick) : i32;
+
+			[Import("SDL3.dll", "SDL_SetJoystickEventsEnabled")]
+			SetJoystickEventsEnabled(bool enabled);
+
+			[Import("SDL3.dll", "SDL_JoystickEventsEnabled")]
+			JoystickEventsEnabled() : bool;
+
+			[Import("SDL3.dll", "SDL_UpdateJoysticks")]
+			UpdateJoysticks();
+
+			[Import("SDL3.dll", "SDL_GetJoystickAxis")]
+			GetJoystickAxis(void* joystick, i32 axis) : i16;
+
+			[Import("SDL3.dll", "SDL_GetJoystickAxisInitialState")]
+			GetJoystickAxisInitialState(void* joystick, i32 axis, i16* state) : bool;
+
+			[Import("SDL3.dll", "SDL_GetJoystickBall")]
+			GetJoystickBall(void* joystick, i32 ball, i32* dx, i32* dy) : bool;
+
+			[Import("SDL3.dll", "SDL_GetJoystickHat")]
+			GetJoystickHat(void* joystick, i32 hat) : u8;
+
+			[Import("SDL3.dll", "SDL_GetJoystickButton")]
+			GetJoystickButton(void* joystick, i32 button) : bool;
+
+			[Import("SDL3.dll", "SDL_JoystickHasSensor")]
+			JoystickHasSensor(void* joystick, SensorType type) : bool;
+
+			[Import("SDL3.dll", "SDL_SetJoystickSensorEnabled")]
+			SetJoystickSensorEnabled(void* joystick, SensorType type, bool enabled) : bool;
+
+			[Import("SDL3.dll", "SDL_JoystickSensorEnabled")]
+			JoystickSensorEnabled(void* joystick, SensorType type) : bool;
+
+			[Import("SDL3.dll", "SDL_GetJoystickSensorDataRate")]
+			GetJoystickSensorDataRate(void* joystick, SensorType type) : f32;
+
+			[Import("SDL3.dll", "SDL_GetJoystickSensorData")]
+			GetJoystickSensorData(void* joystick, SensorType type, f32* data, i32 numValues) : bool;
+
+			[Import("SDL3.dll", "SDL_RumbleJoystick")]
+			RumbleJoystick(void* joystick, u16 lowFrequencyRumble, u16 highFrequencyRumble, u32 durationMs) : bool;
+
+			[Import("SDL3.dll", "SDL_RumbleJoystickTriggers")]
+			RumbleJoystickTriggers(void* joystick, u16 leftRumble, u16 rightRumble, u32 durationMs) : bool;
+
+			[Import("SDL3.dll", "SDL_SetJoystickLED")]
+			SetJoystickLED(void* joystick, u8 red, u8 green, u8 blue) : bool;
+
+			[Import("SDL3.dll", "SDL_SendJoystickEffect")]
+			SendJoystickEffect(void* joystick, void* data, i32 size) : bool;
+
+			[Import("SDL3.dll", "SDL_CloseJoystick")]
+			CloseJoystick(void* joystick);
+
+			[Import("SDL3.dll", "SDL_GetJoystickConnectionState")]
+			GetJoystickConnectionState(void* joystick) : JoystickConnectionState;
+
+			[Import("SDL3.dll", "SDL_GetJoystickPowerInfo")]
+			GetJoystickPowerInfo(void* joystick, i32* percent) : PowerState;
+	}
+}

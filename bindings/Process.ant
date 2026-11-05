@@ -1,0 +1,44 @@
+// SDL.Process.ProcessIO — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Process
+{
+	/// Values of SDL3.dll.
+	public enum ProcessIO { Inherited, Null, App, Redirect }
+}
+
+// SDL.Process.Process — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Process
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Process
+	{
+		public:
+			[Import("SDL3.dll", "SDL_CreateProcess")]
+			CreateProcess(i8** args, bool pipeStdio) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateProcessWithProperties")]
+			CreateProcessWithProperties(u32 props) : void*;
+
+			[Import("SDL3.dll", "SDL_GetProcessProperties")]
+			GetProcessProperties(void* process) : u32;
+
+			[Import("SDL3.dll", "SDL_ReadProcess")]
+			ReadProcess(void* process, u64* datasize, i32* exitcode) : void*;
+
+			[Import("SDL3.dll", "SDL_GetProcessInput")]
+			GetProcessInput(void* process) : void*;
+
+			[Import("SDL3.dll", "SDL_GetProcessOutput")]
+			GetProcessOutput(void* process) : void*;
+
+			[Import("SDL3.dll", "SDL_KillProcess")]
+			KillProcess(void* process, bool force) : bool;
+
+			[Import("SDL3.dll", "SDL_WaitProcess")]
+			WaitProcess(void* process, bool block, i32* exitcode) : bool;
+
+			[Import("SDL3.dll", "SDL_DestroyProcess")]
+			DestroyProcess(void* process);
+	}
+}

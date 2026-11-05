@@ -1,0 +1,369 @@
+import System.Runtime.InteropServices;
+import SDL.Joystick;
+import SDL.Power;
+import SDL.Sensor;
+
+// SDL.Gamepad.GamepadType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gamepad
+{
+	/// Values of SDL3.dll.
+	public enum GamepadType { Unknown, Standard, Xbox360, Xboxone, Ps3, Ps4, Ps5, NintendoSwitchPro, NintendoSwitchJoyconLeft, NintendoSwitchJoyconRight, NintendoSwitchJoyconPair, Gamecube, Steam, Count }
+}
+
+// SDL.Gamepad.GamepadButton — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gamepad
+{
+	/// Values of SDL3.dll.
+	public enum GamepadButton { Invalid = -1, South = 0, East = 1, West = 2, North = 3, Back = 4, Guide = 5, Start = 6, LeftStick = 7, RightStick = 8, LeftShoulder = 9, RightShoulder = 10, DpadUp = 11, DpadDown = 12, DpadLeft = 13, DpadRight = 14, Misc1 = 15, RightPaddle1 = 16, LeftPaddle1 = 17, RightPaddle2 = 18, LeftPaddle2 = 19, Touchpad = 20, Misc2 = 21, Misc3 = 22, Misc4 = 23, Misc5 = 24, Misc6 = 25, Count = 26 }
+}
+
+// SDL.Gamepad.GamepadButtonLabel — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gamepad
+{
+	/// Values of SDL3.dll.
+	public enum GamepadButtonLabel { Unknown, A, B, X, Y, Cross, Circle, Square, Triangle }
+}
+
+// SDL.Gamepad.GamepadAxis — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gamepad
+{
+	/// Values of SDL3.dll.
+	public enum GamepadAxis { Invalid = -1, Leftx = 0, Lefty = 1, Rightx = 2, Righty = 3, LeftTrigger = 4, RightTrigger = 5, Count = 6 }
+}
+
+// SDL.Gamepad.GamepadCapSenseType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gamepad
+{
+	/// Values of SDL3.dll.
+	public enum GamepadCapSenseType { Invalid = -1, LeftStick = 0, RightStick = 1, LeftGrip = 2, RightGrip = 3, Count = 4 }
+}
+
+// SDL.Gamepad.GamepadBindingType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gamepad
+{
+	/// Values of SDL3.dll.
+	public enum GamepadBindingType { None, Button, Axis, Hat }
+}
+
+// SDL.Gamepad.GamepadBindingInputAxis — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gamepad
+{
+	/// C struct GamepadBindingInputAxis of SDL3.dll: its fields in C's layout.
+	public value GamepadBindingInputAxis
+	{
+		public:
+			i32 Axis;
+			i32 AxisMin;
+			i32 AxisMax;
+	}
+}
+
+// SDL.Gamepad.GamepadBindingInputHat — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gamepad
+{
+	/// C struct GamepadBindingInputHat of SDL3.dll: its fields in C's layout.
+	public value GamepadBindingInputHat
+	{
+		public:
+			i32 Hat;
+			i32 HatMask;
+	}
+}
+
+// SDL.Gamepad.GamepadBindingInput — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Gamepad
+{
+	/// C union GamepadBindingInput of SDL3.dll: its members share the same bytes.
+	[ValueLayout(Layout.Explicit)]
+	public value GamepadBindingInput
+	{
+		public:
+			[FieldOffset(0)] i32 Button;
+			[FieldOffset(0)] GamepadBindingInputAxis Axis;
+			[FieldOffset(0)] GamepadBindingInputHat Hat;
+	}
+}
+
+// SDL.Gamepad.GamepadBindingOutputAxis — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gamepad
+{
+	/// C struct GamepadBindingOutputAxis of SDL3.dll: its fields in C's layout.
+	public value GamepadBindingOutputAxis
+	{
+		public:
+			GamepadAxis Axis;
+			i32 AxisMin;
+			i32 AxisMax;
+	}
+}
+
+// SDL.Gamepad.GamepadBindingOutput — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Gamepad
+{
+	/// C union GamepadBindingOutput of SDL3.dll: its members share the same bytes.
+	[ValueLayout(Layout.Explicit)]
+	public value GamepadBindingOutput
+	{
+		public:
+			[FieldOffset(0)] GamepadButton Button;
+			[FieldOffset(0)] GamepadBindingOutputAxis Axis;
+	}
+}
+
+// SDL.Gamepad.GamepadBinding — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Gamepad
+{
+	/// C struct GamepadBinding of SDL3.dll: its fields in C's layout.
+	public value GamepadBinding
+	{
+		public:
+			GamepadBindingType InputType;
+			GamepadBindingInput Input;
+			GamepadBindingType OutputType;
+			GamepadBindingOutput Output;
+	}
+}
+
+// SDL.Gamepad.Gamepad — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Gamepad
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Gamepad
+	{
+		public:
+			[Import("SDL3.dll", "SDL_AddGamepadMapping")]
+			AddGamepadMapping(str? mapping) : i32;
+
+			[Import("SDL3.dll", "SDL_AddGamepadMappingsFromIO")]
+			AddGamepadMappingsFromIO(void* src, bool closeio) : i32;
+
+			[Import("SDL3.dll", "SDL_AddGamepadMappingsFromFile")]
+			AddGamepadMappingsFromFile(str? file) : i32;
+
+			[Import("SDL3.dll", "SDL_ReloadGamepadMappings")]
+			ReloadGamepadMappings() : bool;
+
+			[Import("SDL3.dll", "SDL_GetGamepadMappings")]
+			GetGamepadMappings(i32* count) : i8**;
+
+			[Import("SDL3.dll", "SDL_GetGamepadMapping")]
+			GetGamepadMapping(void* gamepad) : i8*;
+
+			[Import("SDL3.dll", "SDL_SetGamepadMapping")]
+			SetGamepadMapping(u32 instanceId, str? mapping) : bool;
+
+			[Import("SDL3.dll", "SDL_HasGamepad")]
+			HasGamepad() : bool;
+
+			[Import("SDL3.dll", "SDL_GetGamepads")]
+			GetGamepads(i32* count) : u32*;
+
+			[Import("SDL3.dll", "SDL_IsGamepad")]
+			IsGamepad(u32 instanceId) : bool;
+
+			[Import("SDL3.dll", "SDL_GetGamepadNameForID")]
+			GetGamepadNameForID(u32 instanceId) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetGamepadPathForID")]
+			GetGamepadPathForID(u32 instanceId) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetGamepadPlayerIndexForID")]
+			GetGamepadPlayerIndexForID(u32 instanceId) : i32;
+
+			[Import("SDL3.dll", "SDL_GetGamepadVendorForID")]
+			GetGamepadVendorForID(u32 instanceId) : u16;
+
+			[Import("SDL3.dll", "SDL_GetGamepadProductForID")]
+			GetGamepadProductForID(u32 instanceId) : u16;
+
+			[Import("SDL3.dll", "SDL_GetGamepadProductVersionForID")]
+			GetGamepadProductVersionForID(u32 instanceId) : u16;
+
+			[Import("SDL3.dll", "SDL_GetGamepadTypeForID")]
+			GetGamepadTypeForID(u32 instanceId) : GamepadType;
+
+			[Import("SDL3.dll", "SDL_GetRealGamepadTypeForID")]
+			GetRealGamepadTypeForID(u32 instanceId) : GamepadType;
+
+			[Import("SDL3.dll", "SDL_GetGamepadMappingForID")]
+			GetGamepadMappingForID(u32 instanceId) : i8*;
+
+			[Import("SDL3.dll", "SDL_OpenGamepad")]
+			OpenGamepad(u32 instanceId) : void*;
+
+			[Import("SDL3.dll", "SDL_GetGamepadFromID")]
+			GetGamepadFromID(u32 instanceId) : void*;
+
+			[Import("SDL3.dll", "SDL_GetGamepadFromPlayerIndex")]
+			GetGamepadFromPlayerIndex(i32 playerIndex) : void*;
+
+			[Import("SDL3.dll", "SDL_GetGamepadProperties")]
+			GetGamepadProperties(void* gamepad) : u32;
+
+			[Import("SDL3.dll", "SDL_GetGamepadID")]
+			GetGamepadID(void* gamepad) : u32;
+
+			[Import("SDL3.dll", "SDL_GetGamepadName")]
+			GetGamepadName(void* gamepad) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetGamepadPath")]
+			GetGamepadPath(void* gamepad) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetGamepadType")]
+			GetGamepadType(void* gamepad) : GamepadType;
+
+			[Import("SDL3.dll", "SDL_GetRealGamepadType")]
+			GetRealGamepadType(void* gamepad) : GamepadType;
+
+			[Import("SDL3.dll", "SDL_GetGamepadPlayerIndex")]
+			GetGamepadPlayerIndex(void* gamepad) : i32;
+
+			[Import("SDL3.dll", "SDL_SetGamepadPlayerIndex")]
+			SetGamepadPlayerIndex(void* gamepad, i32 playerIndex) : bool;
+
+			[Import("SDL3.dll", "SDL_GetGamepadVendor")]
+			GetGamepadVendor(void* gamepad) : u16;
+
+			[Import("SDL3.dll", "SDL_GetGamepadProduct")]
+			GetGamepadProduct(void* gamepad) : u16;
+
+			[Import("SDL3.dll", "SDL_GetGamepadProductVersion")]
+			GetGamepadProductVersion(void* gamepad) : u16;
+
+			[Import("SDL3.dll", "SDL_GetGamepadFirmwareVersion")]
+			GetGamepadFirmwareVersion(void* gamepad) : u16;
+
+			[Import("SDL3.dll", "SDL_GetGamepadSerial")]
+			GetGamepadSerial(void* gamepad) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetGamepadSteamHandle")]
+			GetGamepadSteamHandle(void* gamepad) : u64;
+
+			[Import("SDL3.dll", "SDL_GetGamepadConnectionState")]
+			GetGamepadConnectionState(void* gamepad) : JoystickConnectionState;
+
+			[Import("SDL3.dll", "SDL_GetGamepadPowerInfo")]
+			GetGamepadPowerInfo(void* gamepad, i32* percent) : PowerState;
+
+			[Import("SDL3.dll", "SDL_GamepadConnected")]
+			GamepadConnected(void* gamepad) : bool;
+
+			[Import("SDL3.dll", "SDL_GetGamepadJoystick")]
+			GetGamepadJoystick(void* gamepad) : void*;
+
+			[Import("SDL3.dll", "SDL_SetGamepadEventsEnabled")]
+			SetGamepadEventsEnabled(bool enabled);
+
+			[Import("SDL3.dll", "SDL_GamepadEventsEnabled")]
+			GamepadEventsEnabled() : bool;
+
+			[Import("SDL3.dll", "SDL_GetGamepadBindings")]
+			GetGamepadBindings(void* gamepad, i32* count) : GamepadBinding**;
+
+			[Import("SDL3.dll", "SDL_UpdateGamepads")]
+			UpdateGamepads();
+
+			[Import("SDL3.dll", "SDL_GetGamepadTypeFromString")]
+			GetGamepadTypeFromString(str? str) : GamepadType;
+
+			[Import("SDL3.dll", "SDL_GetGamepadStringForType")]
+			GetGamepadStringForType(GamepadType type) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetGamepadAxisFromString")]
+			GetGamepadAxisFromString(str? str) : GamepadAxis;
+
+			[Import("SDL3.dll", "SDL_GetGamepadStringForAxis")]
+			GetGamepadStringForAxis(GamepadAxis axis) : i8*;
+
+			[Import("SDL3.dll", "SDL_GamepadHasAxis")]
+			GamepadHasAxis(void* gamepad, GamepadAxis axis) : bool;
+
+			[Import("SDL3.dll", "SDL_GetGamepadAxis")]
+			GetGamepadAxis(void* gamepad, GamepadAxis axis) : i16;
+
+			[Import("SDL3.dll", "SDL_GetGamepadButtonFromString")]
+			GetGamepadButtonFromString(str? str) : GamepadButton;
+
+			[Import("SDL3.dll", "SDL_GetGamepadStringForButton")]
+			GetGamepadStringForButton(GamepadButton button) : i8*;
+
+			[Import("SDL3.dll", "SDL_GamepadHasButton")]
+			GamepadHasButton(void* gamepad, GamepadButton button) : bool;
+
+			[Import("SDL3.dll", "SDL_GetGamepadButton")]
+			GetGamepadButton(void* gamepad, GamepadButton button) : bool;
+
+			[Import("SDL3.dll", "SDL_GetGamepadButtonLabelForType")]
+			GetGamepadButtonLabelForType(GamepadType type, GamepadButton button) : GamepadButtonLabel;
+
+			[Import("SDL3.dll", "SDL_GetGamepadButtonLabel")]
+			GetGamepadButtonLabel(void* gamepad, GamepadButton button) : GamepadButtonLabel;
+
+			[Import("SDL3.dll", "SDL_GetNumGamepadTouchpads")]
+			GetNumGamepadTouchpads(void* gamepad) : i32;
+
+			[Import("SDL3.dll", "SDL_GetNumGamepadTouchpadFingers")]
+			GetNumGamepadTouchpadFingers(void* gamepad, i32 touchpad) : i32;
+
+			[Import("SDL3.dll", "SDL_GetGamepadTouchpadFinger")]
+			GetGamepadTouchpadFinger(void* gamepad, i32 touchpad, i32 finger, bool* down, f32* x, f32* y, f32* pressure) : bool;
+
+			[Import("SDL3.dll", "SDL_GamepadHasSensor")]
+			GamepadHasSensor(void* gamepad, SensorType type) : bool;
+
+			[Import("SDL3.dll", "SDL_SetGamepadSensorEnabled")]
+			SetGamepadSensorEnabled(void* gamepad, SensorType type, bool enabled) : bool;
+
+			[Import("SDL3.dll", "SDL_GamepadSensorEnabled")]
+			GamepadSensorEnabled(void* gamepad, SensorType type) : bool;
+
+			[Import("SDL3.dll", "SDL_GetGamepadSensorDataRate")]
+			GetGamepadSensorDataRate(void* gamepad, SensorType type) : f32;
+
+			[Import("SDL3.dll", "SDL_GetGamepadSensorData")]
+			GetGamepadSensorData(void* gamepad, SensorType type, f32* data, i32 numValues) : bool;
+
+			[Import("SDL3.dll", "SDL_GamepadHasCapSense")]
+			GamepadHasCapSense(void* gamepad, GamepadCapSenseType type) : bool;
+
+			[Import("SDL3.dll", "SDL_GetGamepadCapSense")]
+			GetGamepadCapSense(void* gamepad, GamepadCapSenseType type) : bool;
+
+			[Import("SDL3.dll", "SDL_RumbleGamepad")]
+			RumbleGamepad(void* gamepad, u16 lowFrequencyRumble, u16 highFrequencyRumble, u32 durationMs) : bool;
+
+			[Import("SDL3.dll", "SDL_RumbleGamepadTriggers")]
+			RumbleGamepadTriggers(void* gamepad, u16 leftRumble, u16 rightRumble, u32 durationMs) : bool;
+
+			[Import("SDL3.dll", "SDL_SetGamepadLED")]
+			SetGamepadLED(void* gamepad, u8 red, u8 green, u8 blue) : bool;
+
+			[Import("SDL3.dll", "SDL_SendGamepadEffect")]
+			SendGamepadEffect(void* gamepad, void* data, i32 size) : bool;
+
+			[Import("SDL3.dll", "SDL_CloseGamepad")]
+			CloseGamepad(void* gamepad);
+
+			[Import("SDL3.dll", "SDL_GetGamepadAppleSFSymbolsNameForButton")]
+			GetGamepadAppleSFSymbolsNameForButton(void* gamepad, GamepadButton button) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetGamepadAppleSFSymbolsNameForAxis")]
+			GetGamepadAppleSFSymbolsNameForAxis(void* gamepad, GamepadAxis axis) : i8*;
+	}
+}

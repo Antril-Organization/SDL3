@@ -1,0 +1,41 @@
+// SDL.Hints.HintPriority — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Hints
+{
+	/// Values of SDL3.dll.
+	public enum HintPriority { Default, Normal, Override }
+}
+
+// SDL.Hints.Hints — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Hints
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Hints
+	{
+		public:
+			[Import("SDL3.dll", "SDL_SetHintWithPriority")]
+			SetHintWithPriority(str? name, str? value, HintPriority priority) : bool;
+
+			[Import("SDL3.dll", "SDL_SetHint")]
+			SetHint(str? name, str? value) : bool;
+
+			[Import("SDL3.dll", "SDL_ResetHint")]
+			ResetHint(str? name) : bool;
+
+			[Import("SDL3.dll", "SDL_ResetHints")]
+			ResetHints();
+
+			[Import("SDL3.dll", "SDL_GetHint")]
+			GetHint(str? name) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetHintBoolean")]
+			GetHintBoolean(str? name, bool defaultValue) : bool;
+
+			[Import("SDL3.dll", "SDL_AddHintCallback")]
+			AddHintCallback(str? name, func*<void*, i8*, i8*, i8*> callback, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_RemoveHintCallback")]
+			RemoveHintCallback(str? name, func*<void*, i8*, i8*, i8*> callback, void* userdata);
+	}
+}

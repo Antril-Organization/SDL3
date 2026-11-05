@@ -1,0 +1,276 @@
+import System.Runtime.InteropServices;
+
+// SDL.Haptic.HapticDirection — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Haptic
+{
+	/// C struct HapticDirection of SDL3.dll: its fields in C's layout.
+	public value HapticDirection
+	{
+		public:
+			u8 Type;
+			fixed i32[3] Dir;
+	}
+}
+
+// SDL.Haptic.HapticConstant — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Haptic
+{
+	/// C struct HapticConstant of SDL3.dll: its fields in C's layout.
+	public value HapticConstant
+	{
+		public:
+			u16 Type;
+			HapticDirection Direction;
+			u32 Length;
+			u16 Delay;
+			u16 Button;
+			u16 Interval;
+			i16 Level;
+			u16 AttackLength;
+			u16 AttackLevel;
+			u16 FadeLength;
+			u16 FadeLevel;
+	}
+}
+
+// SDL.Haptic.HapticPeriodic — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Haptic
+{
+	/// C struct HapticPeriodic of SDL3.dll: its fields in C's layout.
+	public value HapticPeriodic
+	{
+		public:
+			u16 Type;
+			HapticDirection Direction;
+			u32 Length;
+			u16 Delay;
+			u16 Button;
+			u16 Interval;
+			u16 Period;
+			i16 Magnitude;
+			i16 Offset;
+			u16 Phase;
+			u16 AttackLength;
+			u16 AttackLevel;
+			u16 FadeLength;
+			u16 FadeLevel;
+	}
+}
+
+// SDL.Haptic.HapticCondition — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Haptic
+{
+	/// C struct HapticCondition of SDL3.dll: its fields in C's layout.
+	public value HapticCondition
+	{
+		public:
+			u16 Type;
+			HapticDirection Direction;
+			u32 Length;
+			u16 Delay;
+			u16 Button;
+			u16 Interval;
+			fixed u16[3] RightSat;
+			fixed u16[3] LeftSat;
+			fixed i16[3] RightCoeff;
+			fixed i16[3] LeftCoeff;
+			fixed u16[3] Deadband;
+			fixed i16[3] Center;
+	}
+}
+
+// SDL.Haptic.HapticRamp — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Haptic
+{
+	/// C struct HapticRamp of SDL3.dll: its fields in C's layout.
+	public value HapticRamp
+	{
+		public:
+			u16 Type;
+			HapticDirection Direction;
+			u32 Length;
+			u16 Delay;
+			u16 Button;
+			u16 Interval;
+			i16 Start;
+			i16 End;
+			u16 AttackLength;
+			u16 AttackLevel;
+			u16 FadeLength;
+			u16 FadeLevel;
+	}
+}
+
+// SDL.Haptic.HapticLeftRight — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Haptic
+{
+	/// C struct HapticLeftRight of SDL3.dll: its fields in C's layout.
+	public value HapticLeftRight
+	{
+		public:
+			u16 Type;
+			u32 Length;
+			u16 LargeMagnitude;
+			u16 SmallMagnitude;
+	}
+}
+
+// SDL.Haptic.HapticCustom — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Haptic
+{
+	/// C struct HapticCustom of SDL3.dll: its fields in C's layout.
+	public value HapticCustom
+	{
+		public:
+			u16 Type;
+			HapticDirection Direction;
+			u32 Length;
+			u16 Delay;
+			u16 Button;
+			u16 Interval;
+			u8 Channels;
+			u16 Period;
+			u16 Samples;
+			u16* Data;
+			u16 AttackLength;
+			u16 AttackLevel;
+			u16 FadeLength;
+			u16 FadeLevel;
+	}
+}
+
+// SDL.Haptic.HapticEffect — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Haptic
+{
+	/// C union HapticEffect of SDL3.dll: its members share the same bytes.
+	[ValueLayout(Layout.Explicit)]
+	public value HapticEffect
+	{
+		public:
+			[FieldOffset(0)] u16 Type;
+			[FieldOffset(0)] HapticConstant Constant;
+			[FieldOffset(0)] HapticPeriodic Periodic;
+			[FieldOffset(0)] HapticCondition Condition;
+			[FieldOffset(0)] HapticRamp Ramp;
+			[FieldOffset(0)] HapticLeftRight Leftright;
+			[FieldOffset(0)] HapticCustom Custom;
+	}
+}
+
+// SDL.Haptic.Haptic — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Haptic
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Haptic
+	{
+		public:
+			readonly i64 HapticInfinity = 4294967295;
+			readonly i32 HapticPolar = 0;
+			readonly i32 HapticCartesian = 1;
+			readonly i32 HapticSpherical = 2;
+			readonly i32 HapticSteeringAxis = 3;
+
+			[Import("SDL3.dll", "SDL_GetHaptics")]
+			GetHaptics(i32* count) : u32*;
+
+			[Import("SDL3.dll", "SDL_GetHapticNameForID")]
+			GetHapticNameForID(u32 instanceId) : i8*;
+
+			[Import("SDL3.dll", "SDL_OpenHaptic")]
+			OpenHaptic(u32 instanceId) : void*;
+
+			[Import("SDL3.dll", "SDL_GetHapticFromID")]
+			GetHapticFromID(u32 instanceId) : void*;
+
+			[Import("SDL3.dll", "SDL_GetHapticID")]
+			GetHapticID(void* haptic) : u32;
+
+			[Import("SDL3.dll", "SDL_GetHapticName")]
+			GetHapticName(void* haptic) : i8*;
+
+			[Import("SDL3.dll", "SDL_IsMouseHaptic")]
+			IsMouseHaptic() : bool;
+
+			[Import("SDL3.dll", "SDL_OpenHapticFromMouse")]
+			OpenHapticFromMouse() : void*;
+
+			[Import("SDL3.dll", "SDL_IsJoystickHaptic")]
+			IsJoystickHaptic(void* joystick) : bool;
+
+			[Import("SDL3.dll", "SDL_OpenHapticFromJoystick")]
+			OpenHapticFromJoystick(void* joystick) : void*;
+
+			[Import("SDL3.dll", "SDL_CloseHaptic")]
+			CloseHaptic(void* haptic);
+
+			[Import("SDL3.dll", "SDL_GetMaxHapticEffects")]
+			GetMaxHapticEffects(void* haptic) : i32;
+
+			[Import("SDL3.dll", "SDL_GetMaxHapticEffectsPlaying")]
+			GetMaxHapticEffectsPlaying(void* haptic) : i32;
+
+			[Import("SDL3.dll", "SDL_GetHapticFeatures")]
+			GetHapticFeatures(void* haptic) : u32;
+
+			[Import("SDL3.dll", "SDL_GetNumHapticAxes")]
+			GetNumHapticAxes(void* haptic) : i32;
+
+			[Import("SDL3.dll", "SDL_HapticEffectSupported")]
+			HapticEffectSupported(void* haptic, HapticEffect* effect) : bool;
+
+			[Import("SDL3.dll", "SDL_CreateHapticEffect")]
+			CreateHapticEffect(void* haptic, HapticEffect* effect) : i32;
+
+			[Import("SDL3.dll", "SDL_UpdateHapticEffect")]
+			UpdateHapticEffect(void* haptic, i32 effect, HapticEffect* data) : bool;
+
+			[Import("SDL3.dll", "SDL_RunHapticEffect")]
+			RunHapticEffect(void* haptic, i32 effect, u32 iterations) : bool;
+
+			[Import("SDL3.dll", "SDL_StopHapticEffect")]
+			StopHapticEffect(void* haptic, i32 effect) : bool;
+
+			[Import("SDL3.dll", "SDL_DestroyHapticEffect")]
+			DestroyHapticEffect(void* haptic, i32 effect);
+
+			[Import("SDL3.dll", "SDL_GetHapticEffectStatus")]
+			GetHapticEffectStatus(void* haptic, i32 effect) : bool;
+
+			[Import("SDL3.dll", "SDL_SetHapticGain")]
+			SetHapticGain(void* haptic, i32 gain) : bool;
+
+			[Import("SDL3.dll", "SDL_SetHapticAutocenter")]
+			SetHapticAutocenter(void* haptic, i32 autocenter) : bool;
+
+			[Import("SDL3.dll", "SDL_PauseHaptic")]
+			PauseHaptic(void* haptic) : bool;
+
+			[Import("SDL3.dll", "SDL_ResumeHaptic")]
+			ResumeHaptic(void* haptic) : bool;
+
+			[Import("SDL3.dll", "SDL_StopHapticEffects")]
+			StopHapticEffects(void* haptic) : bool;
+
+			[Import("SDL3.dll", "SDL_HapticRumbleSupported")]
+			HapticRumbleSupported(void* haptic) : bool;
+
+			[Import("SDL3.dll", "SDL_InitHapticRumble")]
+			InitHapticRumble(void* haptic) : bool;
+
+			[Import("SDL3.dll", "SDL_PlayHapticRumble")]
+			PlayHapticRumble(void* haptic, f32 strength, u32 length) : bool;
+
+			[Import("SDL3.dll", "SDL_StopHapticRumble")]
+			StopHapticRumble(void* haptic) : bool;
+	}
+}

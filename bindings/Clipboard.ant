@@ -1,0 +1,42 @@
+// SDL.Clipboard.Clipboard — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Clipboard
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Clipboard
+	{
+		public:
+			[Import("SDL3.dll", "SDL_SetClipboardText")]
+			SetClipboardText(str? text) : bool;
+
+			[Import("SDL3.dll", "SDL_GetClipboardText")]
+			GetClipboardText() : i8*;
+
+			[Import("SDL3.dll", "SDL_HasClipboardText")]
+			HasClipboardText() : bool;
+
+			[Import("SDL3.dll", "SDL_SetPrimarySelectionText")]
+			SetPrimarySelectionText(str? text) : bool;
+
+			[Import("SDL3.dll", "SDL_GetPrimarySelectionText")]
+			GetPrimarySelectionText() : i8*;
+
+			[Import("SDL3.dll", "SDL_HasPrimarySelectionText")]
+			HasPrimarySelectionText() : bool;
+
+			[Import("SDL3.dll", "SDL_SetClipboardData")]
+			SetClipboardData(func*<void*, i8*, u64*> : void* callback, func*<void*> cleanup, void* userdata, i8** mimeTypes, u64 numMimeTypes) : bool;
+
+			[Import("SDL3.dll", "SDL_ClearClipboardData")]
+			ClearClipboardData() : bool;
+
+			[Import("SDL3.dll", "SDL_GetClipboardData")]
+			GetClipboardData(str? mimeType, u64* size) : void*;
+
+			[Import("SDL3.dll", "SDL_HasClipboardData")]
+			HasClipboardData(str? mimeType) : bool;
+
+			[Import("SDL3.dll", "SDL_GetClipboardMimeTypes")]
+			GetClipboardMimeTypes(u64* numMimeTypes) : i8**;
+	}
+}

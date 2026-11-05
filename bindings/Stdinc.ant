@@ -1,0 +1,521 @@
+// SDL.Stdinc.DummyEnum — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Stdinc
+{
+	/// Values of SDL3.dll.
+	public enum DummyEnum { Value }
+}
+
+// SDL.Stdinc.AlignmentTest — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Stdinc
+{
+	/// C struct AlignmentTest of SDL3.dll: its fields in C's layout.
+	public value AlignmentTest
+	{
+		public:
+			u8 A;
+			void* B;
+	}
+}
+
+// SDL.Stdinc.Stdinc — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Stdinc
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Stdinc
+	{
+		public:
+			readonly i64 MaxSint64 = 9223372036854775807;
+			readonly i32 MaxUint64 = -1;
+			readonly i32 MinUint64 = 0;
+			readonly i32 InvalidUnicodeCodepoint = 65533;
+
+			[Import("SDL3.dll", "SDL_malloc")]
+			Malloc(u64 size) : void*;
+
+			[Import("SDL3.dll", "SDL_calloc")]
+			Calloc(u64 nmemb, u64 size) : void*;
+
+			[Import("SDL3.dll", "SDL_realloc")]
+			Realloc(void* mem, u64 size) : void*;
+
+			[Import("SDL3.dll", "SDL_free")]
+			Free(void* mem);
+
+			[Import("SDL3.dll", "SDL_GetOriginalMemoryFunctions")]
+			GetOriginalMemoryFunctions(void* mallocFunc, void* callocFunc, void* reallocFunc, void* freeFunc);
+
+			[Import("SDL3.dll", "SDL_GetMemoryFunctions")]
+			GetMemoryFunctions(void* mallocFunc, void* callocFunc, void* reallocFunc, void* freeFunc);
+
+			[Import("SDL3.dll", "SDL_SetMemoryFunctions")]
+			SetMemoryFunctions(func*<u64> : void* mallocFunc, func*<u64, u64> : void* callocFunc, func*<void*, u64> : void* reallocFunc, func*<void*> freeFunc) : bool;
+
+			[Import("SDL3.dll", "SDL_aligned_alloc")]
+			AlignedAlloc(u64 alignment, u64 size) : void*;
+
+			[Import("SDL3.dll", "SDL_aligned_alloc_zero")]
+			AlignedAllocZero(u64 alignment, u64 size) : void*;
+
+			[Import("SDL3.dll", "SDL_aligned_free")]
+			AlignedFree(void* mem);
+
+			[Import("SDL3.dll", "SDL_GetNumAllocations")]
+			GetNumAllocations() : i32;
+
+			[Import("SDL3.dll", "SDL_GetEnvironment")]
+			GetEnvironment() : void*;
+
+			[Import("SDL3.dll", "SDL_CreateEnvironment")]
+			CreateEnvironment(bool populated) : void*;
+
+			[Import("SDL3.dll", "SDL_GetEnvironmentVariable")]
+			GetEnvironmentVariable(void* env, str? name) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetEnvironmentVariables")]
+			GetEnvironmentVariables(void* env) : i8**;
+
+			[Import("SDL3.dll", "SDL_SetEnvironmentVariable")]
+			SetEnvironmentVariable(void* env, str? name, str? value, bool overwrite) : bool;
+
+			[Import("SDL3.dll", "SDL_UnsetEnvironmentVariable")]
+			UnsetEnvironmentVariable(void* env, str? name) : bool;
+
+			[Import("SDL3.dll", "SDL_DestroyEnvironment")]
+			DestroyEnvironment(void* env);
+
+			[Import("SDL3.dll", "SDL_getenv")]
+			Getenv(str? name) : i8*;
+
+			[Import("SDL3.dll", "SDL_getenv_unsafe")]
+			GetenvUnsafe(str? name) : i8*;
+
+			[Import("SDL3.dll", "SDL_setenv_unsafe")]
+			SetenvUnsafe(str? name, str? value, i32 overwrite) : i32;
+
+			[Import("SDL3.dll", "SDL_unsetenv_unsafe")]
+			UnsetenvUnsafe(str? name) : i32;
+
+			[Import("SDL3.dll", "SDL_qsort")]
+			Qsort(void* base, u64 nmemb, u64 size, func*<void*, void*> : i32 compare);
+
+			[Import("SDL3.dll", "SDL_bsearch")]
+			Bsearch(void* key, void* base, u64 nmemb, u64 size, func*<void*, void*> : i32 compare) : void*;
+
+			[Import("SDL3.dll", "SDL_qsort_r")]
+			QsortR(void* base, u64 nmemb, u64 size, func*<void*, void*, void*> : i32 compare, void* userdata);
+
+			[Import("SDL3.dll", "SDL_bsearch_r")]
+			BsearchR(void* key, void* base, u64 nmemb, u64 size, func*<void*, void*, void*> : i32 compare, void* userdata) : void*;
+
+			[Import("SDL3.dll", "SDL_abs")]
+			Abs(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_isalpha")]
+			Isalpha(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_isalnum")]
+			Isalnum(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_isblank")]
+			Isblank(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_iscntrl")]
+			Iscntrl(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_isdigit")]
+			Isdigit(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_isxdigit")]
+			Isxdigit(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_ispunct")]
+			Ispunct(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_isspace")]
+			Isspace(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_isupper")]
+			Isupper(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_islower")]
+			Islower(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_isprint")]
+			Isprint(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_isgraph")]
+			Isgraph(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_toupper")]
+			Toupper(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_tolower")]
+			Tolower(i32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_crc16")]
+			Crc16(u16 crc, void* data, u64 len) : u16;
+
+			[Import("SDL3.dll", "SDL_crc32")]
+			Crc32(u32 crc, void* data, u64 len) : u32;
+
+			[Import("SDL3.dll", "SDL_murmur3_32")]
+			Murmur332(void* data, u64 len, u32 seed) : u32;
+
+			[Import("SDL3.dll", "SDL_memcpy")]
+			Memcpy(void* dst, void* src, u64 len) : void*;
+
+			[Import("SDL3.dll", "SDL_memmove")]
+			Memmove(void* dst, void* src, u64 len) : void*;
+
+			[Import("SDL3.dll", "SDL_memset")]
+			Memset(void* dst, i32 c, u64 len) : void*;
+
+			[Import("SDL3.dll", "SDL_memset4")]
+			Memset4(void* dst, u32 val, u64 dwords) : void*;
+
+			[Import("SDL3.dll", "SDL_memcmp")]
+			Memcmp(void* s1, void* s2, u64 len) : i32;
+
+			[Import("SDL3.dll", "SDL_wcslen")]
+			Wcslen(u16* wstr) : u64;
+
+			[Import("SDL3.dll", "SDL_wcsnlen")]
+			Wcsnlen(u16* wstr, u64 maxlen) : u64;
+
+			[Import("SDL3.dll", "SDL_wcslcpy")]
+			Wcslcpy(u16* dst, u16* src, u64 maxlen) : u64;
+
+			[Import("SDL3.dll", "SDL_wcslcat")]
+			Wcslcat(u16* dst, u16* src, u64 maxlen) : u64;
+
+			[Import("SDL3.dll", "SDL_wcsdup")]
+			Wcsdup(u16* wstr) : u16*;
+
+			[Import("SDL3.dll", "SDL_wcsstr")]
+			Wcsstr(u16* haystack, u16* needle) : u16*;
+
+			[Import("SDL3.dll", "SDL_wcsnstr")]
+			Wcsnstr(u16* haystack, u16* needle, u64 maxlen) : u16*;
+
+			[Import("SDL3.dll", "SDL_wcscmp")]
+			Wcscmp(u16* str1, u16* str2) : i32;
+
+			[Import("SDL3.dll", "SDL_wcsncmp")]
+			Wcsncmp(u16* str1, u16* str2, u64 maxlen) : i32;
+
+			[Import("SDL3.dll", "SDL_wcscasecmp")]
+			Wcscasecmp(u16* str1, u16* str2) : i32;
+
+			[Import("SDL3.dll", "SDL_wcsncasecmp")]
+			Wcsncasecmp(u16* str1, u16* str2, u64 maxlen) : i32;
+
+			[Import("SDL3.dll", "SDL_wcstol")]
+			Wcstol(u16* str, u16** endp, i32 base) : i32;
+
+			[Import("SDL3.dll", "SDL_wcstoul")]
+			Wcstoul(u16* str, u16** endp, i32 base) : u32;
+
+			[Import("SDL3.dll", "SDL_wcstoll")]
+			Wcstoll(u16* str, u16** endp, i32 base) : i64;
+
+			[Import("SDL3.dll", "SDL_wcstoull")]
+			Wcstoull(u16* str, u16** endp, i32 base) : u64;
+
+			[Import("SDL3.dll", "SDL_strlen")]
+			Strlen(str? str) : u64;
+
+			[Import("SDL3.dll", "SDL_strnlen")]
+			Strnlen(str? str, u64 maxlen) : u64;
+
+			[Import("SDL3.dll", "SDL_strlcpy")]
+			Strlcpy(str? dst, str? src, u64 maxlen) : u64;
+
+			[Import("SDL3.dll", "SDL_utf8strlcpy")]
+			Utf8strlcpy(str? dst, str? src, u64 dstBytes) : u64;
+
+			[Import("SDL3.dll", "SDL_strlcat")]
+			Strlcat(str? dst, str? src, u64 maxlen) : u64;
+
+			[Import("SDL3.dll", "SDL_strdup")]
+			Strdup(str? str) : i8*;
+
+			[Import("SDL3.dll", "SDL_strndup")]
+			Strndup(str? str, u64 maxlen) : i8*;
+
+			[Import("SDL3.dll", "SDL_strrev")]
+			Strrev(str? str) : i8*;
+
+			[Import("SDL3.dll", "SDL_strupr")]
+			Strupr(str? str) : i8*;
+
+			[Import("SDL3.dll", "SDL_strlwr")]
+			Strlwr(str? str) : i8*;
+
+			[Import("SDL3.dll", "SDL_strchr")]
+			Strchr(str? str, i32 c) : i8*;
+
+			[Import("SDL3.dll", "SDL_strrchr")]
+			Strrchr(str? str, i32 c) : i8*;
+
+			[Import("SDL3.dll", "SDL_strstr")]
+			Strstr(str? haystack, str? needle) : i8*;
+
+			[Import("SDL3.dll", "SDL_strnstr")]
+			Strnstr(str? haystack, str? needle, u64 maxlen) : i8*;
+
+			[Import("SDL3.dll", "SDL_strcasestr")]
+			Strcasestr(str? haystack, str? needle) : i8*;
+
+			[Import("SDL3.dll", "SDL_strtok_r")]
+			StrtokR(str? str, str? delim, i8** saveptr) : i8*;
+
+			[Import("SDL3.dll", "SDL_utf8strlen")]
+			Utf8strlen(str? str) : u64;
+
+			[Import("SDL3.dll", "SDL_utf8strnlen")]
+			Utf8strnlen(str? str, u64 bytes) : u64;
+
+			[Import("SDL3.dll", "SDL_itoa")]
+			Itoa(i32 value, str? str, i32 radix) : i8*;
+
+			[Import("SDL3.dll", "SDL_uitoa")]
+			Uitoa(u32 value, str? str, i32 radix) : i8*;
+
+			[Import("SDL3.dll", "SDL_ltoa")]
+			Ltoa(i32 value, str? str, i32 radix) : i8*;
+
+			[Import("SDL3.dll", "SDL_ultoa")]
+			Ultoa(u32 value, str? str, i32 radix) : i8*;
+
+			[Import("SDL3.dll", "SDL_lltoa")]
+			Lltoa(i64 value, str? str, i32 radix) : i8*;
+
+			[Import("SDL3.dll", "SDL_ulltoa")]
+			Ulltoa(u64 value, str? str, i32 radix) : i8*;
+
+			[Import("SDL3.dll", "SDL_atoi")]
+			Atoi(str? str) : i32;
+
+			[Import("SDL3.dll", "SDL_atof")]
+			Atof(str? str) : f64;
+
+			[Import("SDL3.dll", "SDL_strtol")]
+			Strtol(str? str, i8** endp, i32 base) : i32;
+
+			[Import("SDL3.dll", "SDL_strtoul")]
+			Strtoul(str? str, i8** endp, i32 base) : u32;
+
+			[Import("SDL3.dll", "SDL_strtoll")]
+			Strtoll(str? str, i8** endp, i32 base) : i64;
+
+			[Import("SDL3.dll", "SDL_strtoull")]
+			Strtoull(str? str, i8** endp, i32 base) : u64;
+
+			[Import("SDL3.dll", "SDL_strtod")]
+			Strtod(str? str, i8** endp) : f64;
+
+			[Import("SDL3.dll", "SDL_strcmp")]
+			Strcmp(str? str1, str? str2) : i32;
+
+			[Import("SDL3.dll", "SDL_strncmp")]
+			Strncmp(str? str1, str? str2, u64 maxlen) : i32;
+
+			[Import("SDL3.dll", "SDL_strcasecmp")]
+			Strcasecmp(str? str1, str? str2) : i32;
+
+			[Import("SDL3.dll", "SDL_strncasecmp")]
+			Strncasecmp(str? str1, str? str2, u64 maxlen) : i32;
+
+			[Import("SDL3.dll", "SDL_strpbrk")]
+			Strpbrk(str? str, str? breakset) : i8*;
+
+			[Import("SDL3.dll", "SDL_StepUTF8")]
+			StepUTF8(i8** pstr, u64* pslen) : u32;
+
+			[Import("SDL3.dll", "SDL_StepBackUTF8")]
+			StepBackUTF8(str? start, i8** pstr) : u32;
+
+			[Import("SDL3.dll", "SDL_UCS4ToUTF8")]
+			UCS4ToUTF8(u32 codepoint, str? dst) : i8*;
+
+			[Import("SDL3.dll", "SDL_vsscanf")]
+			Vsscanf(str? text, str? fmt, str? ap) : i32;
+
+			[Import("SDL3.dll", "SDL_vsnprintf")]
+			Vsnprintf(str? text, u64 maxlen, str? fmt, str? ap) : i32;
+
+			[Import("SDL3.dll", "SDL_vswprintf")]
+			Vswprintf(u16* text, u64 maxlen, u16* fmt, str? ap) : i32;
+
+			[Import("SDL3.dll", "SDL_vasprintf")]
+			Vasprintf(i8** strp, str? fmt, str? ap) : i32;
+
+			[Import("SDL3.dll", "SDL_srand")]
+			Srand(u64 seed);
+
+			[Import("SDL3.dll", "SDL_rand")]
+			Rand(i32 n) : i32;
+
+			[Import("SDL3.dll", "SDL_randf")]
+			Randf() : f32;
+
+			[Import("SDL3.dll", "SDL_rand_bits")]
+			RandBits() : u32;
+
+			[Import("SDL3.dll", "SDL_rand_r")]
+			RandR(u64* state, i32 n) : i32;
+
+			[Import("SDL3.dll", "SDL_randf_r")]
+			RandfR(u64* state) : f32;
+
+			[Import("SDL3.dll", "SDL_rand_bits_r")]
+			RandBitsR(u64* state) : u32;
+
+			[Import("SDL3.dll", "SDL_acos")]
+			Acos(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_acosf")]
+			Acosf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_asin")]
+			Asin(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_asinf")]
+			Asinf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_atan")]
+			Atan(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_atanf")]
+			Atanf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_atan2")]
+			Atan2(f64 y, f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_atan2f")]
+			Atan2f(f32 y, f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_ceil")]
+			Ceil(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_ceilf")]
+			Ceilf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_copysign")]
+			Copysign(f64 x, f64 y) : f64;
+
+			[Import("SDL3.dll", "SDL_copysignf")]
+			Copysignf(f32 x, f32 y) : f32;
+
+			[Import("SDL3.dll", "SDL_cos")]
+			Cos(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_cosf")]
+			Cosf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_exp")]
+			Exp(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_expf")]
+			Expf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_fabs")]
+			Fabs(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_fabsf")]
+			Fabsf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_floor")]
+			Floor(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_floorf")]
+			Floorf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_trunc")]
+			Trunc(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_truncf")]
+			Truncf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_fmod")]
+			Fmod(f64 x, f64 y) : f64;
+
+			[Import("SDL3.dll", "SDL_fmodf")]
+			Fmodf(f32 x, f32 y) : f32;
+
+			[Import("SDL3.dll", "SDL_isinf")]
+			Isinf(f64 x) : i32;
+
+			[Import("SDL3.dll", "SDL_isinff")]
+			Isinff(f32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_isnan")]
+			Isnan(f64 x) : i32;
+
+			[Import("SDL3.dll", "SDL_isnanf")]
+			Isnanf(f32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_log")]
+			Log(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_logf")]
+			Logf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_log10")]
+			Log10(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_log10f")]
+			Log10f(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_modf")]
+			Modf(f64 x, f64* y) : f64;
+
+			[Import("SDL3.dll", "SDL_modff")]
+			Modff(f32 x, f32* y) : f32;
+
+			[Import("SDL3.dll", "SDL_pow")]
+			Pow(f64 x, f64 y) : f64;
+
+			[Import("SDL3.dll", "SDL_powf")]
+			Powf(f32 x, f32 y) : f32;
+
+			[Import("SDL3.dll", "SDL_round")]
+			Round(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_roundf")]
+			Roundf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_lround")]
+			Lround(f64 x) : i32;
+
+			[Import("SDL3.dll", "SDL_lroundf")]
+			Lroundf(f32 x) : i32;
+
+			[Import("SDL3.dll", "SDL_scalbn")]
+			Scalbn(f64 x, i32 n) : f64;
+
+			[Import("SDL3.dll", "SDL_scalbnf")]
+			Scalbnf(f32 x, i32 n) : f32;
+
+			[Import("SDL3.dll", "SDL_sin")]
+			Sin(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_sinf")]
+			Sinf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_sqrt")]
+			Sqrt(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_sqrtf")]
+			Sqrtf(f32 x) : f32;
+
+			[Import("SDL3.dll", "SDL_tan")]
+			Tan(f64 x) : f64;
+
+			[Import("SDL3.dll", "SDL_tanf")]
+			Tanf(f32 x) : f32;
+	}
+}

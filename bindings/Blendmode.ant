@@ -1,0 +1,37 @@
+// SDL.Blendmode.BlendOperation — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Blendmode
+{
+	/// Values of SDL3.dll.
+	public enum BlendOperation { Add = 1, Subtract = 2, RevSubtract = 3, Minimum = 4, Maximum = 5 }
+}
+
+// SDL.Blendmode.BlendFactor — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Blendmode
+{
+	/// Values of SDL3.dll.
+	public enum BlendFactor { Zero = 1, One = 2, SrcColor = 3, OneMinusSrcColor = 4, SrcAlpha = 5, OneMinusSrcAlpha = 6, DstColor = 7, OneMinusDstColor = 8, DstAlpha = 9, OneMinusDstAlpha = 10 }
+}
+
+// SDL.Blendmode.Blendmode — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Blendmode
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Blendmode
+	{
+		public:
+			readonly i32 BlendmodeNone = 0;
+			readonly i32 BlendmodeBlend = 1;
+			readonly i32 BlendmodeBlendPremultiplied = 16;
+			readonly i32 BlendmodeAdd = 2;
+			readonly i32 BlendmodeAddPremultiplied = 32;
+			readonly i32 BlendmodeMod = 4;
+			readonly i32 BlendmodeMul = 8;
+			readonly i32 BlendmodeInvalid = 2147483647;
+
+			[Import("SDL3.dll", "SDL_ComposeCustomBlendMode")]
+			ComposeCustomBlendMode(BlendFactor srcColorFactor, BlendFactor dstColorFactor, BlendOperation colorOperation, BlendFactor srcAlphaFactor, BlendFactor dstAlphaFactor, BlendOperation alphaOperation) : u32;
+	}
+}

@@ -1,0 +1,15 @@
+// SDL.Misc.Misc — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Misc
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Misc
+	{
+		public:
+			[Import("SDL3.dll", "SDL_OpenURL")]
+			OpenURL(str? url) : bool;
+
+			[Import("SDL3.dll", "SDL_EncodeURL")]
+			EncodeURL(str? str, str? noEncodeChars) : i8*;
+	}
+}

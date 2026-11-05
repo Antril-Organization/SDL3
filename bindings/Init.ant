@@ -1,0 +1,55 @@
+// SDL.Init.AppResult — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Init
+{
+	/// Values of SDL3.dll.
+	public enum AppResult { Continue, Success, Failure }
+}
+
+// SDL.Init.InitFlags — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Init
+{
+	/// Flags of SDL3.dll.
+	public bitflag enum InitFlags { Audio = 16, Video = 32, Joystick = 512, Haptic = 4096, Gamepad = 8192, Events = 16384, Sensor = 32768, Camera = 65536 }
+}
+
+// SDL.Init.Init — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Init
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Init
+	{
+		public:
+			[Import("SDL3.dll", "SDL_Init")]
+			Initialize(InitFlags flags) : bool;
+
+			[Import("SDL3.dll", "SDL_InitSubSystem")]
+			InitSubSystem(InitFlags flags) : bool;
+
+			[Import("SDL3.dll", "SDL_QuitSubSystem")]
+			QuitSubSystem(InitFlags flags);
+
+			[Import("SDL3.dll", "SDL_WasInit")]
+			WasInit(InitFlags flags) : InitFlags;
+
+			[Import("SDL3.dll", "SDL_Quit")]
+			Quit();
+
+			[Import("SDL3.dll", "SDL_IsMainThread")]
+			IsMainThread() : bool;
+
+			[Import("SDL3.dll", "SDL_RunOnMainThread")]
+			RunOnMainThread(func*<void*> callback, void* userdata, bool waitComplete) : bool;
+
+			[Import("SDL3.dll", "SDL_SetAppMetadata")]
+			SetAppMetadata(str? appname, str? appversion, str? appidentifier) : bool;
+
+			[Import("SDL3.dll", "SDL_SetAppMetadataProperty")]
+			SetAppMetadataProperty(str? name, str? value) : bool;
+
+			[Import("SDL3.dll", "SDL_GetAppMetadataProperty")]
+			GetAppMetadataProperty(str? name) : i8*;
+	}
+}

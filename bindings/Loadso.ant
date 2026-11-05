@@ -1,0 +1,18 @@
+// SDL.Loadso.Loadso — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Loadso
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Loadso
+	{
+		public:
+			[Import("SDL3.dll", "SDL_LoadObject")]
+			LoadObject(str? sofile) : void*;
+
+			[Import("SDL3.dll", "SDL_LoadFunction")]
+			LoadFunction(void* handle, str? name) : func*;
+
+			[Import("SDL3.dll", "SDL_UnloadObject")]
+			UnloadObject(void* handle);
+	}
+}

@@ -1,0 +1,897 @@
+import SDL.Keycode;
+import SDL.Scancode;
+import SDL.Mouse;
+import SDL.Power;
+import SDL.Pen;
+import System.Runtime.InteropServices;
+
+// SDL.Events.EventType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// Values of SDL3.dll.
+	public enum EventType { First = 0, Quit = 256, Terminating = 257, LowMemory = 258, WillEnterBackground = 259, DidEnterBackground = 260, WillEnterForeground = 261, DidEnterForeground = 262, LocaleChanged = 263, SystemThemeChanged = 264, DisplayOrientation = 337, DisplayAdded = 338, DisplayRemoved = 339, DisplayMoved = 340, DisplayDesktopModeChanged = 341, DisplayCurrentModeChanged = 342, DisplayContentScaleChanged = 343, DisplayUsableBoundsChanged = 344, DisplayFirst = 337, DisplayLast = 344, WindowShown = 514, WindowHidden = 515, WindowExposed = 516, WindowMoved = 517, WindowResized = 518, WindowPixelSizeChanged = 519, WindowMetalViewResized = 520, WindowMinimized = 521, WindowMaximized = 522, WindowRestored = 523, WindowMouseEnter = 524, WindowMouseLeave = 525, WindowFocusGained = 526, WindowFocusLost = 527, WindowCloseRequested = 528, WindowHitTest = 529, WindowIccprofChanged = 530, WindowDisplayChanged = 531, WindowDisplayScaleChanged = 532, WindowSafeAreaChanged = 533, WindowOccluded = 534, WindowEnterFullscreen = 535, WindowLeaveFullscreen = 536, WindowDestroyed = 537, WindowHdrStateChanged = 538, WindowSettingsChanged = 539, WindowFirst = 514, WindowLast = 539, KeyDown = 768, KeyUp = 769, TextEditing = 770, TextInput = 771, KeymapChanged = 772, KeyboardAdded = 773, KeyboardRemoved = 774, TextEditingCandidates = 775, ScreenKeyboardShown = 776, ScreenKeyboardHidden = 777, KeyboardFirst = 768, KeyboardLast = 777, MouseMotion = 1024, MouseButtonDown = 1025, MouseButtonUp = 1026, MouseWheel = 1027, MouseAdded = 1028, MouseRemoved = 1029, MouseFirst = 1024, MouseLast = 1029, JoystickAxisMotion = 1536, JoystickBallMotion = 1537, JoystickHatMotion = 1538, JoystickButtonDown = 1539, JoystickButtonUp = 1540, JoystickAdded = 1541, JoystickRemoved = 1542, JoystickBatteryUpdated = 1543, JoystickUpdateComplete = 1544, JoystickFirst = 1536, JoystickLast = 1544, GamepadAxisMotion = 1616, GamepadButtonDown = 1617, GamepadButtonUp = 1618, GamepadAdded = 1619, GamepadRemoved = 1620, GamepadRemapped = 1621, GamepadTouchpadDown = 1622, GamepadTouchpadMotion = 1623, GamepadTouchpadUp = 1624, GamepadSensorUpdate = 1625, GamepadUpdateComplete = 1626, GamepadSteamHandleUpdated = 1627, GamepadCapsenseTouch = 1628, GamepadCapsenseRelease = 1629, GamepadFirst = 1616, GamepadLast = 1629, FingerDown = 1792, FingerUp = 1793, FingerMotion = 1794, FingerCanceled = 1795, FingerFirst = 1792, FingerLast = 1795, PinchBegin = 1808, PinchUpdate = 1809, PinchEnd = 1810, PinchFirst = 1808, PinchLast = 1810, ClipboardUpdate = 2304, ClipboardFirst = 2304, ClipboardLast = 2304, DropFile = 4096, DropText = 4097, DropBegin = 4098, DropComplete = 4099, DropPosition = 4100, DropFirst = 4096, DropLast = 4100, AudioDeviceAdded = 4352, AudioDeviceRemoved = 4353, AudioDeviceFormatChanged = 4354, AudioDeviceFirst = 4352, AudioDeviceLast = 4354, SensorUpdate = 4608, SensorFirst = 4608, SensorLast = 4608, PenProximityIn = 4864, PenProximityOut = 4865, PenDown = 4866, PenUp = 4867, PenButtonDown = 4868, PenButtonUp = 4869, PenMotion = 4870, PenAxis = 4871, PenFirst = 4864, PenLast = 4871, CameraDeviceAdded = 5120, CameraDeviceRemoved = 5121, CameraDeviceApproved = 5122, CameraDeviceDenied = 5123, CameraDeviceFirst = 5120, CameraDeviceLast = 5123, NotificationActionInvoked = 5376, NotificationFirst = 5376, NotificationLast = 5376, RenderTargetsReset = 8192, RenderDeviceReset = 8193, RenderDeviceLost = 8194, RenderFirst = 8192, RenderLast = 8194, Private0 = 16384, Private1 = 16385, Private2 = 16386, Private3 = 16387, PollSentinel = 32512, User = 32768, Last = 65535, EnumPadding = 2147483647 }
+}
+
+// SDL.Events.EventAction — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// Values of SDL3.dll.
+	public enum EventAction { Addevent, Peekevent, Getevent }
+}
+
+// SDL.Events.CommonEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct CommonEvent of SDL3.dll: its fields in C's layout.
+	public value CommonEvent
+	{
+		public:
+			u32 Type;
+			u32 Reserved;
+			u64 Timestamp;
+	}
+}
+
+// SDL.Events.DisplayEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct DisplayEvent of SDL3.dll: its fields in C's layout.
+	public value DisplayEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 DisplayID;
+			i32 Data1;
+			i32 Data2;
+	}
+}
+
+// SDL.Events.WindowEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct WindowEvent of SDL3.dll: its fields in C's layout.
+	public value WindowEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			i32 Data1;
+			i32 Data2;
+	}
+}
+
+// SDL.Events.KeyboardDeviceEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct KeyboardDeviceEvent of SDL3.dll: its fields in C's layout.
+	public value KeyboardDeviceEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+	}
+}
+
+// SDL.Events.KeyboardEvent — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Events
+{
+	/// C struct KeyboardEvent of SDL3.dll: its fields in C's layout.
+	public value KeyboardEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			u32 Which;
+			Scancode Scancode;
+			Keycode Key;
+			Keymod Mod;
+			u16 Raw;
+			bool Down;
+			bool Repeat;
+	}
+}
+
+// SDL.Events.TextEditingEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct TextEditingEvent of SDL3.dll: its fields in C's layout.
+	public value TextEditingEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			i8* Text;
+			i32 Start;
+			i32 Length;
+	}
+}
+
+// SDL.Events.TextEditingCandidatesEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct TextEditingCandidatesEvent of SDL3.dll: its fields in C's layout.
+	public value TextEditingCandidatesEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			i8** Candidates;
+			i32 NumCandidates;
+			i32 SelectedCandidate;
+			bool Horizontal;
+			u8 Padding1;
+			u8 Padding2;
+			u8 Padding3;
+	}
+}
+
+// SDL.Events.TextInputEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct TextInputEvent of SDL3.dll: its fields in C's layout.
+	public value TextInputEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			i8* Text;
+	}
+}
+
+// SDL.Events.MouseDeviceEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct MouseDeviceEvent of SDL3.dll: its fields in C's layout.
+	public value MouseDeviceEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+	}
+}
+
+// SDL.Events.MouseMotionEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct MouseMotionEvent of SDL3.dll: its fields in C's layout.
+	public value MouseMotionEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			u32 Which;
+			u32 State;
+			f32 X;
+			f32 Y;
+			f32 Xrel;
+			f32 Yrel;
+	}
+}
+
+// SDL.Events.MouseButtonEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct MouseButtonEvent of SDL3.dll: its fields in C's layout.
+	public value MouseButtonEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			u32 Which;
+			u8 Button;
+			bool Down;
+			u8 Clicks;
+			u8 Padding;
+			f32 X;
+			f32 Y;
+	}
+}
+
+// SDL.Events.MouseWheelEvent — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Events
+{
+	/// C struct MouseWheelEvent of SDL3.dll: its fields in C's layout.
+	public value MouseWheelEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			u32 Which;
+			f32 X;
+			f32 Y;
+			MouseWheelDirection Direction;
+			f32 MouseX;
+			f32 MouseY;
+			i32 IntegerX;
+			i32 IntegerY;
+	}
+}
+
+// SDL.Events.JoyAxisEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct JoyAxisEvent of SDL3.dll: its fields in C's layout.
+	public value JoyAxisEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			u8 Axis;
+			u8 Padding1;
+			u8 Padding2;
+			u8 Padding3;
+			i16 Value;
+			u16 Padding4;
+	}
+}
+
+// SDL.Events.JoyBallEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct JoyBallEvent of SDL3.dll: its fields in C's layout.
+	public value JoyBallEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			u8 Ball;
+			u8 Padding1;
+			u8 Padding2;
+			u8 Padding3;
+			i16 Xrel;
+			i16 Yrel;
+	}
+}
+
+// SDL.Events.JoyHatEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct JoyHatEvent of SDL3.dll: its fields in C's layout.
+	public value JoyHatEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			u8 Hat;
+			u8 Value;
+			u8 Padding1;
+			u8 Padding2;
+	}
+}
+
+// SDL.Events.JoyButtonEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct JoyButtonEvent of SDL3.dll: its fields in C's layout.
+	public value JoyButtonEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			u8 Button;
+			bool Down;
+			u8 Padding1;
+			u8 Padding2;
+	}
+}
+
+// SDL.Events.JoyDeviceEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct JoyDeviceEvent of SDL3.dll: its fields in C's layout.
+	public value JoyDeviceEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+	}
+}
+
+// SDL.Events.JoyBatteryEvent — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Events
+{
+	/// C struct JoyBatteryEvent of SDL3.dll: its fields in C's layout.
+	public value JoyBatteryEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			PowerState State;
+			i32 Percent;
+	}
+}
+
+// SDL.Events.GamepadAxisEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct GamepadAxisEvent of SDL3.dll: its fields in C's layout.
+	public value GamepadAxisEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			u8 Axis;
+			u8 Padding1;
+			u8 Padding2;
+			u8 Padding3;
+			i16 Value;
+			u16 Padding4;
+	}
+}
+
+// SDL.Events.GamepadButtonEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct GamepadButtonEvent of SDL3.dll: its fields in C's layout.
+	public value GamepadButtonEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			u8 Button;
+			bool Down;
+			u8 Padding1;
+			u8 Padding2;
+	}
+}
+
+// SDL.Events.GamepadDeviceEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct GamepadDeviceEvent of SDL3.dll: its fields in C's layout.
+	public value GamepadDeviceEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+	}
+}
+
+// SDL.Events.GamepadTouchpadEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct GamepadTouchpadEvent of SDL3.dll: its fields in C's layout.
+	public value GamepadTouchpadEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			i32 Touchpad;
+			i32 Finger;
+			f32 X;
+			f32 Y;
+			f32 Pressure;
+	}
+}
+
+// SDL.Events.GamepadSensorEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct GamepadSensorEvent of SDL3.dll: its fields in C's layout.
+	public value GamepadSensorEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			i32 Sensor;
+			fixed f32[3] Data;
+			u64 SensorTimestamp;
+	}
+}
+
+// SDL.Events.GamepadCapSenseEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct GamepadCapSenseEvent of SDL3.dll: its fields in C's layout.
+	public value GamepadCapSenseEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			u8 Capsense;
+			bool Down;
+			u8 Padding1;
+			u8 Padding2;
+	}
+}
+
+// SDL.Events.AudioDeviceEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct AudioDeviceEvent of SDL3.dll: its fields in C's layout.
+	public value AudioDeviceEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			bool Recording;
+			u8 Padding1;
+			u8 Padding2;
+			u8 Padding3;
+	}
+}
+
+// SDL.Events.CameraDeviceEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct CameraDeviceEvent of SDL3.dll: its fields in C's layout.
+	public value CameraDeviceEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+	}
+}
+
+// SDL.Events.NotificationEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct NotificationEvent of SDL3.dll: its fields in C's layout.
+	public value NotificationEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			i8* ActionId;
+	}
+}
+
+// SDL.Events.RenderEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct RenderEvent of SDL3.dll: its fields in C's layout.
+	public value RenderEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+	}
+}
+
+// SDL.Events.TouchFingerEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct TouchFingerEvent of SDL3.dll: its fields in C's layout.
+	public value TouchFingerEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u64 TouchID;
+			u64 FingerID;
+			f32 X;
+			f32 Y;
+			f32 Dx;
+			f32 Dy;
+			f32 Pressure;
+			u32 WindowID;
+	}
+}
+
+// SDL.Events.PinchFingerEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct PinchFingerEvent of SDL3.dll: its fields in C's layout.
+	public value PinchFingerEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			f32 Scale;
+			u32 WindowID;
+			f32 SpanX;
+			f32 SpanY;
+			f32 FocusX;
+			f32 FocusY;
+	}
+}
+
+// SDL.Events.PenProximityEvent — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Events
+{
+	/// C struct PenProximityEvent of SDL3.dll: its fields in C's layout.
+	public value PenProximityEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			u32 Which;
+			u32 PenState;
+			PenDeviceType DeviceType;
+	}
+}
+
+// SDL.Events.PenMotionEvent — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Events
+{
+	/// C struct PenMotionEvent of SDL3.dll: its fields in C's layout.
+	public value PenMotionEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			u32 Which;
+			u32 PenState;
+			f32 X;
+			f32 Y;
+			PenDeviceType DeviceType;
+	}
+}
+
+// SDL.Events.PenTouchEvent — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Events
+{
+	/// C struct PenTouchEvent of SDL3.dll: its fields in C's layout.
+	public value PenTouchEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			u32 Which;
+			u32 PenState;
+			f32 X;
+			f32 Y;
+			bool Eraser;
+			bool Down;
+			PenDeviceType DeviceType;
+	}
+}
+
+// SDL.Events.PenButtonEvent — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Events
+{
+	/// C struct PenButtonEvent of SDL3.dll: its fields in C's layout.
+	public value PenButtonEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			u32 Which;
+			u32 PenState;
+			f32 X;
+			f32 Y;
+			u8 Button;
+			bool Down;
+			PenDeviceType DeviceType;
+	}
+}
+
+// SDL.Events.PenAxisEvent — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Events
+{
+	/// C struct PenAxisEvent of SDL3.dll: its fields in C's layout.
+	public value PenAxisEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			u32 Which;
+			u32 PenState;
+			f32 X;
+			f32 Y;
+			PenAxis Axis;
+			f32 Value;
+			PenDeviceType DeviceType;
+	}
+}
+
+// SDL.Events.DropEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct DropEvent of SDL3.dll: its fields in C's layout.
+	public value DropEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			f32 X;
+			f32 Y;
+			i8* Source;
+			i8* Data;
+	}
+}
+
+// SDL.Events.ClipboardEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct ClipboardEvent of SDL3.dll: its fields in C's layout.
+	public value ClipboardEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			bool Owner;
+			i32 NumMimeTypes;
+			i8** MimeTypes;
+	}
+}
+
+// SDL.Events.SensorEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct SensorEvent of SDL3.dll: its fields in C's layout.
+	public value SensorEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 Which;
+			fixed f32[6] Data;
+			u64 SensorTimestamp;
+	}
+}
+
+// SDL.Events.QuitEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct QuitEvent of SDL3.dll: its fields in C's layout.
+	public value QuitEvent
+	{
+		public:
+			EventType Type;
+			u32 Reserved;
+			u64 Timestamp;
+	}
+}
+
+// SDL.Events.UserEvent — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// C struct UserEvent of SDL3.dll: its fields in C's layout.
+	public value UserEvent
+	{
+		public:
+			u32 Type;
+			u32 Reserved;
+			u64 Timestamp;
+			u32 WindowID;
+			i32 Code;
+			void* Data1;
+			void* Data2;
+	}
+}
+
+// SDL.Events.Event — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Events
+{
+	/// C union Event of SDL3.dll: its members share the same bytes.
+	[ValueLayout(Layout.Explicit)]
+	public value Event
+	{
+		public:
+			[FieldOffset(0)] u32 Type;
+			[FieldOffset(0)] CommonEvent Common;
+			[FieldOffset(0)] DisplayEvent Display;
+			[FieldOffset(0)] WindowEvent Window;
+			[FieldOffset(0)] KeyboardDeviceEvent Kdevice;
+			[FieldOffset(0)] KeyboardEvent Key;
+			[FieldOffset(0)] TextEditingEvent Edit;
+			[FieldOffset(0)] TextEditingCandidatesEvent EditCandidates;
+			[FieldOffset(0)] TextInputEvent Text;
+			[FieldOffset(0)] MouseDeviceEvent Mdevice;
+			[FieldOffset(0)] MouseMotionEvent Motion;
+			[FieldOffset(0)] MouseButtonEvent Button;
+			[FieldOffset(0)] MouseWheelEvent Wheel;
+			[FieldOffset(0)] JoyDeviceEvent Jdevice;
+			[FieldOffset(0)] JoyAxisEvent Jaxis;
+			[FieldOffset(0)] JoyBallEvent Jball;
+			[FieldOffset(0)] JoyHatEvent Jhat;
+			[FieldOffset(0)] JoyButtonEvent Jbutton;
+			[FieldOffset(0)] JoyBatteryEvent Jbattery;
+			[FieldOffset(0)] GamepadDeviceEvent Gdevice;
+			[FieldOffset(0)] GamepadAxisEvent Gaxis;
+			[FieldOffset(0)] GamepadButtonEvent Gbutton;
+			[FieldOffset(0)] GamepadTouchpadEvent Gtouchpad;
+			[FieldOffset(0)] GamepadSensorEvent Gsensor;
+			[FieldOffset(0)] GamepadCapSenseEvent Gcapsense;
+			[FieldOffset(0)] AudioDeviceEvent Adevice;
+			[FieldOffset(0)] CameraDeviceEvent Cdevice;
+			[FieldOffset(0)] SensorEvent Sensor;
+			[FieldOffset(0)] QuitEvent Quit;
+			[FieldOffset(0)] UserEvent User;
+			[FieldOffset(0)] TouchFingerEvent Tfinger;
+			[FieldOffset(0)] PinchFingerEvent Pinch;
+			[FieldOffset(0)] PenProximityEvent Pproximity;
+			[FieldOffset(0)] PenTouchEvent Ptouch;
+			[FieldOffset(0)] PenMotionEvent Pmotion;
+			[FieldOffset(0)] PenButtonEvent Pbutton;
+			[FieldOffset(0)] PenAxisEvent Paxis;
+			[FieldOffset(0)] RenderEvent Render;
+			[FieldOffset(0)] DropEvent Drop;
+			[FieldOffset(0)] ClipboardEvent Clipboard;
+			[FieldOffset(0)] NotificationEvent Notification;
+			[FieldOffset(0)] fixed u8[128] Padding;
+	}
+}
+
+// SDL.Events.Events — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Events
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Events
+	{
+		public:
+			[Import("SDL3.dll", "SDL_PumpEvents")]
+			PumpEvents();
+
+			[Import("SDL3.dll", "SDL_PeepEvents")]
+			PeepEvents(Event* events, i32 numevents, EventAction action, u32 minType, u32 maxType) : i32;
+
+			[Import("SDL3.dll", "SDL_HasEvent")]
+			HasEvent(u32 type) : bool;
+
+			[Import("SDL3.dll", "SDL_HasEvents")]
+			HasEvents(u32 minType, u32 maxType) : bool;
+
+			[Import("SDL3.dll", "SDL_FlushEvent")]
+			FlushEvent(u32 type);
+
+			[Import("SDL3.dll", "SDL_FlushEvents")]
+			FlushEvents(u32 minType, u32 maxType);
+
+			[Import("SDL3.dll", "SDL_PollEvent")]
+			PollEvent(Event* event) : bool;
+
+			[Import("SDL3.dll", "SDL_WaitEvent")]
+			WaitEvent(Event* event) : bool;
+
+			[Import("SDL3.dll", "SDL_WaitEventTimeout")]
+			WaitEventTimeout(Event* event, i32 timeoutMS) : bool;
+
+			[Import("SDL3.dll", "SDL_PushEvent")]
+			PushEvent(Event* event) : bool;
+
+			[Import("SDL3.dll", "SDL_SetEventFilter")]
+			SetEventFilter(func*<void*, Event*> : bool filter, void* userdata);
+
+			[Import("SDL3.dll", "SDL_GetEventFilter")]
+			GetEventFilter(void* filter, void** userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_AddEventWatch")]
+			AddEventWatch(func*<void*, Event*> : bool filter, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_RemoveEventWatch")]
+			RemoveEventWatch(func*<void*, Event*> : bool filter, void* userdata);
+
+			[Import("SDL3.dll", "SDL_FilterEvents")]
+			FilterEvents(func*<void*, Event*> : bool filter, void* userdata);
+
+			[Import("SDL3.dll", "SDL_SetEventEnabled")]
+			SetEventEnabled(u32 type, bool enabled);
+
+			[Import("SDL3.dll", "SDL_EventEnabled")]
+			EventEnabled(u32 type) : bool;
+
+			[Import("SDL3.dll", "SDL_RegisterEvents")]
+			RegisterEvents(i32 numevents) : u32;
+
+			[Import("SDL3.dll", "SDL_GetWindowFromEvent")]
+			GetWindowFromEvent(Event* event) : void*;
+
+			[Import("SDL3.dll", "SDL_GetEventDescription")]
+			GetEventDescription(Event* event, str? buf, i32 buflen) : i32;
+	}
+}

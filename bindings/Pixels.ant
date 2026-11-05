@@ -1,0 +1,221 @@
+// SDL.Pixels.PixelType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum PixelType { Unknown, Index1, Index4, Index8, Packed8, Packed16, Packed32, Arrayu8, Arrayu16, Arrayu32, Arrayf16, Arrayf32, Index2 }
+}
+
+// SDL.Pixels.BitmapOrder — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum BitmapOrder { None, _4321, _1234 }
+}
+
+// SDL.Pixels.PackedOrder — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum PackedOrder { None, Xrgb, Rgbx, Argb, Rgba, Xbgr, Bgrx, Abgr, Bgra }
+}
+
+// SDL.Pixels.ArrayOrder — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum ArrayOrder { None, Rgb, Rgba, Argb, Bgr, Bgra, Abgr }
+}
+
+// SDL.Pixels.PackedLayout — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum PackedLayout { None, _332, _4444, _1555, _5551, _565, _8888, _2101010, _1010102 }
+}
+
+// SDL.Pixels.PixelFormat — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum PixelFormat { Unknown = 0, Index1lsb = 286261504, Index1msb = 287310080, Index2lsb = 470811136, Index2msb = 471859712, Index4lsb = 303039488, Index4msb = 304088064, Index8 = 318769153, Rgb332 = 336660481, Xrgb4444 = 353504258, Xbgr4444 = 357698562, Xrgb1555 = 353570562, Xbgr1555 = 357764866, Argb4444 = 355602434, Rgba4444 = 356651010, Abgr4444 = 359796738, Bgra4444 = 360845314, Argb1555 = 355667970, Rgba5551 = 356782082, Abgr1555 = 359862274, Bgra5551 = 360976386, Rgb565 = 353701890, Bgr565 = 357896194, Rgb24 = 386930691, Bgr24 = 390076419, Xrgb8888 = 370546692, Rgbx8888 = 371595268, Xbgr8888 = 374740996, Bgrx8888 = 375789572, Argb8888 = 372645892, Rgba8888 = 373694468, Abgr8888 = 376840196, Bgra8888 = 377888772, Xrgb2101010 = 370614276, Xbgr2101010 = 374808580, Argb2101010 = 372711428, Abgr2101010 = 376905732, Rgb48 = 403714054, Bgr48 = 406859782, Rgba64 = 404766728, Argb64 = 405815304, Bgra64 = 407912456, Abgr64 = 408961032, Rgb48Float = 437268486, Bgr48Float = 440414214, Rgba64Float = 438321160, Argb64Float = 439369736, Bgra64Float = 441466888, Abgr64Float = 442515464, Rgb96Float = 454057996, Bgr96Float = 457203724, Rgba128Float = 455114768, Argb128Float = 456163344, Bgra128Float = 458260496, Abgr128Float = 459309072, Yv12 = 842094169, Iyuv = 1448433993, Yuy2 = 844715353, Uyvy = 1498831189, Yvyu = 1431918169, Nv12 = 842094158, Nv21 = 825382478, I444 = 875836489, P010 = 808530000, I0fl = 1279668297, I4fl = 1279669321, ExternalOes = 542328143, Mjpg = 1196444237, Rgba32 = 376840196, Argb32 = 377888772, Bgra32 = 372645892, Abgr32 = 373694468, Rgbx32 = 374740996, Xrgb32 = 375789572, Bgrx32 = 370546692, Xbgr32 = 371595268 }
+}
+
+// SDL.Pixels.ColorType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum ColorType { Unknown, Rgb, Ycbcr }
+}
+
+// SDL.Pixels.ColorRange — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum ColorRange { Unknown, Limited, Full }
+}
+
+// SDL.Pixels.ColorPrimaries — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum ColorPrimaries { Unknown = 0, Bt709 = 1, Unspecified = 2, Bt470m = 4, Bt470bg = 5, Bt601 = 6, Smpte240 = 7, GenericFilm = 8, Bt2020 = 9, Xyz = 10, Smpte431 = 11, Smpte432 = 12, Ebu3213 = 22, Custom = 31 }
+}
+
+// SDL.Pixels.TransferCharacteristics — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum TransferCharacteristics { Unknown = 0, Bt709 = 1, Unspecified = 2, Gamma22 = 4, Gamma28 = 5, Bt601 = 6, Smpte240 = 7, Linear = 8, Log100 = 9, Log100Sqrt10 = 10, Iec61966 = 11, Bt1361 = 12, Srgb = 13, Bt202010bit = 14, Bt202012bit = 15, Pq = 16, Smpte428 = 17, Hlg = 18, Custom = 31 }
+}
+
+// SDL.Pixels.MatrixCoefficients — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum MatrixCoefficients { Identity = 0, Bt709 = 1, Unspecified = 2, Fcc = 4, Bt470bg = 5, Bt601 = 6, Smpte240 = 7, Ycgco = 8, Bt2020Ncl = 9, Bt2020Cl = 10, Smpte2085 = 11, ChromaDerivedNcl = 12, ChromaDerivedCl = 13, Ictcp = 14, Custom = 31 }
+}
+
+// SDL.Pixels.ChromaLocation — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum ChromaLocation { None, Left, Center, Topleft }
+}
+
+// SDL.Pixels.Colorspace — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Values of SDL3.dll.
+	public enum Colorspace { Unknown = 0, Srgb = 301991328, SrgbLinear = 301991168, Hdr10 = 301999616, Jpeg = 570426566, Bt601Limited = 554703046, Bt601Full = 571480262, Bt709Limited = 554697761, Bt709Full = 571474977, Bt2020Limited = 554706441, Bt2020Full = 571483657, RgbDefault = 301991328, YuvDefault = 554703046 }
+}
+
+// SDL.Pixels.Color — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// C struct Color of SDL3.dll: its fields in C's layout.
+	public value Color
+	{
+		public:
+			u8 R;
+			u8 G;
+			u8 B;
+			u8 A;
+	}
+}
+
+// SDL.Pixels.FColor — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// C struct FColor of SDL3.dll: its fields in C's layout.
+	public value FColor
+	{
+		public:
+			f32 R;
+			f32 G;
+			f32 B;
+			f32 A;
+	}
+}
+
+// SDL.Pixels.Palette — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// C struct Palette of SDL3.dll: its fields in C's layout.
+	public value Palette
+	{
+		public:
+			i32 Ncolors;
+			Color* Colors;
+			u32 Version;
+			i32 Refcount;
+	}
+}
+
+// SDL.Pixels.PixelFormatDetails — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// C struct PixelFormatDetails of SDL3.dll: its fields in C's layout.
+	public value PixelFormatDetails
+	{
+		public:
+			PixelFormat Format;
+			u8 BitsPerPixel;
+			u8 BytesPerPixel;
+			fixed u8[2] Padding;
+			u32 Rmask;
+			u32 Gmask;
+			u32 Bmask;
+			u32 Amask;
+			u8 Rbits;
+			u8 Gbits;
+			u8 Bbits;
+			u8 Abits;
+			u8 Rshift;
+			u8 Gshift;
+			u8 Bshift;
+			u8 Ashift;
+	}
+}
+
+// SDL.Pixels.Pixels — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Pixels
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Pixels
+	{
+		public:
+			readonly i32 AlphaOpaque = 255;
+			readonly i32 AlphaTransparent = 0;
+
+			[Import("SDL3.dll", "SDL_GetPixelFormatName")]
+			GetPixelFormatName(PixelFormat format) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetMasksForPixelFormat")]
+			GetMasksForPixelFormat(PixelFormat format, i32* bpp, u32* rmask, u32* gmask, u32* bmask, u32* amask) : bool;
+
+			[Import("SDL3.dll", "SDL_GetPixelFormatForMasks")]
+			GetPixelFormatForMasks(i32 bpp, u32 rmask, u32 gmask, u32 bmask, u32 amask) : PixelFormat;
+
+			[Import("SDL3.dll", "SDL_GetPixelFormatDetails")]
+			GetPixelFormatDetails(PixelFormat format) : PixelFormatDetails*;
+
+			[Import("SDL3.dll", "SDL_CreatePalette")]
+			CreatePalette(i32 ncolors) : Palette*;
+
+			[Import("SDL3.dll", "SDL_SetPaletteColors")]
+			SetPaletteColors(Palette* palette, Color* colors, i32 firstcolor, i32 ncolors) : bool;
+
+			[Import("SDL3.dll", "SDL_DestroyPalette")]
+			DestroyPalette(Palette* palette);
+
+			[Import("SDL3.dll", "SDL_MapRGB")]
+			MapRGB(PixelFormatDetails* format, Palette* palette, u8 r, u8 g, u8 b) : u32;
+
+			[Import("SDL3.dll", "SDL_MapRGBA")]
+			MapRGBA(PixelFormatDetails* format, Palette* palette, u8 r, u8 g, u8 b, u8 a) : u32;
+
+			[Import("SDL3.dll", "SDL_GetRGB")]
+			GetRGB(u32 pixelvalue, PixelFormatDetails* format, Palette* palette, u8* r, u8* g, u8* b);
+
+			[Import("SDL3.dll", "SDL_GetRGBA")]
+			GetRGBA(u32 pixelvalue, PixelFormatDetails* format, Palette* palette, u8* r, u8* g, u8* b, u8* a);
+	}
+}

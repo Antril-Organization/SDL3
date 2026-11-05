@@ -1,0 +1,102 @@
+import SDL.Keycode;
+import SDL.Rect;
+import SDL.Scancode;
+
+// SDL.Keyboard.TextInputType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Keyboard
+{
+	/// Values of SDL3.dll.
+	public enum TextInputType { Text, TextName, TextEmail, TextUsername, TextPasswordHidden, TextPasswordVisible, Number, NumberPasswordHidden, NumberPasswordVisible }
+}
+
+// SDL.Keyboard.Capitalization — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Keyboard
+{
+	/// Values of SDL3.dll.
+	public enum Capitalization { None, Sentences, Words, Letters }
+}
+
+// SDL.Keyboard.Keyboard — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Keyboard
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Keyboard
+	{
+		public:
+			[Import("SDL3.dll", "SDL_HasKeyboard")]
+			HasKeyboard() : bool;
+
+			[Import("SDL3.dll", "SDL_GetKeyboards")]
+			GetKeyboards(i32* count) : u32*;
+
+			[Import("SDL3.dll", "SDL_GetKeyboardNameForID")]
+			GetKeyboardNameForID(u32 instanceId) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetKeyboardFocus")]
+			GetKeyboardFocus() : void*;
+
+			[Import("SDL3.dll", "SDL_GetKeyboardState")]
+			GetKeyboardState(i32* numkeys) : bool*;
+
+			[Import("SDL3.dll", "SDL_ResetKeyboard")]
+			ResetKeyboard();
+
+			[Import("SDL3.dll", "SDL_GetModState")]
+			GetModState() : Keymod;
+
+			[Import("SDL3.dll", "SDL_SetModState")]
+			SetModState(Keymod modstate);
+
+			[Import("SDL3.dll", "SDL_GetKeyFromScancode")]
+			GetKeyFromScancode(Scancode scancode, Keymod modstate, bool keyEvent) : Keycode;
+
+			[Import("SDL3.dll", "SDL_GetScancodeFromKey")]
+			GetScancodeFromKey(Keycode key, Keymod* modstate) : Scancode;
+
+			[Import("SDL3.dll", "SDL_SetScancodeName")]
+			SetScancodeName(Scancode scancode, str? name) : bool;
+
+			[Import("SDL3.dll", "SDL_GetScancodeName")]
+			GetScancodeName(Scancode scancode) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetScancodeFromName")]
+			GetScancodeFromName(str? name) : Scancode;
+
+			[Import("SDL3.dll", "SDL_GetKeyName")]
+			GetKeyName(Keycode key) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetKeyFromName")]
+			GetKeyFromName(str? name) : Keycode;
+
+			[Import("SDL3.dll", "SDL_StartTextInput")]
+			StartTextInput(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_StartTextInputWithProperties")]
+			StartTextInputWithProperties(void* window, u32 props) : bool;
+
+			[Import("SDL3.dll", "SDL_TextInputActive")]
+			TextInputActive(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_StopTextInput")]
+			StopTextInput(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_ClearComposition")]
+			ClearComposition(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_SetTextInputArea")]
+			SetTextInputArea(void* window, Rect* rect, i32 cursor) : bool;
+
+			[Import("SDL3.dll", "SDL_GetTextInputArea")]
+			GetTextInputArea(void* window, Rect* rect, i32* cursor) : bool;
+
+			[Import("SDL3.dll", "SDL_HasScreenKeyboardSupport")]
+			HasScreenKeyboardSupport() : bool;
+
+			[Import("SDL3.dll", "SDL_ScreenKeyboardShown")]
+			ScreenKeyboardShown(void* window) : bool;
+	}
+}

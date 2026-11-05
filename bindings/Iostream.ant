@@ -1,0 +1,184 @@
+// SDL.Iostream.IOStatus — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Iostream
+{
+	/// Values of SDL3.dll.
+	public enum IOStatus { Ready, Error, Eof, NotReady, Readonly, Writeonly }
+}
+
+// SDL.Iostream.IOWhence — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Iostream
+{
+	/// Values of SDL3.dll.
+	public enum IOWhence { Set, Cur, End }
+}
+
+// SDL.Iostream.IOStreamInterface — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Iostream
+{
+	/// C struct IOStreamInterface of SDL3.dll: its fields in C's layout.
+	public value IOStreamInterface
+	{
+		public:
+			u32 Version;
+			func*<void*> : i64 Size;
+			func*<void*, i64, i32> : i64 Seek;
+			func*<void*, void*, u64, i32*> : u64 Read;
+			func*<void*, void*, u64, i32*> : u64 Write;
+			func*<void*, i32*> : bool Flush;
+			func*<void*> : bool Close;
+	}
+}
+
+// SDL.Iostream.Iostream — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Iostream
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Iostream
+	{
+		public:
+			[Import("SDL3.dll", "SDL_IOFromFile")]
+			IOFromFile(str? file, str? mode) : void*;
+
+			[Import("SDL3.dll", "SDL_IOFromMem")]
+			IOFromMem(void* mem, u64 size) : void*;
+
+			[Import("SDL3.dll", "SDL_IOFromConstMem")]
+			IOFromConstMem(void* mem, u64 size) : void*;
+
+			[Import("SDL3.dll", "SDL_IOFromDynamicMem")]
+			IOFromDynamicMem() : void*;
+
+			[Import("SDL3.dll", "SDL_OpenIO")]
+			OpenIO(IOStreamInterface* iface, void* userdata) : void*;
+
+			[Import("SDL3.dll", "SDL_CloseIO")]
+			CloseIO(void* context) : bool;
+
+			[Import("SDL3.dll", "SDL_GetIOProperties")]
+			GetIOProperties(void* context) : u32;
+
+			[Import("SDL3.dll", "SDL_GetIOStatus")]
+			GetIOStatus(void* context) : IOStatus;
+
+			[Import("SDL3.dll", "SDL_GetIOSize")]
+			GetIOSize(void* context) : i64;
+
+			[Import("SDL3.dll", "SDL_SeekIO")]
+			SeekIO(void* context, i64 offset, IOWhence whence) : i64;
+
+			[Import("SDL3.dll", "SDL_TellIO")]
+			TellIO(void* context) : i64;
+
+			[Import("SDL3.dll", "SDL_ReadIO")]
+			ReadIO(void* context, void* ptr, u64 size) : u64;
+
+			[Import("SDL3.dll", "SDL_WriteIO")]
+			WriteIO(void* context, void* ptr, u64 size) : u64;
+
+			[Import("SDL3.dll", "SDL_IOvprintf")]
+			IOvprintf(void* context, str? fmt, str? ap) : u64;
+
+			[Import("SDL3.dll", "SDL_FlushIO")]
+			FlushIO(void* context) : bool;
+
+			[Import("SDL3.dll", "SDL_LoadFile_IO")]
+			LoadFileIO(void* src, u64* datasize, bool closeio) : void*;
+
+			[Import("SDL3.dll", "SDL_LoadFile")]
+			LoadFile(str? file, u64* datasize) : void*;
+
+			[Import("SDL3.dll", "SDL_SaveFile_IO")]
+			SaveFileIO(void* src, void* data, u64 datasize, bool closeio) : bool;
+
+			[Import("SDL3.dll", "SDL_SaveFile")]
+			SaveFile(str? file, void* data, u64 datasize) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadU8")]
+			ReadU8(void* src, u8* value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadS8")]
+			ReadS8(void* src, str? value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadU16LE")]
+			ReadU16LE(void* src, u16* value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadS16LE")]
+			ReadS16LE(void* src, i16* value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadU16BE")]
+			ReadU16BE(void* src, u16* value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadS16BE")]
+			ReadS16BE(void* src, i16* value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadU32LE")]
+			ReadU32LE(void* src, u32* value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadS32LE")]
+			ReadS32LE(void* src, i32* value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadU32BE")]
+			ReadU32BE(void* src, u32* value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadS32BE")]
+			ReadS32BE(void* src, i32* value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadU64LE")]
+			ReadU64LE(void* src, u64* value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadS64LE")]
+			ReadS64LE(void* src, i64* value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadU64BE")]
+			ReadU64BE(void* src, u64* value) : bool;
+
+			[Import("SDL3.dll", "SDL_ReadS64BE")]
+			ReadS64BE(void* src, i64* value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteU8")]
+			WriteU8(void* dst, u8 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteS8")]
+			WriteS8(void* dst, i8 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteU16LE")]
+			WriteU16LE(void* dst, u16 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteS16LE")]
+			WriteS16LE(void* dst, i16 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteU16BE")]
+			WriteU16BE(void* dst, u16 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteS16BE")]
+			WriteS16BE(void* dst, i16 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteU32LE")]
+			WriteU32LE(void* dst, u32 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteS32LE")]
+			WriteS32LE(void* dst, i32 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteU32BE")]
+			WriteU32BE(void* dst, u32 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteS32BE")]
+			WriteS32BE(void* dst, i32 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteU64LE")]
+			WriteU64LE(void* dst, u64 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteS64LE")]
+			WriteS64LE(void* dst, i64 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteU64BE")]
+			WriteU64BE(void* dst, u64 value) : bool;
+
+			[Import("SDL3.dll", "SDL_WriteS64BE")]
+			WriteS64BE(void* dst, i64 value) : bool;
+	}
+}

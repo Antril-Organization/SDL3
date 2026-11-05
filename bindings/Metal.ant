@@ -1,0 +1,18 @@
+// SDL.Metal.Metal — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Metal
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Metal
+	{
+		public:
+			[Import("SDL3.dll", "SDL_Metal_CreateView")]
+			MetalCreateView(void* window) : void*;
+
+			[Import("SDL3.dll", "SDL_Metal_DestroyView")]
+			MetalDestroyView(void* view);
+
+			[Import("SDL3.dll", "SDL_Metal_GetLayer")]
+			MetalGetLayer(void* view) : void*;
+	}
+}

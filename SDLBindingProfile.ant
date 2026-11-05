@@ -1,0 +1,56 @@
+import System;
+import System.Bindings;
+
+into namespace SDL.Bindings.Internal
+{
+	/// SDL3 for Larva: a namespace, a class and a file per header (SDL3.Init, SDL3.Video…), names in Pascal case
+	/// without `SDL_`, and the init and window flags as bitflag enums.
+	public class SDLBindingProfile : BindingProfile
+	{
+		public:
+			override Configure(BindingSettings s)
+			{
+				// What is read (paths from this file's folder).
+				s.Libraries.Add("build/SDL3.dll");
+				s.Headers.Add("include/SDL3/SDL.h");
+				s.Includes.Add("include");
+
+				// Where it goes.
+				s.Namespace = "SDL";
+				s.Class = "SDL";
+				s.Assembly = "SDL.Bindings";
+				s.Output = "SDL.Bindings.dll";
+				s.Source = "bindings";
+
+				// Names: no `SDL_`, Pascal case (parameters in camel case).
+				s.Strip.Add("SDL_");
+				s.TypeCase = NameCase.Pascal;
+				s.FunctionCase = NameCase.Pascal;
+				s.ConstantCase = NameCase.Pascal;
+				s.FieldCase = NameCase.Pascal;
+				s.ParameterCase = NameCase.Camel;
+
+				// One namespace, class and file per header: SDL_video.h → SDL3.Video, class Video, Video.ant.
+				s.NamespaceByHeader = true;
+				s.ClassByHeader = true;
+				s.Split = SplitBy.Header;
+			}
+
+			override Start(BindingModel m)
+			{
+				// Groups of #defines as typed enums: what C wrote with the typedef takes the enum.
+				m.MakeEnum("InitFlags", "SDL_INIT_*", true).Typedef("SDL_InitFlags");
+				m.MakeEnum("WindowFlags", "SDL_WINDOW_*", "SDL_WINDOW_SURFACE_*", true).Typedef("SDL_WindowFlags");
+				// Keys and modifiers: KeyboardEvent.Key is a Keycode (Keycode.Escape), Mod a Keymod.
+				m.MakeEnum("Keycode", "SDLK_*", false).Typedef("SDL_Keycode");
+				m.MakeEnum("Keymod", "SDL_KMOD_*", true).Typedef("SDL_Keymod");
+			}
+
+			// Leaves out what you do not want in the binding.
+			override Function(CFunction f) : bool => !f.Entry.StartsWith("SDL_iconv");
+
+			// Specific renames; the rest keeps the name the settings propose.
+			override Name(NameKind kind, str cName, str proposed) : str =>
+				cName == "SDL_Init" ? "Initialize" : proposed;
+	}
+}

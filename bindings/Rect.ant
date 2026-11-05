@@ -1,0 +1,95 @@
+// SDL.Rect.Point — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Rect
+{
+	/// C struct Point of SDL3.dll: its fields in C's layout.
+	public value Point
+	{
+		public:
+			i32 X;
+			i32 Y;
+	}
+}
+
+// SDL.Rect.FPoint — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Rect
+{
+	/// C struct FPoint of SDL3.dll: its fields in C's layout.
+	public value FPoint
+	{
+		public:
+			f32 X;
+			f32 Y;
+	}
+}
+
+// SDL.Rect.Rect — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Rect
+{
+	/// C struct Rect of SDL3.dll: its fields in C's layout.
+	public value Rect
+	{
+		public:
+			i32 X;
+			i32 Y;
+			i32 W;
+			i32 H;
+	}
+}
+
+// SDL.Rect.FRect — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Rect
+{
+	/// C struct FRect of SDL3.dll: its fields in C's layout.
+	public value FRect
+	{
+		public:
+			f32 X;
+			f32 Y;
+			f32 W;
+			f32 H;
+	}
+}
+
+// SDL.Rect.RectFunctions — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Rect
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class RectFunctions
+	{
+		public:
+			[Import("SDL3.dll", "SDL_HasRectIntersection")]
+			HasRectIntersection(Rect* a, Rect* b) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRectIntersection")]
+			GetRectIntersection(Rect* a, Rect* b, Rect* result) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRectUnion")]
+			GetRectUnion(Rect* a, Rect* b, Rect* result) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRectEnclosingPoints")]
+			GetRectEnclosingPoints(Point* points, i32 count, Rect* clip, Rect* result) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRectAndLineIntersection")]
+			GetRectAndLineIntersection(Rect* rect, i32* x1, i32* y1, i32* x2, i32* y2) : bool;
+
+			[Import("SDL3.dll", "SDL_HasRectIntersectionFloat")]
+			HasRectIntersectionFloat(FRect* a, FRect* b) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRectIntersectionFloat")]
+			GetRectIntersectionFloat(FRect* a, FRect* b, FRect* result) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRectUnionFloat")]
+			GetRectUnionFloat(FRect* a, FRect* b, FRect* result) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRectEnclosingPointsFloat")]
+			GetRectEnclosingPointsFloat(FPoint* points, i32 count, FRect* clip, FRect* result) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRectAndLineIntersectionFloat")]
+			GetRectAndLineIntersectionFloat(FRect* rect, f32* x1, f32* y1, f32* x2, f32* y2) : bool;
+	}
+}

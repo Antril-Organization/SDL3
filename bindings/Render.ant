@@ -1,0 +1,432 @@
+import SDL.Pixels;
+import SDL.Rect;
+import SDL.Gpu;
+import SDL.Events;
+import SDL.Surface;
+import SDL.Video;
+
+// SDL.Render.TextureAccess — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Render
+{
+	/// Values of SDL3.dll.
+	public enum TextureAccess { Static, Streaming, Target }
+}
+
+// SDL.Render.TextureAddressMode — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Render
+{
+	/// Values of SDL3.dll.
+	public enum TextureAddressMode { Invalid = -1, Auto = 0, Clamp = 1, Wrap = 2 }
+}
+
+// SDL.Render.RendererLogicalPresentation — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Render
+{
+	/// Values of SDL3.dll.
+	public enum RendererLogicalPresentation { Disabled, Stretch, Letterbox, Overscan, IntegerScale }
+}
+
+// SDL.Render.Vertex — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Render
+{
+	/// C struct Vertex of SDL3.dll: its fields in C's layout.
+	public value Vertex
+	{
+		public:
+			FPoint Position;
+			FColor Color;
+			FPoint TexCoord;
+	}
+}
+
+// SDL.Render.Texture — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Render
+{
+	/// C struct Texture of SDL3.dll: its fields in C's layout.
+	public value Texture
+	{
+		public:
+			PixelFormat Format;
+			i32 W;
+			i32 H;
+			i32 Refcount;
+	}
+}
+
+// SDL.Render.GPURenderStateCreateInfo — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Render
+{
+	/// C struct GPURenderStateCreateInfo of SDL3.dll: its fields in C's layout.
+	public value GPURenderStateCreateInfo
+	{
+		public:
+			void* FragmentShader;
+			i32 NumSamplerBindings;
+			GPUTextureSamplerBinding* SamplerBindings;
+			i32 NumStorageTextures;
+			void** StorageTextures;
+			i32 NumStorageBuffers;
+			void** StorageBuffers;
+			u32 Props;
+	}
+}
+
+// SDL.Render.Render — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Render
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Render
+	{
+		public:
+			readonly i32 RendererVsyncDisabled = 0;
+			readonly i32 RendererVsyncAdaptive = -1;
+			readonly i32 DebugTextFontCharacterSize = 8;
+
+			[Import("SDL3.dll", "SDL_GetNumRenderDrivers")]
+			GetNumRenderDrivers() : i32;
+
+			[Import("SDL3.dll", "SDL_GetRenderDriver")]
+			GetRenderDriver(i32 index) : i8*;
+
+			[Import("SDL3.dll", "SDL_CreateWindowAndRenderer")]
+			CreateWindowAndRenderer(str? title, i32 width, i32 height, WindowFlags windowFlags, void** window, void** renderer) : bool;
+
+			[Import("SDL3.dll", "SDL_CreateRenderer")]
+			CreateRenderer(void* window, str? name) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateRendererWithProperties")]
+			CreateRendererWithProperties(u32 props) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateGPURenderer")]
+			CreateGPURenderer(void* device, void* window) : void*;
+
+			[Import("SDL3.dll", "SDL_GetGPURendererDevice")]
+			GetGPURendererDevice(void* renderer) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateSoftwareRenderer")]
+			CreateSoftwareRenderer(Surface* surface) : void*;
+
+			[Import("SDL3.dll", "SDL_SetSoftwareRendererWindow")]
+			SetSoftwareRendererWindow(void* renderer, void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_SetSoftwareRendererSurface")]
+			SetSoftwareRendererSurface(void* renderer, Surface* surface) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderer")]
+			GetRenderer(void* window) : void*;
+
+			[Import("SDL3.dll", "SDL_GetRenderWindow")]
+			GetRenderWindow(void* renderer) : void*;
+
+			[Import("SDL3.dll", "SDL_GetRendererName")]
+			GetRendererName(void* renderer) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetRendererProperties")]
+			GetRendererProperties(void* renderer) : u32;
+
+			[Import("SDL3.dll", "SDL_GetRenderOutputSize")]
+			GetRenderOutputSize(void* renderer, i32* w, i32* h) : bool;
+
+			[Import("SDL3.dll", "SDL_GetCurrentRenderOutputSize")]
+			GetCurrentRenderOutputSize(void* renderer, i32* w, i32* h) : bool;
+
+			[Import("SDL3.dll", "SDL_CreateTexture")]
+			CreateTexture(void* renderer, PixelFormat format, TextureAccess access, i32 w, i32 h) : Texture*;
+
+			[Import("SDL3.dll", "SDL_CreateTextureFromSurface")]
+			CreateTextureFromSurface(void* renderer, Surface* surface) : Texture*;
+
+			[Import("SDL3.dll", "SDL_CreateTextureWithProperties")]
+			CreateTextureWithProperties(void* renderer, u32 props) : Texture*;
+
+			[Import("SDL3.dll", "SDL_GetTextureProperties")]
+			GetTextureProperties(Texture* texture) : u32;
+
+			[Import("SDL3.dll", "SDL_GetRendererFromTexture")]
+			GetRendererFromTexture(Texture* texture) : void*;
+
+			[Import("SDL3.dll", "SDL_GetTextureSize")]
+			GetTextureSize(Texture* texture, f32* w, f32* h) : bool;
+
+			[Import("SDL3.dll", "SDL_SetTexturePalette")]
+			SetTexturePalette(Texture* texture, Palette* palette) : bool;
+
+			[Import("SDL3.dll", "SDL_GetTexturePalette")]
+			GetTexturePalette(Texture* texture) : Palette*;
+
+			[Import("SDL3.dll", "SDL_SetTextureColorMod")]
+			SetTextureColorMod(Texture* texture, u8 r, u8 g, u8 b) : bool;
+
+			[Import("SDL3.dll", "SDL_SetTextureColorModFloat")]
+			SetTextureColorModFloat(Texture* texture, f32 r, f32 g, f32 b) : bool;
+
+			[Import("SDL3.dll", "SDL_GetTextureColorMod")]
+			GetTextureColorMod(Texture* texture, u8* r, u8* g, u8* b) : bool;
+
+			[Import("SDL3.dll", "SDL_GetTextureColorModFloat")]
+			GetTextureColorModFloat(Texture* texture, f32* r, f32* g, f32* b) : bool;
+
+			[Import("SDL3.dll", "SDL_SetTextureAlphaMod")]
+			SetTextureAlphaMod(Texture* texture, u8 alpha) : bool;
+
+			[Import("SDL3.dll", "SDL_SetTextureAlphaModFloat")]
+			SetTextureAlphaModFloat(Texture* texture, f32 alpha) : bool;
+
+			[Import("SDL3.dll", "SDL_GetTextureAlphaMod")]
+			GetTextureAlphaMod(Texture* texture, u8* alpha) : bool;
+
+			[Import("SDL3.dll", "SDL_GetTextureAlphaModFloat")]
+			GetTextureAlphaModFloat(Texture* texture, f32* alpha) : bool;
+
+			[Import("SDL3.dll", "SDL_SetTextureBlendMode")]
+			SetTextureBlendMode(Texture* texture, u32 blendMode) : bool;
+
+			[Import("SDL3.dll", "SDL_GetTextureBlendMode")]
+			GetTextureBlendMode(Texture* texture, u32* blendMode) : bool;
+
+			[Import("SDL3.dll", "SDL_SetTextureScaleMode")]
+			SetTextureScaleMode(Texture* texture, ScaleMode scaleMode) : bool;
+
+			[Import("SDL3.dll", "SDL_GetTextureScaleMode")]
+			GetTextureScaleMode(Texture* texture, ScaleMode* scaleMode) : bool;
+
+			[Import("SDL3.dll", "SDL_UpdateTexture")]
+			UpdateTexture(Texture* texture, Rect* rect, void* pixels, i32 pitch) : bool;
+
+			[Import("SDL3.dll", "SDL_UpdateYUVTexture")]
+			UpdateYUVTexture(Texture* texture, Rect* rect, u8* yplane, i32 ypitch, u8* uplane, i32 upitch, u8* vplane, i32 vpitch) : bool;
+
+			[Import("SDL3.dll", "SDL_UpdateNVTexture")]
+			UpdateNVTexture(Texture* texture, Rect* rect, u8* yplane, i32 ypitch, u8* uVplane, i32 uVpitch) : bool;
+
+			[Import("SDL3.dll", "SDL_LockTexture")]
+			LockTexture(Texture* texture, Rect* rect, void** pixels, i32* pitch) : bool;
+
+			[Import("SDL3.dll", "SDL_LockTextureToSurface")]
+			LockTextureToSurface(Texture* texture, Rect* rect, Surface** surface) : bool;
+
+			[Import("SDL3.dll", "SDL_UnlockTexture")]
+			UnlockTexture(Texture* texture);
+
+			[Import("SDL3.dll", "SDL_SetRenderTarget")]
+			SetRenderTarget(void* renderer, Texture* texture) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderTarget")]
+			GetRenderTarget(void* renderer) : Texture*;
+
+			[Import("SDL3.dll", "SDL_SetRenderLogicalPresentation")]
+			SetRenderLogicalPresentation(void* renderer, i32 w, i32 h, RendererLogicalPresentation mode) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderLogicalPresentation")]
+			GetRenderLogicalPresentation(void* renderer, i32* w, i32* h, RendererLogicalPresentation* mode) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderLogicalPresentationRect")]
+			GetRenderLogicalPresentationRect(void* renderer, FRect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderCoordinatesFromWindow")]
+			RenderCoordinatesFromWindow(void* renderer, f32 windowX, f32 windowY, f32* x, f32* y) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderCoordinatesToWindow")]
+			RenderCoordinatesToWindow(void* renderer, f32 x, f32 y, f32* windowX, f32* windowY) : bool;
+
+			[Import("SDL3.dll", "SDL_ConvertEventToRenderCoordinates")]
+			ConvertEventToRenderCoordinates(void* renderer, Event* event) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRenderViewport")]
+			SetRenderViewport(void* renderer, Rect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderViewport")]
+			GetRenderViewport(void* renderer, Rect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRenderViewportFloat")]
+			SetRenderViewportFloat(void* renderer, FRect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderViewportFloat")]
+			GetRenderViewportFloat(void* renderer, FRect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderViewportSet")]
+			RenderViewportSet(void* renderer) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderSafeArea")]
+			GetRenderSafeArea(void* renderer, Rect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRenderClipRect")]
+			SetRenderClipRect(void* renderer, Rect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderClipRect")]
+			GetRenderClipRect(void* renderer, Rect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRenderClipRectFloat")]
+			SetRenderClipRectFloat(void* renderer, FRect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderClipRectFloat")]
+			GetRenderClipRectFloat(void* renderer, FRect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderClipEnabled")]
+			RenderClipEnabled(void* renderer) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRenderScale")]
+			SetRenderScale(void* renderer, f32 scaleX, f32 scaleY) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderScale")]
+			GetRenderScale(void* renderer, f32* scaleX, f32* scaleY) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRenderDrawColor")]
+			SetRenderDrawColor(void* renderer, u8 r, u8 g, u8 b, u8 a) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRenderDrawColorFloat")]
+			SetRenderDrawColorFloat(void* renderer, f32 r, f32 g, f32 b, f32 a) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderDrawColor")]
+			GetRenderDrawColor(void* renderer, u8* r, u8* g, u8* b, u8* a) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderDrawColorFloat")]
+			GetRenderDrawColorFloat(void* renderer, f32* r, f32* g, f32* b, f32* a) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRenderColorScale")]
+			SetRenderColorScale(void* renderer, f32 scale) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderColorScale")]
+			GetRenderColorScale(void* renderer, f32* scale) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRenderHDRHeadroom")]
+			SetRenderHDRHeadroom(void* renderer, f32 headroom) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderHDRHeadroom")]
+			GetRenderHDRHeadroom(void* renderer, f32* headroom) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRenderDrawBlendMode")]
+			SetRenderDrawBlendMode(void* renderer, u32 blendMode) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderDrawBlendMode")]
+			GetRenderDrawBlendMode(void* renderer, u32* blendMode) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderClear")]
+			RenderClear(void* renderer) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderPoint")]
+			RenderPoint(void* renderer, f32 x, f32 y) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderPoints")]
+			RenderPoints(void* renderer, FPoint* points, i32 count) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderLine")]
+			RenderLine(void* renderer, f32 x1, f32 y1, f32 x2, f32 y2) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderLines")]
+			RenderLines(void* renderer, FPoint* points, i32 count) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderRect")]
+			RenderRect(void* renderer, FRect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderRects")]
+			RenderRects(void* renderer, FRect* rects, i32 count) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderFillRect")]
+			RenderFillRect(void* renderer, FRect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderFillRects")]
+			RenderFillRects(void* renderer, FRect* rects, i32 count) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderTexture")]
+			RenderTexture(void* renderer, Texture* texture, FRect* srcrect, FRect* dstrect) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderTextureRotated")]
+			RenderTextureRotated(void* renderer, Texture* texture, FRect* srcrect, FRect* dstrect, f64 angle, FPoint* center, FlipMode flip) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderTextureAffine")]
+			RenderTextureAffine(void* renderer, Texture* texture, FRect* srcrect, FPoint* origin, FPoint* right, FPoint* down) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderTextureTiled")]
+			RenderTextureTiled(void* renderer, Texture* texture, FRect* srcrect, f32 scale, FRect* dstrect) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderTexture9Grid")]
+			RenderTexture9Grid(void* renderer, Texture* texture, FRect* srcrect, f32 leftWidth, f32 rightWidth, f32 topHeight, f32 bottomHeight, f32 scale, FRect* dstrect) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderTexture9GridTiled")]
+			RenderTexture9GridTiled(void* renderer, Texture* texture, FRect* srcrect, f32 leftWidth, f32 rightWidth, f32 topHeight, f32 bottomHeight, f32 scale, FRect* dstrect, f32 tileScale) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderGeometry")]
+			RenderGeometry(void* renderer, Texture* texture, Vertex* vertices, i32 numVertices, i32* indices, i32 numIndices) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderGeometryRaw")]
+			RenderGeometryRaw(void* renderer, Texture* texture, f32* xy, i32 xyStride, FColor* color, i32 colorStride, f32* uv, i32 uvStride, i32 numVertices, void* indices, i32 numIndices, i32 sizeIndices) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRenderTextureAddressMode")]
+			SetRenderTextureAddressMode(void* renderer, TextureAddressMode uMode, TextureAddressMode vMode) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderTextureAddressMode")]
+			GetRenderTextureAddressMode(void* renderer, TextureAddressMode* uMode, TextureAddressMode* vMode) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderReadPixels")]
+			RenderReadPixels(void* renderer, Rect* rect) : Surface*;
+
+			[Import("SDL3.dll", "SDL_RenderPresent")]
+			RenderPresent(void* renderer) : bool;
+
+			[Import("SDL3.dll", "SDL_DestroyTexture")]
+			DestroyTexture(Texture* texture);
+
+			[Import("SDL3.dll", "SDL_DestroyRenderer")]
+			DestroyRenderer(void* renderer);
+
+			[Import("SDL3.dll", "SDL_FlushRenderer")]
+			FlushRenderer(void* renderer) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderMetalLayer")]
+			GetRenderMetalLayer(void* renderer) : void*;
+
+			[Import("SDL3.dll", "SDL_GetRenderMetalCommandEncoder")]
+			GetRenderMetalCommandEncoder(void* renderer) : void*;
+
+			[Import("SDL3.dll", "SDL_AddVulkanRenderSemaphores")]
+			AddVulkanRenderSemaphores(void* renderer, u32 waitStageMask, i64 waitSemaphore, i64 signalSemaphore) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRenderVSync")]
+			SetRenderVSync(void* renderer, i32 vsync) : bool;
+
+			[Import("SDL3.dll", "SDL_GetRenderVSync")]
+			GetRenderVSync(void* renderer, i32* vsync) : bool;
+
+			[Import("SDL3.dll", "SDL_RenderDebugText")]
+			RenderDebugText(void* renderer, f32 x, f32 y, str? str) : bool;
+
+			[Import("SDL3.dll", "SDL_SetDefaultTextureScaleMode")]
+			SetDefaultTextureScaleMode(void* renderer, ScaleMode scaleMode) : bool;
+
+			[Import("SDL3.dll", "SDL_GetDefaultTextureScaleMode")]
+			GetDefaultTextureScaleMode(void* renderer, ScaleMode* scaleMode) : bool;
+
+			[Import("SDL3.dll", "SDL_CreateGPURenderState")]
+			CreateGPURenderState(void* renderer, GPURenderStateCreateInfo* createinfo) : void*;
+
+			[Import("SDL3.dll", "SDL_SetGPURenderStateSamplerBindings")]
+			SetGPURenderStateSamplerBindings(void* state, i32 numSamplerBindings, GPUTextureSamplerBinding* samplerBindings) : bool;
+
+			[Import("SDL3.dll", "SDL_SetGPURenderStateStorageTextures")]
+			SetGPURenderStateStorageTextures(void* state, i32 numStorageTextures, void** storageTextures) : bool;
+
+			[Import("SDL3.dll", "SDL_SetGPURenderStateStorageBuffers")]
+			SetGPURenderStateStorageBuffers(void* state, i32 numStorageBuffers, void** storageBuffers) : bool;
+
+			[Import("SDL3.dll", "SDL_SetGPURenderStateFragmentUniforms")]
+			SetGPURenderStateFragmentUniforms(void* state, u32 slotIndex, void* data, u32 length) : bool;
+
+			[Import("SDL3.dll", "SDL_SetGPURenderState")]
+			SetGPURenderState(void* renderer, void* state) : bool;
+
+			[Import("SDL3.dll", "SDL_DestroyGPURenderState")]
+			DestroyGPURenderState(void* state);
+	}
+}

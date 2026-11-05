@@ -1,0 +1,52 @@
+// SDL.Log.LogCategory — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Log
+{
+	/// Values of SDL3.dll.
+	public enum LogCategory { Application, Error, Assert, System, Audio, Video, Render, Input, Test, Gpu, Reserved2, Reserved3, Reserved4, Reserved5, Reserved6, Reserved7, Reserved8, Reserved9, Reserved10, Custom }
+}
+
+// SDL.Log.LogPriority — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Log
+{
+	/// Values of SDL3.dll.
+	public enum LogPriority { Invalid, Trace, Verbose, Debug, Info, Warn, Error, Critical, Count }
+}
+
+// SDL.Log.Log — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Log
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Log
+	{
+		public:
+			[Import("SDL3.dll", "SDL_SetLogPriorities")]
+			SetLogPriorities(LogPriority priority);
+
+			[Import("SDL3.dll", "SDL_SetLogPriority")]
+			SetLogPriority(i32 category, LogPriority priority);
+
+			[Import("SDL3.dll", "SDL_GetLogPriority")]
+			GetLogPriority(i32 category) : LogPriority;
+
+			[Import("SDL3.dll", "SDL_ResetLogPriorities")]
+			ResetLogPriorities();
+
+			[Import("SDL3.dll", "SDL_SetLogPriorityPrefix")]
+			SetLogPriorityPrefix(LogPriority priority, str? prefix) : bool;
+
+			[Import("SDL3.dll", "SDL_LogMessageV")]
+			LogMessageV(i32 category, LogPriority priority, str? fmt, str? ap);
+
+			[Import("SDL3.dll", "SDL_GetDefaultLogOutputFunction")]
+			GetDefaultLogOutputFunction() : func*<void*, i32, i32, i8*>;
+
+			[Import("SDL3.dll", "SDL_GetLogOutputFunction")]
+			GetLogOutputFunction(void* callback, void** userdata);
+
+			[Import("SDL3.dll", "SDL_SetLogOutputFunction")]
+			SetLogOutputFunction(func*<void*, i32, i32, i8*> callback, void* userdata);
+	}
+}

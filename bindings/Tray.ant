@@ -1,0 +1,90 @@
+import SDL.Surface;
+
+// SDL.Tray.Tray — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Tray
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Tray
+	{
+		public:
+			readonly i32 TrayentryButton = 1;
+			readonly i32 TrayentryCheckbox = 2;
+			readonly i32 TrayentrySubmenu = 4;
+			readonly i64 TrayentryDisabled = 2147483648;
+			readonly i32 TrayentryChecked = 1073741824;
+
+			[Import("SDL3.dll", "SDL_CreateTray")]
+			CreateTray(Surface* icon, str? tooltip) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateTrayWithProperties")]
+			CreateTrayWithProperties(u32 props) : void*;
+
+			[Import("SDL3.dll", "SDL_SetTrayIcon")]
+			SetTrayIcon(void* tray, Surface* icon);
+
+			[Import("SDL3.dll", "SDL_SetTrayTooltip")]
+			SetTrayTooltip(void* tray, str? tooltip);
+
+			[Import("SDL3.dll", "SDL_CreateTrayMenu")]
+			CreateTrayMenu(void* tray) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateTraySubmenu")]
+			CreateTraySubmenu(void* entry) : void*;
+
+			[Import("SDL3.dll", "SDL_GetTrayMenu")]
+			GetTrayMenu(void* tray) : void*;
+
+			[Import("SDL3.dll", "SDL_GetTraySubmenu")]
+			GetTraySubmenu(void* entry) : void*;
+
+			[Import("SDL3.dll", "SDL_GetTrayEntries")]
+			GetTrayEntries(void* menu, i32* count) : void**;
+
+			[Import("SDL3.dll", "SDL_RemoveTrayEntry")]
+			RemoveTrayEntry(void* entry);
+
+			[Import("SDL3.dll", "SDL_InsertTrayEntryAt")]
+			InsertTrayEntryAt(void* menu, i32 pos, str? label, u32 flags) : void*;
+
+			[Import("SDL3.dll", "SDL_SetTrayEntryLabel")]
+			SetTrayEntryLabel(void* entry, str? label);
+
+			[Import("SDL3.dll", "SDL_GetTrayEntryLabel")]
+			GetTrayEntryLabel(void* entry) : i8*;
+
+			[Import("SDL3.dll", "SDL_SetTrayEntryChecked")]
+			SetTrayEntryChecked(void* entry, bool checked);
+
+			[Import("SDL3.dll", "SDL_GetTrayEntryChecked")]
+			GetTrayEntryChecked(void* entry) : bool;
+
+			[Import("SDL3.dll", "SDL_SetTrayEntryEnabled")]
+			SetTrayEntryEnabled(void* entry, bool enabled);
+
+			[Import("SDL3.dll", "SDL_GetTrayEntryEnabled")]
+			GetTrayEntryEnabled(void* entry) : bool;
+
+			[Import("SDL3.dll", "SDL_SetTrayEntryCallback")]
+			SetTrayEntryCallback(void* entry, func*<void*, void*> callback, void* userdata);
+
+			[Import("SDL3.dll", "SDL_ClickTrayEntry")]
+			ClickTrayEntry(void* entry);
+
+			[Import("SDL3.dll", "SDL_DestroyTray")]
+			DestroyTray(void* tray);
+
+			[Import("SDL3.dll", "SDL_GetTrayEntryParent")]
+			GetTrayEntryParent(void* entry) : void*;
+
+			[Import("SDL3.dll", "SDL_GetTrayMenuParentEntry")]
+			GetTrayMenuParentEntry(void* menu) : void*;
+
+			[Import("SDL3.dll", "SDL_GetTrayMenuParentTray")]
+			GetTrayMenuParentTray(void* menu) : void*;
+
+			[Import("SDL3.dll", "SDL_UpdateTrays")]
+			UpdateTrays();
+	}
+}

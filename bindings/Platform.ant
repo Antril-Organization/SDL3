@@ -1,0 +1,12 @@
+// SDL.Platform.Platform — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Platform
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Platform
+	{
+		public:
+			[Import("SDL3.dll", "SDL_GetPlatform")]
+			GetPlatform() : i8*;
+	}
+}

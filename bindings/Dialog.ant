@@ -1,0 +1,42 @@
+// SDL.Dialog.FileDialogType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Dialog
+{
+	/// Values of SDL3.dll.
+	public enum FileDialogType { Openfile, Savefile, Openfolder }
+}
+
+// SDL.Dialog.DialogFileFilter — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Dialog
+{
+	/// C struct DialogFileFilter of SDL3.dll: its fields in C's layout.
+	public value DialogFileFilter
+	{
+		public:
+			i8* Name;
+			i8* Pattern;
+	}
+}
+
+// SDL.Dialog.Dialog — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Dialog
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Dialog
+	{
+		public:
+			[Import("SDL3.dll", "SDL_ShowOpenFileDialog")]
+			ShowOpenFileDialog(func*<void*, i8**, i32> callback, void* userdata, void* window, DialogFileFilter* filters, i32 nfilters, str? defaultLocation, bool allowMany);
+
+			[Import("SDL3.dll", "SDL_ShowSaveFileDialog")]
+			ShowSaveFileDialog(func*<void*, i8**, i32> callback, void* userdata, void* window, DialogFileFilter* filters, i32 nfilters, str? defaultLocation);
+
+			[Import("SDL3.dll", "SDL_ShowOpenFolderDialog")]
+			ShowOpenFolderDialog(func*<void*, i8**, i32> callback, void* userdata, void* window, str? defaultLocation, bool allowMany);
+
+			[Import("SDL3.dll", "SDL_ShowFileDialogWithProperties")]
+			ShowFileDialogWithProperties(FileDialogType type, func*<void*, i8**, i32> callback, void* userdata, u32 props);
+	}
+}

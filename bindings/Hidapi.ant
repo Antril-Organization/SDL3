@@ -1,0 +1,112 @@
+// SDL.Hidapi.HidBusType — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Hidapi
+{
+	/// Values of SDL3.dll.
+	public enum HidBusType { Unknown, Usb, Bluetooth, I2c, Spi }
+}
+
+// SDL.Hidapi.HidDeviceInfo — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Hidapi
+{
+	/// C struct HidDeviceInfo of SDL3.dll: its fields in C's layout.
+	public value HidDeviceInfo
+	{
+		public:
+			i8* Path;
+			u16 VendorId;
+			u16 ProductId;
+			u16* SerialNumber;
+			u16 ReleaseNumber;
+			u16* ManufacturerString;
+			u16* ProductString;
+			u16 UsagePage;
+			u16 Usage;
+			i32 InterfaceNumber;
+			i32 InterfaceClass;
+			i32 InterfaceSubclass;
+			i32 InterfaceProtocol;
+			HidBusType BusType;
+			HidDeviceInfo* Next;
+	}
+}
+
+// SDL.Hidapi.Hidapi — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Hidapi
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Hidapi
+	{
+		public:
+			[Import("SDL3.dll", "SDL_hid_init")]
+			HidInit() : i32;
+
+			[Import("SDL3.dll", "SDL_hid_exit")]
+			HidExit() : i32;
+
+			[Import("SDL3.dll", "SDL_hid_device_change_count")]
+			HidDeviceChangeCount() : u32;
+
+			[Import("SDL3.dll", "SDL_hid_enumerate")]
+			HidEnumerate(u16 vendorId, u16 productId) : HidDeviceInfo*;
+
+			[Import("SDL3.dll", "SDL_hid_free_enumeration")]
+			HidFreeEnumeration(HidDeviceInfo* devs);
+
+			[Import("SDL3.dll", "SDL_hid_open")]
+			HidOpen(u16 vendorId, u16 productId, u16* serialNumber) : void*;
+
+			[Import("SDL3.dll", "SDL_hid_open_path")]
+			HidOpenPath(str? path) : void*;
+
+			[Import("SDL3.dll", "SDL_hid_get_properties")]
+			HidGetProperties(void* dev) : u32;
+
+			[Import("SDL3.dll", "SDL_hid_write")]
+			HidWrite(void* dev, u8* data, u64 length) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_read_timeout")]
+			HidReadTimeout(void* dev, u8* data, u64 length, i32 milliseconds) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_read")]
+			HidRead(void* dev, u8* data, u64 length) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_set_nonblocking")]
+			HidSetNonblocking(void* dev, i32 nonblock) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_send_feature_report")]
+			HidSendFeatureReport(void* dev, u8* data, u64 length) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_get_feature_report")]
+			HidGetFeatureReport(void* dev, u8* data, u64 length) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_get_input_report")]
+			HidGetInputReport(void* dev, u8* data, u64 length) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_close")]
+			HidClose(void* dev) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_get_manufacturer_string")]
+			HidGetManufacturerString(void* dev, u16* string, u64 maxlen) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_get_product_string")]
+			HidGetProductString(void* dev, u16* string, u64 maxlen) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_get_serial_number_string")]
+			HidGetSerialNumberString(void* dev, u16* string, u64 maxlen) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_get_indexed_string")]
+			HidGetIndexedString(void* dev, i32 stringIndex, u16* string, u64 maxlen) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_get_device_info")]
+			HidGetDeviceInfo(void* dev) : HidDeviceInfo*;
+
+			[Import("SDL3.dll", "SDL_hid_get_report_descriptor")]
+			HidGetReportDescriptor(void* dev, u8* buf, u64 bufSize) : i32;
+
+			[Import("SDL3.dll", "SDL_hid_ble_scan")]
+			HidBleScan(bool active);
+	}
+}

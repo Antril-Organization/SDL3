@@ -1,0 +1,449 @@
+import SDL.Pixels;
+import SDL.Rect;
+import SDL.Surface;
+
+// SDL.Video.SystemTheme — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Video
+{
+	/// Values of SDL3.dll.
+	public enum SystemTheme { Unknown, Light, Dark }
+}
+
+// SDL.Video.DisplayOrientation — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Video
+{
+	/// Values of SDL3.dll.
+	public enum DisplayOrientation { Unknown, Landscape, LandscapeFlipped, Portrait, PortraitFlipped }
+}
+
+// SDL.Video.FlashOperation — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Video
+{
+	/// Values of SDL3.dll.
+	public enum FlashOperation { Cancel, Briefly, UntilFocused }
+}
+
+// SDL.Video.ProgressState — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Video
+{
+	/// Values of SDL3.dll.
+	public enum ProgressState { Invalid = -1, None = 0, Indeterminate = 1, Normal = 2, Paused = 3, Error = 4 }
+}
+
+// SDL.Video.GLAttr — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Video
+{
+	/// Values of SDL3.dll.
+	public enum GLAttr { RedSize, GreenSize, BlueSize, AlphaSize, BufferSize, Doublebuffer, DepthSize, StencilSize, AccumRedSize, AccumGreenSize, AccumBlueSize, AccumAlphaSize, Stereo, Multisamplebuffers, Multisamplesamples, AcceleratedVisual, RetainedBacking, ContextMajorVersion, ContextMinorVersion, ContextFlags, ContextProfileMask, ShareWithCurrentContext, FramebufferSrgbCapable, ContextReleaseBehavior, ContextResetNotification, ContextNoError, Floatbuffers, EglPlatform }
+}
+
+// SDL.Video.HitTestResult — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Video
+{
+	/// Values of SDL3.dll.
+	public enum HitTestResult { Normal, Draggable, ResizeTopleft, ResizeTop, ResizeTopright, ResizeRight, ResizeBottomright, ResizeBottom, ResizeBottomleft, ResizeLeft }
+}
+
+// SDL.Video.WindowFlags — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Video
+{
+	/// Flags of SDL3.dll.
+	public bitflag enum WindowFlags : u32 { Fullscreen = 1, Opengl = 2, Occluded = 4, Hidden = 8, Borderless = 16, Resizable = 32, Minimized = 64, Maximized = 128, MouseGrabbed = 256, InputFocus = 512, MouseFocus = 1024, External = 2048, Modal = 4096, HighPixelDensity = 8192, MouseCapture = 16384, MouseRelativeMode = 32768, AlwaysOnTop = 65536, Utility = 131072, Tooltip = 262144, PopupMenu = 524288, KeyboardGrabbed = 1048576, FillDocument = 2097152, Vulkan = 268435456, Metal = 536870912, Transparent = 1073741824, NotFocusable = 2147483648 }
+}
+
+// SDL.Video.DisplayMode — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Video
+{
+	/// C struct DisplayMode of SDL3.dll: its fields in C's layout.
+	public value DisplayMode
+	{
+		public:
+			u32 DisplayID;
+			PixelFormat Format;
+			i32 W;
+			i32 H;
+			f32 PixelDensity;
+			f32 RefreshRate;
+			i32 RefreshRateNumerator;
+			i32 RefreshRateDenominator;
+			void* Internal;
+	}
+}
+
+// SDL.Video.Video — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Video
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Video
+	{
+		public:
+			readonly i32 WindowposUndefinedMask = 536805376;
+			readonly i32 WindowposCenteredMask = 805240832;
+			readonly i32 GlContextProfileCore = 1;
+			readonly i32 GlContextProfileCompatibility = 2;
+			readonly i32 GlContextProfileEs = 4;
+			readonly i32 GlContextDebugFlag = 1;
+			readonly i32 GlContextForwardCompatibleFlag = 2;
+			readonly i32 GlContextRobustAccessFlag = 4;
+			readonly i32 GlContextResetIsolationFlag = 8;
+			readonly i32 GlContextReleaseBehaviorNone = 0;
+			readonly i32 GlContextReleaseBehaviorFlush = 1;
+			readonly i32 GlContextResetNoNotification = 0;
+			readonly i32 GlContextResetLoseContext = 1;
+			readonly i32 WindowSurfaceVsyncDisabled = 0;
+			readonly i32 WindowSurfaceVsyncAdaptive = -1;
+
+			[Import("SDL3.dll", "SDL_GetNumVideoDrivers")]
+			GetNumVideoDrivers() : i32;
+
+			[Import("SDL3.dll", "SDL_GetVideoDriver")]
+			GetVideoDriver(i32 index) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetCurrentVideoDriver")]
+			GetCurrentVideoDriver() : i8*;
+
+			[Import("SDL3.dll", "SDL_GetSystemTheme")]
+			GetSystemTheme() : SystemTheme;
+
+			[Import("SDL3.dll", "SDL_GetDisplays")]
+			GetDisplays(i32* count) : u32*;
+
+			[Import("SDL3.dll", "SDL_GetPrimaryDisplay")]
+			GetPrimaryDisplay() : u32;
+
+			[Import("SDL3.dll", "SDL_GetDisplayProperties")]
+			GetDisplayProperties(u32 displayID) : u32;
+
+			[Import("SDL3.dll", "SDL_GetDisplayName")]
+			GetDisplayName(u32 displayID) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetDisplayBounds")]
+			GetDisplayBounds(u32 displayID, Rect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_GetDisplayUsableBounds")]
+			GetDisplayUsableBounds(u32 displayID, Rect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_GetNaturalDisplayOrientation")]
+			GetNaturalDisplayOrientation(u32 displayID) : DisplayOrientation;
+
+			[Import("SDL3.dll", "SDL_GetCurrentDisplayOrientation")]
+			GetCurrentDisplayOrientation(u32 displayID) : DisplayOrientation;
+
+			[Import("SDL3.dll", "SDL_GetDisplayContentScale")]
+			GetDisplayContentScale(u32 displayID) : f32;
+
+			[Import("SDL3.dll", "SDL_GetFullscreenDisplayModes")]
+			GetFullscreenDisplayModes(u32 displayID, i32* count) : DisplayMode**;
+
+			[Import("SDL3.dll", "SDL_GetClosestFullscreenDisplayMode")]
+			GetClosestFullscreenDisplayMode(u32 displayID, i32 w, i32 h, f32 refreshRate, bool includeHighDensityModes, DisplayMode* closest) : bool;
+
+			[Import("SDL3.dll", "SDL_GetDesktopDisplayMode")]
+			GetDesktopDisplayMode(u32 displayID) : DisplayMode*;
+
+			[Import("SDL3.dll", "SDL_GetCurrentDisplayMode")]
+			GetCurrentDisplayMode(u32 displayID) : DisplayMode*;
+
+			[Import("SDL3.dll", "SDL_GetDisplayForPoint")]
+			GetDisplayForPoint(Point* point) : u32;
+
+			[Import("SDL3.dll", "SDL_GetDisplayForRect")]
+			GetDisplayForRect(Rect* rect) : u32;
+
+			[Import("SDL3.dll", "SDL_GetDisplayForWindow")]
+			GetDisplayForWindow(void* window) : u32;
+
+			[Import("SDL3.dll", "SDL_GetWindowPixelDensity")]
+			GetWindowPixelDensity(void* window) : f32;
+
+			[Import("SDL3.dll", "SDL_GetWindowDisplayScale")]
+			GetWindowDisplayScale(void* window) : f32;
+
+			[Import("SDL3.dll", "SDL_SetWindowFullscreenMode")]
+			SetWindowFullscreenMode(void* window, DisplayMode* mode) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowFullscreenMode")]
+			GetWindowFullscreenMode(void* window) : DisplayMode*;
+
+			[Import("SDL3.dll", "SDL_GetWindowICCProfile")]
+			GetWindowICCProfile(void* window, u64* size) : void*;
+
+			[Import("SDL3.dll", "SDL_GetWindowPixelFormat")]
+			GetWindowPixelFormat(void* window) : PixelFormat;
+
+			[Import("SDL3.dll", "SDL_GetWindows")]
+			GetWindows(i32* count) : void**;
+
+			[Import("SDL3.dll", "SDL_CreateWindow")]
+			CreateWindow(str? title, i32 w, i32 h, WindowFlags flags) : void*;
+
+			[Import("SDL3.dll", "SDL_CreatePopupWindow")]
+			CreatePopupWindow(void* parent, i32 offsetX, i32 offsetY, i32 w, i32 h, WindowFlags flags) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateWindowWithProperties")]
+			CreateWindowWithProperties(u32 props) : void*;
+
+			[Import("SDL3.dll", "SDL_GetWindowID")]
+			GetWindowID(void* window) : u32;
+
+			[Import("SDL3.dll", "SDL_GetWindowFromID")]
+			GetWindowFromID(u32 id) : void*;
+
+			[Import("SDL3.dll", "SDL_GetWindowParent")]
+			GetWindowParent(void* window) : void*;
+
+			[Import("SDL3.dll", "SDL_GetWindowProperties")]
+			GetWindowProperties(void* window) : u32;
+
+			[Import("SDL3.dll", "SDL_GetWindowFlags")]
+			GetWindowFlags(void* window) : WindowFlags;
+
+			[Import("SDL3.dll", "SDL_SetWindowTitle")]
+			SetWindowTitle(void* window, str? title) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowTitle")]
+			GetWindowTitle(void* window) : i8*;
+
+			[Import("SDL3.dll", "SDL_SetWindowIcon")]
+			SetWindowIcon(void* window, Surface* icon) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowPosition")]
+			SetWindowPosition(void* window, i32 x, i32 y) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowPosition")]
+			GetWindowPosition(void* window, i32* x, i32* y) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowSize")]
+			SetWindowSize(void* window, i32 w, i32 h) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowSize")]
+			GetWindowSize(void* window, i32* w, i32* h) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowSafeArea")]
+			GetWindowSafeArea(void* window, Rect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowAspectRatio")]
+			SetWindowAspectRatio(void* window, f32 minAspect, f32 maxAspect) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowAspectRatio")]
+			GetWindowAspectRatio(void* window, f32* minAspect, f32* maxAspect) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowBordersSize")]
+			GetWindowBordersSize(void* window, i32* top, i32* left, i32* bottom, i32* right) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowSizeInPixels")]
+			GetWindowSizeInPixels(void* window, i32* w, i32* h) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowMinimumSize")]
+			SetWindowMinimumSize(void* window, i32 minW, i32 minH) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowMinimumSize")]
+			GetWindowMinimumSize(void* window, i32* w, i32* h) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowMaximumSize")]
+			SetWindowMaximumSize(void* window, i32 maxW, i32 maxH) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowMaximumSize")]
+			GetWindowMaximumSize(void* window, i32* w, i32* h) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowBordered")]
+			SetWindowBordered(void* window, bool bordered) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowResizable")]
+			SetWindowResizable(void* window, bool resizable) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowAlwaysOnTop")]
+			SetWindowAlwaysOnTop(void* window, bool onTop) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowFillDocument")]
+			SetWindowFillDocument(void* window, bool fill) : bool;
+
+			[Import("SDL3.dll", "SDL_ShowWindow")]
+			ShowWindow(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_HideWindow")]
+			HideWindow(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_RaiseWindow")]
+			RaiseWindow(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_MaximizeWindow")]
+			MaximizeWindow(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_MinimizeWindow")]
+			MinimizeWindow(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_RestoreWindow")]
+			RestoreWindow(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowFullscreen")]
+			SetWindowFullscreen(void* window, bool fullscreen) : bool;
+
+			[Import("SDL3.dll", "SDL_SyncWindow")]
+			SyncWindow(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_WindowHasSurface")]
+			WindowHasSurface(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowSurface")]
+			GetWindowSurface(void* window) : Surface*;
+
+			[Import("SDL3.dll", "SDL_SetWindowSurfaceVSync")]
+			SetWindowSurfaceVSync(void* window, i32 vsync) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowSurfaceVSync")]
+			GetWindowSurfaceVSync(void* window, i32* vsync) : bool;
+
+			[Import("SDL3.dll", "SDL_UpdateWindowSurface")]
+			UpdateWindowSurface(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_UpdateWindowSurfaceRects")]
+			UpdateWindowSurfaceRects(void* window, Rect* rects, i32 numrects) : bool;
+
+			[Import("SDL3.dll", "SDL_DestroyWindowSurface")]
+			DestroyWindowSurface(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowKeyboardGrab")]
+			SetWindowKeyboardGrab(void* window, bool grabbed) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowMouseGrab")]
+			SetWindowMouseGrab(void* window, bool grabbed) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowKeyboardGrab")]
+			GetWindowKeyboardGrab(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowMouseGrab")]
+			GetWindowMouseGrab(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_GetGrabbedWindow")]
+			GetGrabbedWindow() : void*;
+
+			[Import("SDL3.dll", "SDL_SetWindowMouseRect")]
+			SetWindowMouseRect(void* window, Rect* rect) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowMouseRect")]
+			GetWindowMouseRect(void* window) : Rect*;
+
+			[Import("SDL3.dll", "SDL_SetWindowOpacity")]
+			SetWindowOpacity(void* window, f32 opacity) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowOpacity")]
+			GetWindowOpacity(void* window) : f32;
+
+			[Import("SDL3.dll", "SDL_SetWindowParent")]
+			SetWindowParent(void* window, void* parent) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowModal")]
+			SetWindowModal(void* window, bool modal) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowFocusable")]
+			SetWindowFocusable(void* window, bool focusable) : bool;
+
+			[Import("SDL3.dll", "SDL_ShowWindowSystemMenu")]
+			ShowWindowSystemMenu(void* window, i32 x, i32 y) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowHitTest")]
+			SetWindowHitTest(void* window, func*<void*, Point*, void*> : i32 callback, void* callbackData) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowShape")]
+			SetWindowShape(void* window, Surface* shape) : bool;
+
+			[Import("SDL3.dll", "SDL_FlashWindow")]
+			FlashWindow(void* window, FlashOperation operation) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowProgressState")]
+			SetWindowProgressState(void* window, ProgressState state) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowProgressState")]
+			GetWindowProgressState(void* window) : ProgressState;
+
+			[Import("SDL3.dll", "SDL_SetWindowProgressValue")]
+			SetWindowProgressValue(void* window, f32 value) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowProgressValue")]
+			GetWindowProgressValue(void* window) : f32;
+
+			[Import("SDL3.dll", "SDL_DestroyWindow")]
+			DestroyWindow(void* window);
+
+			[Import("SDL3.dll", "SDL_ScreenSaverEnabled")]
+			ScreenSaverEnabled() : bool;
+
+			[Import("SDL3.dll", "SDL_EnableScreenSaver")]
+			EnableScreenSaver() : bool;
+
+			[Import("SDL3.dll", "SDL_DisableScreenSaver")]
+			DisableScreenSaver() : bool;
+
+			[Import("SDL3.dll", "SDL_GL_LoadLibrary")]
+			GLLoadLibrary(str? path) : bool;
+
+			[Import("SDL3.dll", "SDL_GL_GetProcAddress")]
+			GLGetProcAddress(str? proc) : func*;
+
+			[Import("SDL3.dll", "SDL_EGL_GetProcAddress")]
+			EGLGetProcAddress(str? proc) : func*;
+
+			[Import("SDL3.dll", "SDL_GL_UnloadLibrary")]
+			GLUnloadLibrary();
+
+			[Import("SDL3.dll", "SDL_GL_ExtensionSupported")]
+			GLExtensionSupported(str? extension) : bool;
+
+			[Import("SDL3.dll", "SDL_GL_ResetAttributes")]
+			GLResetAttributes();
+
+			[Import("SDL3.dll", "SDL_GL_SetAttribute")]
+			GLSetAttribute(GLAttr attr, i32 value) : bool;
+
+			[Import("SDL3.dll", "SDL_GL_GetAttribute")]
+			GLGetAttribute(GLAttr attr, i32* value) : bool;
+
+			[Import("SDL3.dll", "SDL_GL_CreateContext")]
+			GLCreateContext(void* window) : void*;
+
+			[Import("SDL3.dll", "SDL_GL_MakeCurrent")]
+			GLMakeCurrent(void* window, void* context) : bool;
+
+			[Import("SDL3.dll", "SDL_GL_GetCurrentWindow")]
+			GLGetCurrentWindow() : void*;
+
+			[Import("SDL3.dll", "SDL_GL_GetCurrentContext")]
+			GLGetCurrentContext() : void*;
+
+			[Import("SDL3.dll", "SDL_EGL_GetCurrentDisplay")]
+			EGLGetCurrentDisplay() : void*;
+
+			[Import("SDL3.dll", "SDL_EGL_GetCurrentConfig")]
+			EGLGetCurrentConfig() : void*;
+
+			[Import("SDL3.dll", "SDL_EGL_GetWindowSurface")]
+			EGLGetWindowSurface(void* window) : void*;
+
+			[Import("SDL3.dll", "SDL_EGL_SetAttributeCallbacks")]
+			EGLSetAttributeCallbacks(func*<void*> : i64* platformAttribCallback, func*<void*, void*, void*> : i32* surfaceAttribCallback, func*<void*, void*, void*> : i32* contextAttribCallback, void* userdata);
+
+			[Import("SDL3.dll", "SDL_GL_SetSwapInterval")]
+			GLSetSwapInterval(i32 interval) : bool;
+
+			[Import("SDL3.dll", "SDL_GL_GetSwapInterval")]
+			GLGetSwapInterval(i32* interval) : bool;
+
+			[Import("SDL3.dll", "SDL_GL_SwapWindow")]
+			GLSwapWindow(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_GL_DestroyContext")]
+			GLDestroyContext(void* context) : bool;
+	}
+}

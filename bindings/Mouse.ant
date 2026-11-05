@@ -1,0 +1,120 @@
+import SDL.Surface;
+
+// SDL.Mouse.SystemCursor — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Mouse
+{
+	/// Values of SDL3.dll.
+	public enum SystemCursor { Default, Text, Wait, Crosshair, Progress, NwseResize, NeswResize, EwResize, NsResize, Move, NotAllowed, Pointer, NwResize, NResize, NeResize, EResize, SeResize, SResize, SwResize, WResize, ContextMenu, Help, Cell, VerticalText, Alias, Copy, NoDrop, Grab, Grabbing, ColResize, RowResize, AllScroll, ZoomIn, ZoomOut, Count }
+}
+
+// SDL.Mouse.MouseWheelDirection — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Mouse
+{
+	/// Values of SDL3.dll.
+	public enum MouseWheelDirection { Normal, Flipped }
+}
+
+// SDL.Mouse.CursorFrameInfo — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Mouse
+{
+	/// C struct CursorFrameInfo of SDL3.dll: its fields in C's layout.
+	public value CursorFrameInfo
+	{
+		public:
+			Surface* Surface;
+			u32 Duration;
+	}
+}
+
+// SDL.Mouse.Mouse — SDL.Bindings (decompiled from Larva HIR)
+
+
+into namespace SDL.Mouse
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class Mouse
+	{
+		public:
+			readonly i32 ButtonLeft = 1;
+			readonly i32 ButtonMiddle = 2;
+			readonly i32 ButtonRight = 3;
+			readonly i32 ButtonX1 = 4;
+			readonly i32 ButtonX2 = 5;
+
+			[Import("SDL3.dll", "SDL_HasMouse")]
+			HasMouse() : bool;
+
+			[Import("SDL3.dll", "SDL_GetMice")]
+			GetMice(i32* count) : u32*;
+
+			[Import("SDL3.dll", "SDL_GetMouseNameForID")]
+			GetMouseNameForID(u32 instanceId) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetMouseFocus")]
+			GetMouseFocus() : void*;
+
+			[Import("SDL3.dll", "SDL_GetMouseState")]
+			GetMouseState(f32* x, f32* y) : u32;
+
+			[Import("SDL3.dll", "SDL_GetGlobalMouseState")]
+			GetGlobalMouseState(f32* x, f32* y) : u32;
+
+			[Import("SDL3.dll", "SDL_GetRelativeMouseState")]
+			GetRelativeMouseState(f32* x, f32* y) : u32;
+
+			[Import("SDL3.dll", "SDL_WarpMouseInWindow")]
+			WarpMouseInWindow(void* window, f32 x, f32 y);
+
+			[Import("SDL3.dll", "SDL_WarpMouseGlobal")]
+			WarpMouseGlobal(f32 x, f32 y) : bool;
+
+			[Import("SDL3.dll", "SDL_SetRelativeMouseTransform")]
+			SetRelativeMouseTransform(func*<void*, u64, void*, u32, f32*, f32*> callback, void* userdata) : bool;
+
+			[Import("SDL3.dll", "SDL_SetWindowRelativeMouseMode")]
+			SetWindowRelativeMouseMode(void* window, bool enabled) : bool;
+
+			[Import("SDL3.dll", "SDL_GetWindowRelativeMouseMode")]
+			GetWindowRelativeMouseMode(void* window) : bool;
+
+			[Import("SDL3.dll", "SDL_CaptureMouse")]
+			CaptureMouse(bool enabled) : bool;
+
+			[Import("SDL3.dll", "SDL_CreateCursor")]
+			CreateCursor(u8* data, u8* mask, i32 w, i32 h, i32 hotX, i32 hotY) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateColorCursor")]
+			CreateColorCursor(Surface* surface, i32 hotX, i32 hotY) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateAnimatedCursor")]
+			CreateAnimatedCursor(CursorFrameInfo* frames, i32 frameCount, i32 hotX, i32 hotY) : void*;
+
+			[Import("SDL3.dll", "SDL_CreateSystemCursor")]
+			CreateSystemCursor(SystemCursor id) : void*;
+
+			[Import("SDL3.dll", "SDL_SetCursor")]
+			SetCursor(void* cursor) : bool;
+
+			[Import("SDL3.dll", "SDL_GetCursor")]
+			GetCursor() : void*;
+
+			[Import("SDL3.dll", "SDL_GetDefaultCursor")]
+			GetDefaultCursor() : void*;
+
+			[Import("SDL3.dll", "SDL_DestroyCursor")]
+			DestroyCursor(void* cursor);
+
+			[Import("SDL3.dll", "SDL_ShowCursor")]
+			ShowCursor() : bool;
+
+			[Import("SDL3.dll", "SDL_HideCursor")]
+			HideCursor() : bool;
+
+			[Import("SDL3.dll", "SDL_CursorVisible")]
+			CursorVisible() : bool;
+	}
+}

@@ -1,0 +1,11 @@
+// SDL.Guid.Guid — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.Guid
+{
+	/// C struct Guid of SDL3.dll: its fields in C's layout.
+	public value Guid
+	{
+		public:
+			fixed u8[16] Data;
+	}
+}

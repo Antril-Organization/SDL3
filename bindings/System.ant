@@ -1,0 +1,73 @@
+// SDL.System.FormFactor — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.System
+{
+	/// Values of SDL3.dll.
+	public enum FormFactor { Unknown, Desktop, Laptop, Phone, Tablet, Console, Handheld, Watch, Tv, Headset, Car }
+}
+
+// SDL.System.Sandbox — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.System
+{
+	/// Values of SDL3.dll.
+	public enum Sandbox { None, UnknownContainer, Flatpak, Snap, Macos, Lomiri }
+}
+
+// SDL.System.System — SDL.Bindings (decompiled from Larva HIR)
+
+into namespace SDL.System
+{
+	/// Functions of SDL3.dll, called directly.
+	public static class System
+	{
+		public:
+			[Import("SDL3.dll", "SDL_SetWindowsMessageHook")]
+			SetWindowsMessageHook(func*<void*, void*> : bool callback, void* userdata);
+
+			[Import("SDL3.dll", "SDL_GetDirect3D9AdapterIndex")]
+			GetDirect3D9AdapterIndex(u32 displayID) : i32;
+
+			[Import("SDL3.dll", "SDL_GetDXGIOutputInfo")]
+			GetDXGIOutputInfo(u32 displayID, i32* adapterIndex, i32* outputIndex) : bool;
+
+			[Import("SDL3.dll", "SDL_SetX11EventHook")]
+			SetX11EventHook(func*<void*, void*> : bool callback, void* userdata);
+
+			[Import("SDL3.dll", "SDL_IsPhone")]
+			IsPhone() : bool;
+
+			[Import("SDL3.dll", "SDL_IsTablet")]
+			IsTablet() : bool;
+
+			[Import("SDL3.dll", "SDL_IsTV")]
+			IsTV() : bool;
+
+			[Import("SDL3.dll", "SDL_GetDeviceFormFactor")]
+			GetDeviceFormFactor() : FormFactor;
+
+			[Import("SDL3.dll", "SDL_GetDeviceFormFactorName")]
+			GetDeviceFormFactorName(FormFactor formFactor) : i8*;
+
+			[Import("SDL3.dll", "SDL_GetSandbox")]
+			GetSandbox() : Sandbox;
+
+			[Import("SDL3.dll", "SDL_OnApplicationWillTerminate")]
+			OnApplicationWillTerminate();
+
+			[Import("SDL3.dll", "SDL_OnApplicationDidReceiveMemoryWarning")]
+			OnApplicationDidReceiveMemoryWarning();
+
+			[Import("SDL3.dll", "SDL_OnApplicationWillEnterBackground")]
+			OnApplicationWillEnterBackground();
+
+			[Import("SDL3.dll", "SDL_OnApplicationDidEnterBackground")]
+			OnApplicationDidEnterBackground();
+
+			[Import("SDL3.dll", "SDL_OnApplicationWillEnterForeground")]
+			OnApplicationWillEnterForeground();
+
+			[Import("SDL3.dll", "SDL_OnApplicationDidEnterForeground")]
+			OnApplicationDidEnterForeground();
+	}
+}
