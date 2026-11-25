@@ -15,7 +15,7 @@ The package is `Antril-Organization/SDL3`, published with [Hive](https://www.ant
 
 ## Use it
 
-Add the package to your project (`.queen`) and install it:
+Add the package to your project (`project.queen`) and install it:
 
 ```
 larva hive add Antril-Organization/SDL3@^3.5
@@ -98,7 +98,7 @@ What is in this repository:
 | `include/SDL3/` | SDL's headers, read by the profile. |
 | `build/SDL3.dll` | SDL itself (Windows x64). |
 | `bindings/` | The binding as Antril source, written by the profile: to read what it has. |
-| `package/SDL3.queen` | The Hive package: the binding (`SDL.Bindings.dll`) and `SDL3.dll`. |
+| `package/project.queen` | The Hive package: the binding (`SDL.Bindings.dll`) and `SDL3.dll`. |
 
 With [Larva](https://www.antril.org) 0.8 or newer (and clang, which reads the headers):
 
@@ -109,7 +109,7 @@ larva bind --profile SDLBindingProfile.ant
 writes `SDL.Bindings.dll` (the binding, compiled) and the source in `bindings/`. Then
 
 ```
-larva hive pack package/SDL3.queen
+larva hive pack package
 ```
 
 packs `package/bin/SDL3-3.5.0.hive`, signed with the key `package/hive.key` (private: not in this repository).
